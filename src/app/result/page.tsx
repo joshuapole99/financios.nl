@@ -1,0 +1,545 @@
+import Link from "next/link";
+import { calculate, parseScanInput, GoalStatus } from "@/lib/calculate";
+
+export default async function ResultPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string>>;
+}) {
+  const params = await searchParams;
+
+  if (!params.inkomen) {
+    return (
+      <main className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+        <h1 className="text-2xl font-semibold text-foreground tracking-tight mb-4">
+          Geen gegevens gevonden
+        </h1>
+        <p className="text-muted mb-6">
+          Start de scan opnieuw om je resultaten te zien.
+        </p>
+        <Link
+          href="/scan"
+          className="bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide"
+        >
+          Terug naar scan
+        </Link>
+      </main>
+    );
+  }
+
+  const input = parseScanInput(params);
+  const result = calculate(input);
+
+  const doelNaam = input.doelNaam || "je spaardoel";
+  const needsFix =
+    result.status === "not-achievable" || result.status === "warning";
+
+  // Display-only derivations (no business logic changes)
+  const totalGapOverPeriod = Math.round(result.savingsGap * input.maanden);
+  const extraMonthsLate =
+    result.monthsNeededAtCapacity !== null && result.monthsNeededAtCapacity > input.maanden
+      ? result.monthsNeededAtCapacity - input.maanden
+      : null;
+
+  return (
+    <main className="min-h-screen px-4 py-10 max-w-xl mx-auto">
+      {/* Header */}
+      <div className="mb-8">
+        <Link
+          href="/scan"
+          className="text-sm text-muted hover:text-foreground transition-colors mb-6 inline-block"
+        >
+          ← Pas aan
+        </Link>
+        <h1 className="text-3xl font-semibold text-foreground tracking-tight">
+          Jouw spaaranalyse
+        </h1>
+        <p className="text-muted mt-1">
+          {input.doelNaam || "Spaardoel"} · €{" "}
+          {input.doel.toLocaleString("nl-NL")} in {input.maanden} maanden
+        </p>
+      </div>
+
+      {/* ── NOT ACHIEVABLE / WARNING PATH ─────────────────────── */}
+      {needsFix && (
+        <>
+          {/* Status badge */}
+          <div
+            className={`rounded-2xl p-6 border mb-4 shadow-[var(--shadow-card)] ${
+              result.status === "not-achievable"
+                ? "bg-danger/10 border-danger/20"
+                : "bg-warning/10 border-warning/20"
+            }`}
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <span
+                className={`w-3.5 h-3.5 rounded-full shrink-0 ${
+                  result.status === "not-achievable" ? "bg-danger" : "bg-warning"
+                }`}
+              />
+              <span
+                className={`font-bold text-lg ${
+                  result.status === "not-achievable"
+                    ? "text-danger"
+                    : "text-warning"
+                }`}
+              >
+                {result.status === "not-achievable"
+                  ? "Doel niet haalbaar"
+                  : "Bijna — maar niet genoeg"}
+              </span>
+            </div>
+            <p className="text-foreground text-sm leading-relaxed">
+              {result.status === "not-achievable" ? (
+                <>
+                  Op dit tempo haal jij{" "}
+                  <strong className="text-foreground">{doelNaam}</strong>{" "}
+                  nooit op tijd.{" "}
+                  {extraMonthsLate !== null ? (
+                    <>
+                      Je bent{" "}
+                      <span className="text-danger font-semibold">
+                        {extraMonthsLate} maanden te laat
+                      </span>{" "}
+                      — en je mist in totaal{" "}
+                      <span className="text-danger font-semibold">
+                        €{" "}
+                        {totalGapOverPeriod.toLocaleString("nl-NL")}
+                      </span>{" "}
+                      aan spaargeld. Dat is geld dat je nu al verliest.
+                    </>
+                  ) : (
+                    <>
+                      Je geeft momenteel meer uit dan je verdient. Zonder
+                      concrete aanpassingen is dit doel onhaalbaar.
+                    </>
+                  )}
+                </>
+              ) : (
+                <>
+                  Bijna is niet genoeg. Je hebt{" "}
+                  <span className="text-warning font-semibold">
+                    €{" "}{fmt(result.savingsGap)}/maand te weinig
+                  </span>
+                  . Doe je niets, dan mis je over {input.maanden} maanden{" "}
+                  <span className="text-warning font-semibold">
+                    €{" "}{totalGapOverPeriod.toLocaleString("nl-NL")}
+                  </span>{" "}
+                  in totaal — en haal je je doel niet.
+                </>
+              )}
+            </p>
+          </div>
+
+          {/* Gap visualization */}
+          <div className="bg-card border border-border rounded-2xl p-5 mb-6 shadow-[var(--shadow-card)]">
+            <h2 className="font-semibold text-foreground mb-4">
+              Jouw spaartekort
+            </h2>
+
+            <div className="grid grid-cols-3 gap-3 mb-5 text-center">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wider text-muted mb-1">
+                  Jij spaart
+                </p>
+                <p
+                  className={`text-xl font-bold ${
+                    result.monthlyCapacity >= 0
+                      ? "text-success"
+                      : "text-danger"
+                  }`}
+                >
+                  €{" "}{fmt(Math.max(0, result.monthlyCapacity))}
+                </p>
+                <p className="text-xs text-muted">per maand</p>
+              </div>
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wider text-muted mb-1">
+                  Nodig
+                </p>
+                <p className="text-xl font-bold text-foreground">
+                  €{" "}{fmt(result.requiredMonthly)}
+                </p>
+                <p className="text-xs text-muted">per maand</p>
+              </div>
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wider text-muted mb-1">
+                  Tekort
+                </p>
+                <p className="text-xl font-bold text-danger">
+                  €{" "}{fmt(result.savingsGap)}
+                </p>
+                <p className="text-xs text-muted">per maand</p>
+              </div>
+            </div>
+
+            {/* Gap bar */}
+            <GapBar
+              capacity={result.monthlyCapacity}
+              required={result.requiredMonthly}
+              gap={result.savingsGap}
+            />
+
+            {/* Total impact */}
+            <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
+              <span className="text-xs text-muted">
+                Totaal tekort over {input.maanden} maanden
+              </span>
+              <span className="text-sm font-bold text-danger">
+                − €{" "}{totalGapOverPeriod.toLocaleString("nl-NL")}
+              </span>
+            </div>
+          </div>
+
+          {/* ── PREMIUM CTA (shown high on page for max conversion) ── */}
+          <PremiumCard
+            doelNaam={doelNaam}
+            gap={result.savingsGap}
+            checkoutHref={`/checkout?${new URLSearchParams(params).toString()}`}
+          />
+
+          {/* Free scenarios — teaser */}
+          {result.scenarios.length > 0 && (
+            <div className="bg-card border border-border rounded-2xl p-5 mb-6 shadow-[var(--shadow-card)]">
+              <div className="flex items-center justify-between mb-1">
+                <h2 className="font-semibold text-foreground">
+                  Fix scenario&apos;s
+                </h2>
+                <span className="text-xs font-medium uppercase tracking-wider text-muted bg-border px-2 py-0.5 rounded-full">
+                  Gratis inzicht
+                </span>
+              </div>
+              <p className="text-sm text-muted mb-4">
+                Er zijn manieren om dit te fixen. Maar zonder concreet weekplan weet je morgen nog steeds niet hoe.
+              </p>
+              <div className="flex flex-col gap-3">
+                {result.scenarios.map((scenario, i) => (
+                  <div key={i} className="flex gap-3 items-start">
+                    <span className="w-7 h-7 rounded-full bg-accent/20 text-accent text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <span className="text-sm font-medium text-foreground block">
+                        {scenario.label}
+                      </span>
+                      <span className="text-xs text-muted">
+                        {scenario.description}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Biggest expense leak */}
+          <div className="bg-card border border-border rounded-2xl p-5 mb-6 shadow-[var(--shadow-card)]">
+            <h2 className="font-semibold text-foreground mb-1">
+              Grootste uitgavenpost
+            </h2>
+            <p className="text-sm text-muted mb-3">
+              Hier verdwijnt het meeste geld buiten vaste lasten.
+            </p>
+            <div className="flex items-center justify-between">
+              <span className="text-foreground">{result.biggestLeak.name}</span>
+              <span className="font-bold text-warning">
+                €{" "}{fmt(result.biggestLeak.amount)}/maand
+              </span>
+            </div>
+            <div className="mt-3 h-2 bg-border rounded-full overflow-hidden">
+              <div
+                className="h-full bg-warning rounded-full transition-all duration-500"
+                style={{
+                  width: `${Math.min(
+                    100,
+                    (result.biggestLeak.amount / result.totalExpenses) * 100
+                  )}%`,
+                }}
+              />
+            </div>
+            <p className="text-xs text-muted mt-2">
+              {Math.round(
+                (result.biggestLeak.amount / result.totalExpenses) * 100
+              )}
+              % van je totale uitgaven
+            </p>
+          </div>
+        </>
+      )}
+
+      {/* ── ACHIEVABLE PATH ───────────────────────────────────── */}
+      {result.status === "achievable" && (
+        <>
+          {/* Status badge */}
+          <div className="rounded-2xl p-6 border mb-6 shadow-[var(--shadow-card)] bg-success/10 border-success/20">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="w-3.5 h-3.5 rounded-full shrink-0 bg-success" />
+              <span className="font-bold text-lg text-success">Bereikbaar</span>
+            </div>
+            <p className="text-foreground text-sm leading-relaxed">
+              Goed nieuws: je kunt{" "}
+              <strong className="text-foreground">{doelNaam}</strong> halen.
+              Zet elke maand €{" "}{fmt(result.requiredMonthly)} opzij — dan
+              ben je er over {input.maanden} maanden.
+              {result.monthsNeededAtCapacity !== null &&
+                result.monthsNeededAtCapacity < input.maanden && (
+                  <>
+                    {" "}
+                    Bij maximale besparing kan het zelfs in{" "}
+                    <span className="text-success font-semibold">
+                      {result.monthsNeededAtCapacity} maanden
+                    </span>
+                    .
+                  </>
+                )}
+            </p>
+          </div>
+
+          {/* Metrics */}
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            <MetricCard
+              label="Spaarruimte per maand"
+              value={`€ ${fmt(result.monthlyCapacity)}`}
+              valueColor="text-success"
+              sub="inkomen − uitgaven"
+            />
+            <MetricCard
+              label="Benodigd per maand"
+              value={`€ ${fmt(result.requiredMonthly)}`}
+              valueColor="text-foreground"
+              sub="om doel te halen"
+            />
+          </div>
+
+          {/* Biggest expense leak */}
+          <div className="bg-card border border-border rounded-2xl p-5 mb-6 shadow-[var(--shadow-card)]">
+            <h2 className="font-semibold text-foreground mb-1">
+              Grootste uitgavenpost
+            </h2>
+            <p className="text-sm text-muted mb-3">
+              Hier verdwijnt het meeste geld buiten vaste lasten.
+            </p>
+            <div className="flex items-center justify-between">
+              <span className="text-foreground">{result.biggestLeak.name}</span>
+              <span className="font-bold text-warning">
+                €{" "}{fmt(result.biggestLeak.amount)}/maand
+              </span>
+            </div>
+            <div className="mt-3 h-2 bg-border rounded-full overflow-hidden">
+              <div
+                className="h-full bg-warning rounded-full transition-all duration-500"
+                style={{
+                  width: `${Math.min(
+                    100,
+                    (result.biggestLeak.amount / result.totalExpenses) * 100
+                  )}%`,
+                }}
+              />
+            </div>
+            <p className="text-xs text-muted mt-2">
+              {Math.round(
+                (result.biggestLeak.amount / result.totalExpenses) * 100
+              )}
+              % van je totale uitgaven
+            </p>
+          </div>
+
+          {/* Fix scenarios */}
+          {result.scenarios.length > 0 && (
+            <div className="bg-card border border-border rounded-2xl p-5 mb-6 shadow-[var(--shadow-card)]">
+              <h2 className="font-semibold text-foreground mb-1">
+                Hoe je het nog sneller haalt
+              </h2>
+              <p className="text-sm text-muted mb-4">
+                Je doel is haalbaar. Met deze aanpassingen kom je er nóg sneller.
+              </p>
+              <div className="flex flex-col gap-3">
+                {result.scenarios.map((scenario, i) => (
+                  <div key={i} className="flex gap-3 items-start">
+                    <span className="w-7 h-7 rounded-full bg-accent/20 text-accent text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <span className="text-sm font-medium text-foreground block">
+                        {scenario.label}
+                      </span>
+                      <span className="text-xs text-muted">
+                        {scenario.description}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </>
+      )}
+
+      {/* Actions */}
+      <div className="flex flex-col gap-3">
+        <Link
+          href="/scan"
+          className="w-full bg-card border border-border hover:border-accent/50 hover:bg-card-hover text-foreground font-medium py-3.5 rounded-xl text-center text-sm transition-all"
+        >
+          Scan opnieuw doen
+        </Link>
+        <Link
+          href="/"
+          className="w-full text-center text-sm text-muted hover:text-foreground py-2 transition-colors"
+        >
+          Terug naar home
+        </Link>
+      </div>
+
+      <p className="text-xs text-muted text-center mt-6">
+        Resultaten zijn schattingen voor informatieve doeleinden.{" "}
+        <Link href="/disclaimer" className="underline hover:text-foreground">
+          Disclaimer
+        </Link>
+      </p>
+    </main>
+  );
+}
+
+// ── Sub-components ─────────────────────────────────────────────────────────
+
+function GapBar({
+  capacity,
+  required,
+  gap,
+}: {
+  capacity: number;
+  required: number;
+  gap: number;
+}) {
+  const hasCapacity = capacity > 0 && required > 0;
+  const capacityPct = hasCapacity
+    ? Math.min(95, Math.round((capacity / required) * 100))
+    : 0;
+  const gapPct = 100 - capacityPct;
+
+  return (
+    <div>
+      <div className="flex justify-between text-xs text-muted mb-2">
+        <span>Jij spaart nu</span>
+        <span>Tekort</span>
+      </div>
+      <div className="h-3 rounded-full overflow-hidden flex bg-border">
+        {capacityPct > 0 && (
+          <div
+            className="h-full bg-success/80 transition-all duration-500"
+            style={{ width: `${capacityPct}%` }}
+          />
+        )}
+        <div
+          className="h-full bg-danger/80 transition-all duration-500"
+          style={{ width: `${gapPct}%` }}
+        />
+      </div>
+      <div className="flex justify-between text-xs mt-1.5">
+        <span className="text-success">
+          {capacityPct}% gedekt
+        </span>
+        <span className="text-danger">
+          {gapPct}% tekort
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function PremiumCard({
+  doelNaam,
+  gap,
+  checkoutHref,
+}: {
+  doelNaam: string;
+  gap: number;
+  checkoutHref: string;
+}) {
+  const features = [
+    "Weekplan — weet elke week precies hoeveel je mag uitgeven",
+    "Persoonlijke bezuinigingstips — gericht op jóuw grootste kostenpost",
+    "3 scenario's — zodat je kiest wat haalbaar is voor jou",
+    "Exacte datum — wanneer haal jij je doel als je dit plan volgt?",
+    "Maandoverzicht — zie precies waar je geld naartoe gaat",
+  ];
+
+  return (
+    <div className="rounded-2xl border border-accent/40 bg-card mb-6 overflow-hidden shadow-[var(--shadow-card)]">
+      {/* Header strip */}
+      <div className="bg-accent/10 border-b border-accent/20 px-5 py-3 flex items-center gap-2">
+        <span className="text-accent text-base">✦</span>
+        <span className="text-sm font-semibold text-foreground tracking-tight">
+          Jouw persoonlijke spaarfix plan
+        </span>
+      </div>
+
+      <div className="p-5">
+        <p className="text-sm text-muted mb-4 leading-relaxed">
+          Zonder plan gaat er maand na maand voorbij — en kom je nooit bij{" "}
+          <span className="text-foreground font-medium">{doelNaam}</span>. Dit
+          plan vertelt je exact wat je week voor week moet doen om je doel wél
+          te halen.
+        </p>
+
+        {/* Feature checklist */}
+        <ul className="space-y-2.5 mb-5">
+          {features.map((f) => (
+            <li key={f} className="flex items-start gap-2.5 text-sm">
+              <span className="text-success shrink-0 mt-0.5 font-bold">✓</span>
+              <span className="text-foreground">{f}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* CTA */}
+        <Link
+          href={checkoutHref}
+          className="block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-center text-sm transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide"
+        >
+          Fix mijn spaardoel voor €4,99 →
+        </Link>
+
+        {/* Trust line */}
+        <p className="text-xs text-muted text-center mt-3">
+          Eenmalig · Direct beschikbaar · Geen abonnement
+        </p>
+
+        {/* Value anchor */}
+        {gap > 0 && (
+          <p className="text-xs text-muted/70 text-center mt-1.5">
+            Je mist €{" "}{fmt(gap)}/maand. Dit plan betaalt zichzelf al
+            terug in maand één.
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function MetricCard({
+  label,
+  value,
+  valueColor,
+  sub,
+}: {
+  label: string;
+  value: string;
+  valueColor: string;
+  sub: string;
+}) {
+  return (
+    <div className="bg-card border border-border rounded-2xl p-5 shadow-[var(--shadow-card)]">
+      <p className="text-xs font-medium uppercase tracking-wider text-muted mb-2">
+        {label}
+      </p>
+      <p className={`text-2xl font-bold ${valueColor}`}>{value}</p>
+      <p className="text-xs text-muted mt-1">{sub}</p>
+    </div>
+  );
+}
+
+function fmt(n: number): string {
+  return Math.round(n).toLocaleString("nl-NL");
+}
