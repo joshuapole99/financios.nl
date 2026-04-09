@@ -11,21 +11,7 @@ export default async function PlanPage({
   const params = await searchParams;
 
   if (!params.inkomen) {
-    return (
-      <main className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
-        <PlanParamsLoader />
-        <h1 className="text-2xl font-semibold text-foreground tracking-tight mb-4">
-          Plan niet gevonden
-        </h1>
-        <p className="text-muted mb-6">Start de scan opnieuw.</p>
-        <Link
-          href="/scan"
-          className="bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-lg shadow-accent/20 tracking-wide"
-        >
-          Nieuwe scan
-        </Link>
-      </main>
-    );
+    return <PlanParamsLoader />;
   }
 
   const input = parseScanInput(params);
