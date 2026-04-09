@@ -505,6 +505,9 @@ function PremiumCard({
         <p className="text-xs text-muted text-center mt-3">
           Eenmalig · Direct beschikbaar · Geen abonnement
         </p>
+        <p className="text-xs text-muted text-center mt-1">
+          Wil je eerst kijken? Je kunt het plan gratis testen op de volgende pagina.
+        </p>
 
         {/* Value anchor */}
         {gap > 0 && (
