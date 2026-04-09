@@ -131,6 +131,13 @@ export default async function ResultPage({
             </p>
           </div>
 
+          {/* ── PREMIUM CTA ── */}
+          <PremiumCard
+            doelNaam={doelNaam}
+            gap={result.savingsGap}
+            checkoutHref={`/checkout?${new URLSearchParams(params).toString()}`}
+          />
+
           {/* Gap visualization */}
           <div className="bg-card border border-border rounded-2xl p-5 mb-6 shadow-[var(--shadow-card)]">
             <h2 className="font-semibold text-foreground mb-4">
@@ -190,13 +197,6 @@ export default async function ResultPage({
               </span>
             </div>
           </div>
-
-          {/* ── PREMIUM CTA (shown high on page for max conversion) ── */}
-          <PremiumCard
-            doelNaam={doelNaam}
-            gap={result.savingsGap}
-            checkoutHref={`/checkout?${new URLSearchParams(params).toString()}`}
-          />
 
           {/* Free scenarios — teaser */}
           {result.scenarios.length > 0 && (
@@ -498,15 +498,12 @@ function PremiumCard({
           href={checkoutHref}
           className="block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-center text-sm transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide"
         >
-          Fix mijn spaardoel voor €4,99 →
+          Maak mijn persoonlijk spaarplan →
         </Link>
 
         {/* Trust line */}
         <p className="text-xs text-muted text-center mt-3">
-          Eenmalig · Direct beschikbaar · Geen abonnement
-        </p>
-        <p className="text-xs text-muted text-center mt-1">
-          Wil je eerst kijken? Je kunt het plan gratis testen op de volgende pagina.
+          Eenmalig €4,99 · Direct beschikbaar · Geen abonnement
         </p>
 
         {/* Value anchor */}
