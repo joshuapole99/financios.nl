@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -57,9 +58,13 @@ export default function LandingPage() {
     <main className="flex flex-col min-h-screen">
       {/* Nav */}
       <nav className="sticky top-0 z-50 border-b border-border px-6 py-4 flex items-center justify-between max-w-5xl mx-auto w-full backdrop-blur-md bg-background/80">
-        <span className="font-semibold text-foreground tracking-tight">
-          Financios
-        </span>
+        <Image
+          src="/logo.png"
+          alt="Financios"
+          width={140}
+          height={36}
+          priority
+        />
         <Link
           href="/scan"
           className="text-sm text-muted hover:text-foreground transition-colors"

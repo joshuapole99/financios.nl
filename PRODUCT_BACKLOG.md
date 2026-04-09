@@ -96,6 +96,18 @@ Geen harde conversiepercentages in deze fase.
 - [ ] Improve premium plan depth (more tailored advice)
 - [ ] More SEO pages (/huis-sparen, /bruiloft-sparen, etc.)
 
+## 🔒 POST-LAUNCH: SERVER-SIDE ENTITLEMENT VALIDATION (P1 — AFTER LAUNCH)
+
+> Current MVP uses client-side state (localStorage) for premium access. Acceptable for launch. Must be fixed after first sales to protect revenue at scale.
+
+- [ ] **Add server-side entitlement validation for premium access (Lemon Squeezy)**
+  - Use Lemon Squeezy webhook to detect successful purchases
+  - Generate or store a purchase token / entitlement flag (e.g. database or KV store)
+  - Validate access to /plan on page load via server-side check or API route
+  - Prevent direct URL access to premium content without valid entitlement
+  - Ensure backward compatibility with existing localStorage fallback (if applicable)
+  - **Rationale:** current system is client-side only and allows potential bypass of premium content. MVP metrics show strong conversion and product-market fit. Security layer required to protect revenue after initial launch and scaling.
+
 ## 🔮 POST-LAUNCH: PLAN PERSISTENCE (HIGH PRIORITY — NA EERSTE SALES)
 
 > Bewust uitgesteld. Eerst valideren dat users willen betalen, dan pas bouwen.
@@ -111,7 +123,7 @@ Geen harde conversiepercentages in deze fase.
 
 > Na eerste sales opzetten. Niet eerder.
 
-- [ ] @financios.nl emailadressen aanmaken (hallo@, support@, noreply@)
+- [x] @financios.nl emailadressen aanmaken (hallo@, support@, privacy@, noreply@) — forwarding via ImprovMX → joshuapole@live.nl
 - [ ] Transactionele emails via Resend of Postmark (betalingsbevestiging + plan-link)
 - [ ] Klantenupdates / nieuwsbrief sturen vanuit @financios.nl
 
