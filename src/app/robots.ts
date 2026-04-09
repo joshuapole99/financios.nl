@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: ["/", "/scan", "/upgrade", "/vakantie-sparen", "/5000-euro-sparen", "/disclaimer", "/privacy", "/terms"],
+        allow: ["/", "/scan", "/upgrade", "/vakantie-sparen", "/5000-euro-sparen", "/10000-euro-sparen", "/auto-sparen", "/disclaimer", "/privacy", "/terms"],
         disallow: ["/checkout", "/plan", "/result"],
       },
     ],
