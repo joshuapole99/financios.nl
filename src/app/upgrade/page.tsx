@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import posthog from "posthog-js";
 
 const LEMONSQUEEZY_CHECKOUT_URL = "https://financios.lemonsqueezy.com/checkout/buy/63b7a3a4-db62-44bd-919a-5d12512dc8c4";
 
@@ -61,8 +62,8 @@ export default function UpgradePage() {
         <p className="text-sm text-muted mb-6">Geen abonnement. Geen gedoe. Minder dan twee koppen koffie.</p>
         <a
           href={LEMONSQUEEZY_CHECKOUT_URL}
-          data-plausible-event-name="CTA: Fix mijn spaardoel"
-          className="plausible-event-name=Fix+mijn+spaardoel block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-base tracking-wide transition-all shadow-lg shadow-accent/20 active:scale-[0.98] text-center"
+          onClick={() => posthog.capture("cta_clicked", { button: "fix_mijn_spaardoel", page: "upgrade" })}
+          className="block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-base tracking-wide transition-all shadow-lg shadow-accent/20 active:scale-[0.98] text-center"
         >
           Fix mijn spaardoel (€4,99) →
         </a>

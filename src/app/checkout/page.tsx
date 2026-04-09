@@ -3,6 +3,7 @@
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import posthog from "posthog-js";
 
 const LEMONSQUEEZY_CHECKOUT_URL = "https://financios.lemonsqueezy.com/checkout/buy/63b7a3a4-db62-44bd-919a-5d12512dc8c4";
 
@@ -17,6 +18,7 @@ function CheckoutContent() {
   // Save params to localStorage so /plan can recover them if user arrives without URL params
   function saveParamsToStorage() {
     localStorage.setItem("financios_scan_params", searchParams.toString());
+    posthog.capture("cta_clicked", { button: "betaal_499", page: "checkout" });
   }
 
   return (
@@ -70,7 +72,7 @@ function CheckoutContent() {
       <a
         href={checkoutUrl}
         onClick={saveParamsToStorage}
-        className="plausible-event-name=Fix+mijn+spaardoel block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-base transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide mb-3 text-center"
+        className="block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-base transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide mb-3 text-center"
       >
         Betaal €4,99 en bekijk mijn plan →
       </a>
