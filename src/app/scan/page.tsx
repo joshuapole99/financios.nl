@@ -109,10 +109,10 @@ function ScanForm() {
         </FormSection>
 
         {/* Vaste lasten */}
-        <FormSection title="Vaste lasten" subtitle="Kosten die elke maand terugkomen.">
+        <FormSection title="Vaste lasten" subtitle="Huur, abonnementen, verzekeringen — kosten die elke maand terugkomen.">
           <EuroInput label="Huur of hypotheek" value={values.huur} onChange={set("huur")} placeholder="900" />
-          <EuroInput label="Abonnementen (Netflix, gym, etc.)" value={values.abonnementen} onChange={set("abonnementen")} placeholder="50" />
-          <EuroInput label="Verzekeringen" value={values.verzekeringen} onChange={set("verzekeringen")} placeholder="150" />
+          <EuroInput label="Abonnementen (telefoon, internet, Netflix, Spotify...)" value={values.abonnementen} onChange={set("abonnementen")} placeholder="50" />
+          <EuroInput label="Verzekeringen (zorg, auto, inboedel...)" value={values.verzekeringen} onChange={set("verzekeringen")} placeholder="150" />
           <div className="flex justify-between text-sm border-t border-border mt-1 pt-3">
             <span className="text-muted">Totaal vaste lasten</span>
             <span className="text-foreground font-medium">€ {fmt(totalFixed)}</span>
@@ -120,11 +120,11 @@ function ScanForm() {
         </FormSection>
 
         {/* Variabele kosten */}
-        <FormSection title="Variabele kosten" subtitle="Wat geef je gemiddeld per maand uit?">
-          <EuroInput label="Boodschappen" value={values.boodschappen} onChange={set("boodschappen")} placeholder="300" />
-          <EuroInput label="Vervoer (benzine, OV, etc.)" value={values.vervoer} onChange={set("vervoer")} placeholder="100" />
+        <FormSection title="Variabele kosten" subtitle="Boodschappen, vervoer, uit eten — wat geef je gemiddeld per maand uit?">
+          <EuroInput label="Boodschappen & huishouden" value={values.boodschappen} onChange={set("boodschappen")} placeholder="300" />
+          <EuroInput label="Vervoer (benzine, OV, wegenbelasting...)" value={values.vervoer} onChange={set("vervoer")} placeholder="100" />
           <EuroInput label="Uit eten & entertainment" value={values.horeca} onChange={set("horeca")} placeholder="150" />
-          <EuroInput label="Overig (kleding, beauty, etc.)" value={values.overig} onChange={set("overig")} placeholder="100" />
+          <EuroInput label="Overig (kleding, cadeaus, beauty...)" value={values.overig} onChange={set("overig")} placeholder="100" />
           <div className="flex justify-between text-sm border-t border-border mt-1 pt-3">
             <span className="text-muted">Totaal variabel</span>
             <span className="text-foreground font-medium">€ {fmt(totalVariable)}</span>
