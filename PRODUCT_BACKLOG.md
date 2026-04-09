@@ -58,9 +58,8 @@
 
 ## 🔥 NEXT — TRACK & CONVERT (CRITICAL)
 
-- [ ] Fix CTA event tracking: replace old Plausible attributes with PostHog captures
-      → checkout/page.tsx and upgrade/page.tsx buttons
-- [ ] Switch LemonSqueezy from test → live mode (user action, ~3 days)
+- [x] Fix CTA event tracking: PostHog captures on checkout + upgrade buttons
+- [ ] Switch LemonSqueezy from test → live mode (user action, zodra goedgekeurd)
 - [ ] Wire email capture to real service (Resend or Brevo free tier)
 - [ ] First real sale — validate willingness to pay
 
@@ -76,11 +75,30 @@
 - [ ] Improve premium plan depth (more tailored advice)
 - [ ] More SEO pages (/huis-sparen, /bruiloft-sparen, etc.)
 
+## 🔮 POST-LAUNCH: PLAN PERSISTENCE (HIGH PRIORITY — NA EERSTE SALES)
+
+> Bewust uitgesteld. Eerst valideren dat users willen betalen, dan pas bouwen.
+
+- [ ] **Magic link plan access** — NIET geïmplementeerd
+  - Na LemonSqueezy betaling ontvangt de user een persistente link naar hun plan
+  - Link formaat: `/plan?token=xxxxx`
+  - Vereist: database (bijv. Supabase), token-gebaseerde toegang, email delivery
+  - Doel: plan toegankelijk vanuit elk apparaat / elke browser
+  - Huidige situatie: plan leeft alleen in de browser waarmee betaald is (localStorage)
+
+## 📧 EMAIL INFRA (NA LIVE LAUNCH)
+
+> Na eerste sales opzetten. Niet eerder.
+
+- [ ] @financios.nl emailadressen aanmaken (hallo@, support@, noreply@)
+- [ ] Transactionele emails via Resend of Postmark (betalingsbevestiging + plan-link)
+- [ ] Klantenupdates / nieuwsbrief sturen vanuit @financios.nl
+
 ## 📄 FUTURE (ONLY AFTER TRACTION)
 
-- [ ] PDF export of /plan page
+- [ ] PDF export van /plan pagina
 - [ ] Save results (database)
-- [ ] User authentication
+- [ ] User authentication / accounts
 - [ ] Dashboard
 
 ## ⚠️ DECISIONS
