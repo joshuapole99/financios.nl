@@ -43,21 +43,14 @@ export default async function ResultPage({
 
   return (
     <main className="min-h-screen px-4 py-10 max-w-xl mx-auto">
-      {/* Header */}
-      <div className="mb-8">
+      {/* Back link */}
+      <div className="mb-4">
         <Link
           href="/scan"
-          className="text-sm text-muted hover:text-foreground transition-colors mb-6 inline-block"
+          className="text-sm text-muted hover:text-foreground transition-colors inline-block"
         >
           ← Pas aan
         </Link>
-        <h1 className="text-3xl font-semibold text-foreground tracking-tight">
-          Jouw spaaranalyse
-        </h1>
-        <p className="text-muted mt-1">
-          {input.doelNaam || "Spaardoel"} · €{" "}
-          {input.doel.toLocaleString("nl-NL")} in {input.maanden} maanden
-        </p>
       </div>
 
       {/* ── NOT ACHIEVABLE / WARNING PATH ─────────────────────── */}
