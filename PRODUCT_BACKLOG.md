@@ -1,5 +1,26 @@
 # PRODUCT_BACKLOG.md
 
+## 🧪 VALIDATION PHASE (CURRENT)
+
+- Product wordt getest met familie/vrienden (manual distribution)
+- Geen echte marketing of schaalverkeer
+- Focus: begrip, usability, clarity en friction detection
+- Succes = users kunnen zonder uitleg: scan → result → plan doorlopen
+
+Geen harde conversiepercentages in deze fase.
+
+## 📊 LATER (AFTER VALIDATION)
+
+> Worden pas relevant bij echte traffic. Gebruikt voor optimalisatie na eerste gebruikersvalidatie.
+
+- Homepage → scan start: doel 40%+
+- Scan → result: doel 80%+
+- Result → checkout click: doel 5–10%
+- Checkout → betaling voltooid: doel 50%+
+- Overall homepage → betaling: doel 1–3%
+
+---
+
 ## ✅ MVP (DONE)
 
 - [x] Landing page (/)
