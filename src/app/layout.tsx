@@ -40,6 +40,11 @@ export default function RootLayout({
       className={`${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/* Ambient gradient background — visible on every page */}
+        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+          <div className="gradient-orb gradient-orb-1" />
+          <div className="gradient-orb gradient-orb-2" />
+        </div>
         <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>

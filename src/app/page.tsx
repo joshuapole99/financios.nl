@@ -55,12 +55,6 @@ const examples = [
 export default function LandingPage() {
   return (
     <main className="flex flex-col min-h-screen">
-      {/* Ambient gradient background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="gradient-orb gradient-orb-1" />
-        <div className="gradient-orb gradient-orb-2" />
-      </div>
-
       {/* Nav */}
       <nav className="sticky top-0 z-50 border-b border-border px-6 py-4 flex items-center justify-between max-w-5xl mx-auto w-full backdrop-blur-md bg-background/80">
         <span className="font-semibold text-foreground tracking-tight">
