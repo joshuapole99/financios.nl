@@ -13,9 +13,54 @@ export const metadata: Metadata = {
   },
 };
 
+const steps = [
+  {
+    n: "1",
+    title: "Vul je inkomen in",
+    body: "Voer je netto maandinkomen en vaste lasten in. Duurt minder dan 60 seconden.",
+  },
+  {
+    n: "2",
+    title: "Analyseer je uitgaven",
+    body: "Wij berekenen direct je spaarruimte en laten zien waar je geld naartoe gaat.",
+  },
+  {
+    n: "3",
+    title: "Ontvang je spaarplan",
+    body: "Zie of je doel haalbaar is en krijg concrete scenario's om het sneller te bereiken.",
+  },
+];
+
+const examples = [
+  {
+    href: "/5000-euro-sparen",
+    label: "Spaardoel",
+    title: "€5.000 sparen",
+    body: "Bereken hoeveel je per maand opzij moet zetten en wanneer je er bent.",
+  },
+  {
+    href: "/vakantie-sparen",
+    label: "Vakantie",
+    title: "Vakantie sparen",
+    body: "Van citytrip tot verre reis — wij berekenen het maandbedrag dat bij jou past.",
+  },
+  {
+    href: "/auto-sparen",
+    label: "Auto",
+    title: "Auto sparen",
+    body: "Tweedehands of nieuw — zie hoe lang het duurt en wat je kunt versnellen.",
+  },
+];
+
 export default function LandingPage() {
   return (
     <main className="flex flex-col min-h-screen">
+      {/* Ambient gradient background */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <div className="gradient-orb gradient-orb-1" />
+        <div className="gradient-orb gradient-orb-2" />
+      </div>
+
       {/* Nav */}
       <nav className="sticky top-0 z-50 border-b border-border px-6 py-4 flex items-center justify-between max-w-5xl mx-auto w-full backdrop-blur-md bg-background/80">
         <span className="font-semibold text-foreground tracking-tight">
@@ -30,7 +75,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="flex flex-col items-center justify-center flex-1 text-center px-6 py-28 max-w-3xl mx-auto w-full">
+      <section className="flex flex-col items-center justify-center text-center px-6 pt-28 pb-20 max-w-3xl mx-auto w-full">
         <div className="inline-flex items-center gap-2 bg-card-hover border border-border rounded-full px-4 py-1.5 text-sm text-muted mb-8 tracking-wide">
           <span className="w-2 h-2 rounded-full bg-success inline-block" />
           Gratis spaaranalyse — geen account nodig
@@ -50,7 +95,7 @@ export default function LandingPage() {
           href="/scan"
           className="bg-accent hover:bg-accent-hover text-white font-semibold px-8 py-4 rounded-xl text-lg transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide"
         >
-          Start mijn scan →
+          Start spaar scan →
         </Link>
 
         <p className="text-sm text-muted mt-4">
@@ -58,8 +103,70 @@ export default function LandingPage() {
         </p>
       </section>
 
+      {/* How it works */}
+      <section className="px-6 pb-20 max-w-5xl mx-auto w-full">
+        <div className="text-center mb-10">
+          <p className="text-xs font-medium uppercase tracking-wider text-accent mb-2">
+            Hoe het werkt
+          </p>
+          <h2 className="text-2xl font-semibold text-foreground tracking-tight">
+            In 3 stappen naar jouw spaarplan
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {steps.map((step) => (
+            <div
+              key={step.n}
+              className="bg-card border border-border rounded-2xl p-6 shadow-[var(--shadow-card)] flex gap-4 items-start"
+            >
+              <span className="w-8 h-8 rounded-full bg-accent/20 text-accent text-sm font-bold flex items-center justify-center shrink-0">
+                {step.n}
+              </span>
+              <div>
+                <h3 className="font-semibold text-foreground mb-1">{step.title}</h3>
+                <p className="text-sm text-muted leading-relaxed">{step.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Voorbeelden */}
+      <section className="px-6 pb-20 max-w-5xl mx-auto w-full">
+        <div className="text-center mb-10">
+          <p className="text-xs font-medium uppercase tracking-wider text-accent mb-2">
+            Voorbeelden
+          </p>
+          <h2 className="text-2xl font-semibold text-foreground tracking-tight">
+            Wat wil jij sparen?
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {examples.map((ex) => (
+            <Link
+              key={ex.href}
+              href={ex.href}
+              className="bg-card border border-border rounded-2xl p-6 shadow-[var(--shadow-card)] hover:border-accent/30 hover:bg-card-hover transition-all duration-200 group"
+            >
+              <p className="text-xs font-medium uppercase tracking-wider text-accent mb-2">
+                {ex.label}
+              </p>
+              <h3 className="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
+                {ex.title}
+              </h3>
+              <p className="text-sm text-muted leading-relaxed mb-4">{ex.body}</p>
+              <span className="text-xs text-accent font-medium">
+                Bereken jouw plan →
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Benefit cards */}
-      <section className="px-6 pb-24 max-w-5xl mx-auto w-full">
+      <section className="px-6 pb-20 max-w-5xl mx-auto w-full">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <BenefitCard
             icon="📊"
@@ -76,6 +183,30 @@ export default function LandingPage() {
             title="Concreet fix plan"
             description="Niet bereikbaar? Wij geven je scenario's om je doel alsnog te halen."
           />
+        </div>
+      </section>
+
+      {/* Trust + final CTA */}
+      <section className="px-6 pb-28 max-w-2xl mx-auto w-full text-center">
+        <div className="bg-accent/10 border border-accent/30 rounded-2xl p-8 shadow-[var(--shadow-card)]">
+          <h2 className="text-2xl font-semibold text-foreground tracking-tight mb-3">
+            Klaar om te starten?
+          </h2>
+          <p className="text-muted mb-6 leading-relaxed">
+            Duurt 60 seconden. Geen account. Geen creditcard. Je gegevens
+            verlaten je browser niet — alles wordt lokaal berekend.
+          </p>
+          <Link
+            href="/scan"
+            className="inline-block bg-accent hover:bg-accent-hover text-white font-semibold px-8 py-4 rounded-xl text-base transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide"
+          >
+            Start spaar scan gratis →
+          </Link>
+          <div className="flex items-center justify-center gap-6 mt-5 flex-wrap">
+            {["✓ Geen registratie", "✓ Geen creditcard", "✓ Privacy-first"].map((t) => (
+              <span key={t} className="text-xs text-muted">{t}</span>
+            ))}
+          </div>
         </div>
       </section>
 
