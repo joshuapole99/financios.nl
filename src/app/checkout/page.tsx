@@ -1,48 +1,22 @@
 "use client";
 
-import { Suspense, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-function CheckoutContent() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [state, setState] = useState<"idle" | "processing" | "done">("idle");
+const LEMONSQUEEZY_CHECKOUT_URL = "https://financios.lemonsqueezy.com/checkout/buy/63b7a3a4-db62-44bd-919a-5d12512dc8c4";
 
+function CheckoutContent() {
+  const searchParams = useSearchParams();
   const doelNaam = searchParams.get("doelNaam") || "Spaardoel";
 
-  async function handlePay() {
-    setState("processing");
-    await delay(1400);
-    setState("done");
-    await delay(900);
-    router.push(`/plan?${searchParams.toString()}`);
-  }
+  // Pass /plan?{params} as the success_url so LemonSqueezy modal button lands correctly
+  const planUrl = `https://financios.nl/plan?${searchParams.toString()}`;
+  const checkoutUrl = `${LEMONSQUEEZY_CHECKOUT_URL}?checkout[success_url]=${encodeURIComponent(planUrl)}`;
 
-  if (state === "processing") {
-    return (
-      <main className="min-h-screen flex flex-col items-center justify-center px-4">
-        <div className="flex flex-col items-center gap-4">
-          <Spinner />
-          <p className="text-foreground font-medium">Betaling verwerken…</p>
-          <p className="text-sm text-muted">Even geduld</p>
-        </div>
-      </main>
-    );
-  }
-
-  if (state === "done") {
-    return (
-      <main className="min-h-screen flex flex-col items-center justify-center px-4">
-        <div className="flex flex-col items-center gap-4 text-center">
-          <div className="w-14 h-14 rounded-full bg-success/20 flex items-center justify-center">
-            <span className="text-success text-2xl font-bold">✓</span>
-          </div>
-          <p className="text-foreground font-semibold text-lg">Betaling geslaagd</p>
-          <p className="text-sm text-muted">Jouw plan wordt geladen…</p>
-        </div>
-      </main>
-    );
+  // Save params to localStorage so /plan can recover them if user arrives without URL params
+  function saveParamsToStorage() {
+    localStorage.setItem("financios_scan_params", searchParams.toString());
   }
 
   return (
@@ -54,14 +28,6 @@ function CheckoutContent() {
       >
         ← Terug naar resultaat
       </Link>
-
-      {/* Simulation notice */}
-      <div className="bg-warning/10 border border-warning/20 rounded-xl px-4 py-2.5 mb-6 flex items-center gap-2">
-        <span className="text-warning text-sm">⚠</span>
-        <p className="text-xs text-muted">
-          <span className="text-warning font-semibold">Testomgeving</span> — geen echte betaling. Je gegevens worden niet verwerkt.
-        </p>
-      </div>
 
       {/* Order summary */}
       <div className="bg-card border border-border rounded-2xl p-6 mb-4 shadow-[var(--shadow-card)]">
@@ -100,17 +66,29 @@ function CheckoutContent() {
         </div>
       </div>
 
-      {/* CTA */}
-      <button
-        onClick={handlePay}
-        className="w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-base transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide mb-3"
+      {/* CTA — redirects to LemonSqueezy */}
+      <a
+        href={checkoutUrl}
+        onClick={saveParamsToStorage}
+        className="plausible-event-name=Fix+mijn+spaardoel block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-base transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide mb-3 text-center"
       >
         Betaal €4,99 en bekijk mijn plan →
-      </button>
+      </a>
 
-      <p className="text-xs text-muted text-center">
+      <p className="text-xs text-muted text-center mb-6">
         Eenmalig · Geen abonnement · Direct beschikbaar
       </p>
+
+      {/* Test fallback */}
+      <div className="border-t border-border pt-6 text-center">
+        <p className="text-xs text-muted mb-2">Testomgeving</p>
+        <Link
+          href={`/plan?${searchParams.toString()}`}
+          className="text-xs text-muted underline hover:text-foreground transition-colors"
+        >
+          Plan bekijken zonder betaling (alleen voor testen)
+        </Link>
+      </div>
     </main>
   );
 }
@@ -120,21 +98,11 @@ export default function CheckoutPage() {
     <Suspense
       fallback={
         <main className="min-h-screen flex items-center justify-center">
-          <Spinner />
+          <div className="w-8 h-8 rounded-full border-2 border-border border-t-accent animate-spin" />
         </main>
       }
     >
       <CheckoutContent />
     </Suspense>
   );
-}
-
-function Spinner() {
-  return (
-    <div className="w-8 h-8 rounded-full border-2 border-border border-t-accent animate-spin" />
-  );
-}
-
-function delay(ms: number) {
-  return new Promise((r) => setTimeout(r, ms));
 }

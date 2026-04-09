@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { calculate, parseScanInput } from "@/lib/calculate";
 import { generatePlan } from "@/lib/generatePlan";
+import PlanParamsLoader from "./PlanParamsLoader";
 
 export default async function PlanPage({
   searchParams,
@@ -12,6 +13,7 @@ export default async function PlanPage({
   if (!params.inkomen) {
     return (
       <main className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+        <PlanParamsLoader />
         <h1 className="text-2xl font-semibold text-foreground tracking-tight mb-4">
           Plan niet gevonden
         </h1>

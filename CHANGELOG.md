@@ -1,5 +1,31 @@
 # CHANGELOG.md
 
+## v0.8 - Validation & Monetization Sprint (2026-04-09)
+
+### SEO page added
+- New page `/5000-euro-sparen` targeting keyword "5000 euro sparen"
+- Includes: intro, monthly savings table (6–36 months), realistic calculation example with income breakdown, 4 tips, 5-question FAQ, two CTAs to `/scan`
+- Added to `sitemap.ts` with priority 0.8
+
+### Analytics added
+- Plausible Analytics integrated via `next/script` (`strategy="afterInteractive"`) in root layout
+- Script: `script.tagged-events.js` — no cookies, GDPR-compliant
+- Tracks all page views automatically; CTA clicks tracked via `plausible-event-name` attribute on key links
+
+### Email capture added
+- Email input + submit button on `/upgrade` page below pricing card
+- Logs email to console as placeholder (no backend required)
+- Shows inline success state after submission
+
+### Payment flow prepared (LemonSqueezy)
+- `/checkout` now redirects to LemonSqueezy checkout URL (placeholder constant `LEMONSQUEEZY_CHECKOUT_URL`)
+- Query params forwarded via `checkout[custom][params]` so `/plan` can receive them after redirect
+- Test fallback: direct `/plan` link still visible for testing without payment
+- `/upgrade` CTA is now a real `<a>` link to LemonSqueezy (tagged with Plausible event)
+- Next step: swap placeholder URL with real LemonSqueezy product URL + configure redirect to `https://financios.nl/plan`
+
+---
+
 ## v0.7 - Launch Preparation (2026-04-09)
 - **SEO metadata**: `metadataBase` set to `https://financios.nl` in root layout; `title` template (`%s – Financios`) applied to all pages; per-page `description` and `openGraph` on every route
 - **robots.ts**: generated `/robots.txt` — allows landing, scan, upgrade, SEO pages; blocks /result, /plan, /checkout (personalized/payment pages)

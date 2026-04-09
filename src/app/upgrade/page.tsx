@@ -1,13 +1,22 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Spaarfix plan",
-  description:
-    "Weekplan, bezuinigingstips op maat en exacte afrondingsdatum — eenmalig €4,99. Geen abonnement.",
-};
+const LEMONSQUEEZY_CHECKOUT_URL = "https://financios.lemonsqueezy.com/checkout/buy/63b7a3a4-db62-44bd-919a-5d12512dc8c4";
 
 export default function UpgradePage() {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleEmailSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email) return;
+    // Placeholder: log to console until backend is wired
+    console.log("[email-capture] upgrade page:", email);
+    setSubmitted(true);
+  }
+
   return (
     <main className="min-h-screen px-4 py-10 max-w-2xl mx-auto">
       <Link href="/" className="text-sm text-muted hover:text-foreground transition-colors mb-8 inline-block">
@@ -45,20 +54,54 @@ export default function UpgradePage() {
         </div>
       </div>
 
-      {/* Pricing */}
+      {/* Pricing + CTA */}
       <div className="bg-accent/10 border border-accent/30 rounded-2xl p-6 mb-6 text-center shadow-[var(--shadow-card)]">
         <p className="text-muted text-sm mb-1">Eenmalige investering</p>
         <p className="text-4xl font-bold text-foreground mb-1">€4,99</p>
         <p className="text-sm text-muted mb-6">Geen abonnement. Geen gedoe. Minder dan twee koppen koffie.</p>
-        <button
-          disabled
-          className="w-full bg-accent text-white font-semibold py-4 rounded-xl text-base tracking-wide opacity-60 cursor-not-allowed"
+        <a
+          href={LEMONSQUEEZY_CHECKOUT_URL}
+          data-plausible-event-name="CTA: Fix mijn spaardoel"
+          className="plausible-event-name=Fix+mijn+spaardoel block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-base tracking-wide transition-all shadow-lg shadow-accent/20 active:scale-[0.98] text-center"
         >
-          Beschikbaar binnenkort
-        </button>
+          Fix mijn spaardoel (€4,99) →
+        </a>
         <p className="text-xs text-muted mt-3">
-          Betaling via Stripe · Veilig & versleuteld · Direct beschikbaar
+          Betaling via LemonSqueezy · Veilig &amp; versleuteld · Direct beschikbaar
         </p>
+      </div>
+
+      {/* Email capture */}
+      <div className="bg-card border border-border rounded-2xl p-6 mb-6 shadow-[var(--shadow-card)]">
+        {submitted ? (
+          <div className="text-center py-2">
+            <p className="text-success font-semibold mb-1">Gelukt!</p>
+            <p className="text-sm text-muted">We houden je op de hoogte van updates.</p>
+          </div>
+        ) : (
+          <>
+            <h2 className="font-semibold text-foreground mb-1">Nog niet klaar?</h2>
+            <p className="text-sm text-muted mb-4">
+              Laat je e-mail achter voor updates — we sturen je een bericht als er nieuwe functies beschikbaar zijn.
+            </p>
+            <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-2">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="jouw@email.nl"
+                className="flex-1 bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent/40 transition"
+              />
+              <button
+                type="submit"
+                className="bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl text-sm transition-all active:scale-[0.98] shrink-0"
+              >
+                Houd me op de hoogte
+              </button>
+            </form>
+          </>
+        )}
       </div>
 
       <p className="text-xs text-muted text-center">
