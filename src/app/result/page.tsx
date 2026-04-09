@@ -365,6 +365,11 @@ export default async function ResultPage({
               </div>
             </div>
           )}
+
+          {/* Achievable CTA */}
+          <AchievableCard
+            checkoutHref={`/checkout?${new URLSearchParams(params).toString()}`}
+          />
         </>
       )}
 
@@ -506,6 +511,48 @@ function PremiumCard({
             terug in maand één.
           </p>
         )}
+      </div>
+    </div>
+  );
+}
+
+function AchievableCard({ checkoutHref }: { checkoutHref: string }) {
+  const features = [
+    "Weekplan — weet elke week precies hoeveel je mag uitgeven",
+    "Exacte datum — wanneer haal jij je doel als je dit plan volgt?",
+    "Persoonlijke bezuinigingstips — gericht op jóuw grootste kostenpost",
+  ];
+
+  return (
+    <div className="rounded-2xl border border-success/30 bg-card mb-6 overflow-hidden shadow-[var(--shadow-card)]">
+      <div className="bg-success/10 border-b border-success/20 px-5 py-3 flex items-center gap-2">
+        <span className="text-success text-base">✦</span>
+        <span className="text-sm font-semibold text-foreground tracking-tight">
+          Haal je doel nóg sneller
+        </span>
+      </div>
+      <div className="p-5">
+        <p className="text-sm text-muted mb-4 leading-relaxed">
+          Je doel is haalbaar — maar zonder concreet plan glipt de tijd weg.
+          Dit weekplan vertelt je precies wat je elke week moet doen.
+        </p>
+        <ul className="space-y-2.5 mb-5">
+          {features.map((f) => (
+            <li key={f} className="flex items-start gap-2.5 text-sm">
+              <span className="text-success shrink-0 mt-0.5 font-bold">✓</span>
+              <span className="text-foreground">{f}</span>
+            </li>
+          ))}
+        </ul>
+        <Link
+          href={checkoutHref}
+          className="block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-center text-sm transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide"
+        >
+          Bekijk mijn weekplan →
+        </Link>
+        <p className="text-xs text-muted text-center mt-3">
+          Eenmalig €4,99 · Direct beschikbaar · Geen abonnement
+        </p>
       </div>
     </div>
   );
