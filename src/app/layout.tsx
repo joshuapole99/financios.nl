@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
+import PostHogProvider from "./PostHogProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
+  verification: {
+    google: "szoX8xp7lF1liB9uBRq4spT-Du1A3vaOzBgkDWnPNKA",
+  },
 };
 
 export default function RootLayout({
@@ -37,13 +40,7 @@ export default function RootLayout({
       className={`${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {children}
-        <Script
-          defer
-          data-domain="financios.nl"
-          src="https://plausible.io/js/script.tagged-events.js"
-          strategy="afterInteractive"
-        />
+        <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>
   );

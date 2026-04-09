@@ -36,13 +36,13 @@
 - [x] Personalized plan: weekplan, breakdown, reductions, 3 scenarios, target date, conclusion
 - [x] lib/generatePlan.ts (deterministic, no external deps)
 
-## 🔥 MONETIZATION (NEXT - CRITICAL)
+## ✅ MONETIZATION (DONE)
 
-- [x] Integrate LemonSqueezy checkout (€4.99) — placeholder URL in place
+- [x] Integrate LemonSqueezy checkout (€4.99)
 - [x] Replace fake checkout with real payment link (redirect to LemonSqueezy)
-- [x] Redirect after payment → /plan (preserve query params via custom param)
-- [ ] Swap placeholder URL with real LemonSqueezy product URL
-- [ ] Validate: do users actually complete payment?
+- [x] Redirect after payment → /plan (localStorage recovery + checkout[success_url])
+- [x] Real LemonSqueezy product URL wired (test mode — goes live in ~3 days)
+- [x] End-to-end payment flow validated with test payment
 
 ## 📊 VALIDATION (CRITICAL)
 
