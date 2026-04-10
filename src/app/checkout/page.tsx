@@ -11,21 +11,17 @@ function CheckoutContent() {
   const searchParams = useSearchParams();
   const doelNaam = searchParams.get("doelNaam") || "Spaardoel";
 
-  // Pass /plan?{params} as the success_url so LemonSqueezy modal button lands correctly
-  const planUrl = `https://financios.nl/plan?${searchParams.toString()}`;
   const checkoutUrl =
     `${LEMONSQUEEZY_CHECKOUT_URL}` +
-    `?checkout[success_url]=${encodeURIComponent(planUrl)}` +
+    `?checkout[success_url]=${encodeURIComponent("https://financios.nl/plan")}` +
     `&checkout[custom][params]=${encodeURIComponent(searchParams.toString())}`;
 
-  // Save params to localStorage so /plan can recover them if user arrives without URL params
-  function saveParamsToStorage() {
-    localStorage.setItem("financios_scan_params", searchParams.toString());
+  function trackClick() {
     posthog.capture("cta_clicked", { button: "betaal_499", page: "checkout" });
   }
 
   return (
-    <main className="min-h-screen px-4 py-10 max-w-md mx-auto">
+    <main className="min-h-screen px-4 py-10 max-w-xl mx-auto">
       {/* Back link */}
       <Link
         href={`/result?${searchParams.toString()}`}
@@ -74,7 +70,7 @@ function CheckoutContent() {
       {/* CTA — redirects to LemonSqueezy */}
       <a
         href={checkoutUrl}
-        onClick={saveParamsToStorage}
+        onClick={trackClick}
         className="block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-base transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide mb-2 text-center"
       >
         Betaal €4,99 en bekijk mijn plan →

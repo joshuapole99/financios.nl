@@ -35,11 +35,18 @@ export async function POST(req: NextRequest) {
   const params: string = payload?.meta?.custom_data?.params ?? "";
 
   if (!email || !params) {
-    // Order without params (e.g. direct LS link) — skip silently
     return NextResponse.json({ ok: true, skipped: true });
   }
 
-  // 3. Generate token and store in Redis
+  // 3. Idempotency — skip if order already processed
+  const idempotencyKey = `order:${orderId}`;
+  const alreadyProcessed = await redis.get(idempotencyKey);
+  if (alreadyProcessed) {
+    return NextResponse.json({ ok: true, skipped: true, reason: "duplicate" });
+  }
+  await redis.set(idempotencyKey, "processed", { ex: 60 * 60 * 24 * 7 });
+
+  // 5. Generate token and store in Redis
   const token = crypto.randomUUID();
   const key = `plan:${token}`;
   const value = JSON.stringify({ params, email, orderId, createdAt: Date.now() });
@@ -47,7 +54,7 @@ export async function POST(req: NextRequest) {
 
   await redis.set(key, value, { ex: ttl });
 
-  // 4. Send magic link email
+  // 6. Send magic link email
   const planUrl = `https://financios.nl/plan?token=${token}`;
   await sendMagicLink(email, planUrl);
 

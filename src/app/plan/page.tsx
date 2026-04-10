@@ -11,23 +11,18 @@ export default async function PlanPage({
 }) {
   const params = await searchParams;
 
-  // Token-based access (magic link)
-  if (params.token) {
-    const stored = await redis.get<string>(`plan:${params.token}`);
-    if (!stored) {
-      return <PlanParamsLoader />;
-    }
-    const { params: storedParams } = JSON.parse(stored) as { params: string };
-    const tokenParams = Object.fromEntries(new URLSearchParams(storedParams));
-    return <PlanContent params={tokenParams} />;
-  }
-
-  // Legacy: direct URL params (localStorage fallback flow)
-  if (!params.inkomen) {
+  if (!params.token) {
     return <PlanParamsLoader />;
   }
 
-  return <PlanContent params={params} />;
+  const stored = await redis.get<string>(`plan:${params.token}`);
+  if (!stored) {
+    return <PlanParamsLoader />;
+  }
+
+  const { params: storedParams } = JSON.parse(stored) as { params: string };
+  const tokenParams = Object.fromEntries(new URLSearchParams(storedParams));
+  return <PlanContent params={tokenParams} />;
 }
 
 async function PlanContent({ params }: { params: Record<string, string> }) {

@@ -34,22 +34,34 @@ const steps = [
 
 const examples = [
   {
-    href: "/5000-euro-sparen",
-    label: "Spaardoel",
-    title: "€5.000 sparen",
-    body: "Bereken hoeveel je per maand opzij moet zetten en wanneer je er bent.",
-  },
-  {
     href: "/vakantie-sparen",
     label: "Vakantie",
     title: "Vakantie sparen",
     body: "Van citytrip tot verre reis — wij berekenen het maandbedrag dat bij jou past.",
   },
   {
+    href: "/huis-sparen",
+    label: "Eigen woning",
+    title: "Huis kopen sparen",
+    body: "Hoeveel eigen inbreng heb je nodig en hoe spaar je dat bij elkaar?",
+  },
+  {
+    href: "/bruiloft-sparen",
+    label: "Bruiloft",
+    title: "Bruiloft sparen",
+    body: "Trouwen zonder financiële kater — bereken jouw realistisch bruiloftsbudget.",
+  },
+  {
     href: "/auto-sparen",
     label: "Auto",
     title: "Auto sparen",
     body: "Tweedehands of nieuw — zie hoe lang het duurt en wat je kunt versnellen.",
+  },
+  {
+    href: "/studie-sparen",
+    label: "Studie",
+    title: "Studie sparen",
+    body: "Bouw een buffer op voor collegegeld, boeken en levensonderhoud.",
   },
   {
     href: "/10000-euro-sparen",
