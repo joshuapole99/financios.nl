@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
   const { email } = await req.json();
@@ -13,15 +10,21 @@ export async function POST(req: NextRequest) {
 
   const sanitized = email.trim().toLowerCase().slice(0, 254);
 
-  // Store in Redis list
   await redis.rpush("captured_emails", JSON.stringify({ email: sanitized, createdAt: Date.now() }));
 
-  // Notify us
-  await resend.emails.send({
-    from: "Financios <noreply@financios.nl>",
-    to: "hallo@financios.nl",
-    subject: `Nieuw email adres: ${sanitized}`,
-    html: `<p>Email captured op /result: <strong>${sanitized}</strong></p>`,
+  // Notify via Brevo
+  await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": process.env.BREVO_API_KEY!,
+    },
+    body: JSON.stringify({
+      sender: { name: "Financios", email: "noreply@financios.nl" },
+      to: [{ email: "hallo@financios.nl" }],
+      subject: `Nieuw email adres: ${sanitized}`,
+      htmlContent: `<p>Email captured op /result: <strong>${sanitized}</strong></p>`,
+    }),
   });
 
   return NextResponse.json({ ok: true });
