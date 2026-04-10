@@ -99,7 +99,7 @@ export default async function ResultPage({
                         €{" "}
                         {totalGapOverPeriod.toLocaleString("nl-NL")}
                       </span>{" "}
-                      aan spaargeld. Dat is geld dat je nu al verliest.
+                      aan spaargeld. Elke maand zonder plan kost je €{fmt(result.savingsGap)} extra.
                     </>
                   ) : (
                     <>
@@ -372,6 +372,24 @@ export default async function ResultPage({
           />
         </>
       )}
+
+      {/* Share */}
+      {needsFix && (() => {
+        const shareText = `Ik heb net berekend hoeveel ik kan sparen en waar mijn geld naartoe gaat 👀\n\nCheck jouw situatie hier: financios.nl`;
+        const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+        return (
+          <div className="text-center mb-4">
+            <a
+              href={shareUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-muted hover:text-foreground transition-colors"
+            >
+              Deel je resultaat →
+            </a>
+          </div>
+        );
+      })()}
 
       {/* Actions */}
       <div className="flex flex-col gap-3">

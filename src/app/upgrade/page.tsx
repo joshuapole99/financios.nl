@@ -81,9 +81,9 @@ export default function UpgradePage() {
           </div>
         ) : (
           <>
-            <h2 className="font-semibold text-foreground mb-1">Nog niet klaar?</h2>
+            <h2 className="font-semibold text-foreground mb-1">Nog niet klaar om te betalen?</h2>
             <p className="text-sm text-muted mb-4">
-              Laat je e-mail achter voor updates — we sturen je een bericht als er nieuwe functies beschikbaar zijn.
+              Laat je e-mail achter — dan sturen we je jouw persoonlijke spaarplan zodat je het later terug kunt bekijken.
             </p>
             <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-2">
               <input
@@ -98,7 +98,7 @@ export default function UpgradePage() {
                 type="submit"
                 className="bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl text-sm transition-all active:scale-[0.98] shrink-0"
               >
-                Houd me op de hoogte
+                Stuur mij mijn plan →
               </button>
             </form>
           </>

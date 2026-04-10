@@ -193,6 +193,28 @@ export default function VijfduizendEuroSparen() {
           </p>
         </div>
 
+        {/* Conversion block */}
+        <div className="bg-card border border-border rounded-2xl p-6 mb-8 shadow-[var(--shadow-card)]">
+          <h2 className="font-semibold text-foreground mb-3 tracking-tight">
+            Wat betekent dit voor jou?
+          </h2>
+          <p className="text-sm text-muted mb-4 leading-relaxed">
+            De meeste mensen denken dat ze &ldquo;gewoon meer moeten sparen&rdquo;. Maar meestal klopt dat niet.
+          </p>
+          <p className="text-sm text-foreground mb-3">Het probleem zit in:</p>
+          <ul className="space-y-1.5 mb-4">
+            <li className="flex items-center gap-2 text-sm text-muted"><span className="text-accent">→</span> waar je geld naartoe gaat</li>
+            <li className="flex items-center gap-2 text-sm text-muted"><span className="text-accent">→</span> hoeveel je écht kunt missen</li>
+            <li className="flex items-center gap-2 text-sm text-muted"><span className="text-accent">→</span> hoe realistisch je doel is</li>
+          </ul>
+          <p className="text-sm text-foreground mb-3">Binnen 60 seconden weet je precies:</p>
+          <ul className="space-y-1.5">
+            <li className="flex items-center gap-2 text-sm text-muted"><span className="text-success font-bold">✔</span> hoeveel je kunt sparen</li>
+            <li className="flex items-center gap-2 text-sm text-muted"><span className="text-success font-bold">✔</span> waar je geld lekt</li>
+            <li className="flex items-center gap-2 text-sm text-muted"><span className="text-success font-bold">✔</span> wat je moet aanpassen</li>
+          </ul>
+        </div>
+
         {/* CTA 1 — calculator entry point */}
         <div className="bg-accent/10 border border-accent/30 rounded-2xl p-6 mb-8 shadow-[var(--shadow-card)] text-center">
           <h2 className="font-semibold text-foreground mb-2 tracking-tight">
