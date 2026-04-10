@@ -83,7 +83,7 @@ Geen harde conversiepercentages in deze fase.
 - [x] Switch LemonSqueezy from test → live mode
 - [x] Wire email capture to real service (Brevo, gratis)
 - [x] Rate limiting op /api/capture-email (3 req/hr per IP, Upstash)
-- [ ] First real sale — validate willingness to pay
+- [x] First real sale — validate willingness to pay (test betaling gedaan, flow werkt)
 
 ## 📊 AFTER FIRST DATA (1–2 weeks)
 
@@ -95,7 +95,12 @@ Geen harde conversiepercentages in deze fase.
 
 - [ ] AI-generated personalization text (Claude API)
 - [ ] Improve premium plan depth (more tailored advice)
+  - Fix scenario inconsistency (fast < medium when expenses are low)
+  - Smarter bezuinigingstips (skip categories with €0 spend)
+  - Motivational element: week checklist / progress tracking
 - [x] More SEO pages (/huis-sparen, /bruiloft-sparen, /studie-sparen live)
+- [ ] Abonnement model — pas bouwen als accounts bestaan (gebruiker wil terugkeren voor voortgang)
+- [x] Re-scan zonder opnieuw betalen — token pass-through via /scan?token=X
 
 ## 🔒 POST-LAUNCH: SERVER-SIDE ENTITLEMENT VALIDATION (P1 — AFTER LAUNCH)
 
