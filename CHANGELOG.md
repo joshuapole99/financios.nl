@@ -1,5 +1,29 @@
 # CHANGELOG.md
 
+## v0.9 - Security, Magic Links & Email (2026-04-10)
+
+### Live betalingen
+- LemonSqueezy checkout variant gewisseld van test naar live (variant f636b083)
+- Gratis test-bypass knop verwijderd van /checkout
+
+### Magic link beveiliging
+- /plan is nu beveiligd via server-side token validatie
+- Webhook handler `POST /api/webhooks/lemonsqueezy` verifieert HMAC-SHA256 handtekening
+- Na betaling: UUID token opgeslagen in Upstash Redis (TTL 1 jaar) met scan params + email
+- Magic link gestuurd via Brevo naar koper: `financios.nl/plan?token={uuid}`
+- Legacy localStorage flow (PlanParamsLoader) blijft werken als fallback
+
+### Email capture
+- EmailCapture component toegevoegd op /result pagina
+- `POST /api/capture-email`: slaat email op in Redis + notificatie naar hallo@financios.nl
+- Brevo als email provider (gratis, geen creditcard, verzendt van noreply@financios.nl)
+
+### Share button
+- "Deel je resultaat" is nu een echte button met X/Twitter logo
+- Tweet tekst gepersonaliseerd met echte cijfers (tekort of benodigde spaarbedrag)
+
+---
+
 ## v0.8 - Validation & Monetization Sprint (2026-04-09)
 
 ### SEO page added

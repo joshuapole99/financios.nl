@@ -80,8 +80,8 @@ Geen harde conversiepercentages in deze fase.
 ## 🔥 NEXT — TRACK & CONVERT (CRITICAL)
 
 - [x] Fix CTA event tracking: PostHog captures on checkout + upgrade buttons
-- [ ] Switch LemonSqueezy from test → live mode (user action, zodra goedgekeurd)
-- [ ] Wire email capture to real service (Resend or Brevo free tier)
+- [x] Switch LemonSqueezy from test → live mode
+- [x] Wire email capture to real service (Brevo, gratis)
 - [ ] First real sale — validate willingness to pay
 
 ## 📊 AFTER FIRST DATA (1–2 weeks)
@@ -100,31 +100,27 @@ Geen harde conversiepercentages in deze fase.
 
 > Current MVP uses client-side state (localStorage) for premium access. Acceptable for launch. Must be fixed after first sales to protect revenue at scale.
 
-- [ ] **Add server-side entitlement validation for premium access (Lemon Squeezy)**
-  - Use Lemon Squeezy webhook to detect successful purchases
-  - Generate or store a purchase token / entitlement flag (e.g. database or KV store)
-  - Validate access to /plan on page load via server-side check or API route
-  - Prevent direct URL access to premium content without valid entitlement
-  - Ensure backward compatibility with existing localStorage fallback (if applicable)
-  - **Rationale:** current system is client-side only and allows potential bypass of premium content. MVP metrics show strong conversion and product-market fit. Security layer required to protect revenue after initial launch and scaling.
+- [x] **Server-side entitlement validation geïmplementeerd**
+  - Lemon Squeezy webhook (`order_created`) verifieert handtekening en genereert UUID token
+  - Token + scan params opgeslagen in Upstash Redis (TTL 1 jaar)
+  - `/plan?token=xxx` valideert server-side via Redis lookup
+  - localStorage fallback (PlanParamsLoader) blijft werken voor bestaande users
 
 ## 🔮 POST-LAUNCH: PLAN PERSISTENCE (HIGH PRIORITY — NA EERSTE SALES)
 
 > Bewust uitgesteld. Eerst valideren dat users willen betalen, dan pas bouwen.
 
-- [ ] **Magic link plan access** — NIET geïmplementeerd
-  - Na LemonSqueezy betaling ontvangt de user een persistente link naar hun plan
-  - Link formaat: `/plan?token=xxxxx`
-  - Vereist: database (bijv. Supabase), token-gebaseerde toegang, email delivery
-  - Doel: plan toegankelijk vanuit elk apparaat / elke browser
-  - Huidige situatie: plan leeft alleen in de browser waarmee betaald is (localStorage)
+- [x] **Magic link plan access** — geïmplementeerd
+  - Na betaling ontvangt de user een magic link via Brevo email
+  - Link formaat: `/plan?token=xxxxx` — werkt op elk apparaat / elke browser
+  - Token opgeslagen in Upstash Redis met scan params
 
 ## 📧 EMAIL INFRA (NA LIVE LAUNCH)
 
 > Na eerste sales opzetten. Niet eerder.
 
 - [x] @financios.nl emailadressen aanmaken (hallo@, support@, privacy@, noreply@) — forwarding via ImprovMX → joshuapole@live.nl
-- [ ] Transactionele emails via Resend of Postmark (betalingsbevestiging + plan-link)
+- [x] Transactionele emails via Brevo (betalingsbevestiging + magic link na aankoop)
 - [ ] Klantenupdates / nieuwsbrief sturen vanuit @financios.nl
 
 ## 📄 FUTURE (ONLY AFTER TRACTION)
