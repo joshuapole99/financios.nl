@@ -45,6 +45,7 @@ function ScanForm() {
     maanden: searchParams.get("maanden") ?? defaultValues.maanden,
   });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function set(field: keyof FormValues) {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,6 +65,7 @@ function ScanForm() {
       return;
     }
     const params = new URLSearchParams(values as unknown as Record<string, string>);
+    setLoading(true);
     router.push(`/result?${params.toString()}`);
   }
 
@@ -202,15 +204,25 @@ function ScanForm() {
 
         <button
           type="submit"
-          className="w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-base transition-all mt-2 shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide"
+          disabled={loading}
+          className="w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-base transition-all mt-2 shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide disabled:opacity-80 disabled:cursor-not-allowed"
         >
-          Bereken mijn spaarplan →
+          {loading ? "Berekenen…" : "Bereken mijn spaarplan →"}
         </button>
 
         <p className="text-xs text-muted text-center mt-4">
           Je gegevens worden niet opgeslagen. Alles blijft op jouw apparaat.
         </p>
       </form>
+
+      {/* Loading overlay */}
+      {loading && (
+        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center z-50">
+          <div className="w-10 h-10 rounded-full border-2 border-border border-t-accent animate-spin mb-4" />
+          <p className="text-sm font-medium text-foreground">Jouw situatie berekenen…</p>
+          <p className="text-xs text-muted mt-1">Dit duurt maar een seconde</p>
+        </div>
+      )}
     </main>
   );
 }

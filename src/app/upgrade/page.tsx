@@ -68,7 +68,7 @@ export default function UpgradePage() {
           Fix mijn spaardoel (€4,99) →
         </a>
         <p className="text-xs text-muted mt-3">
-          Betaling via LemonSqueezy · Veilig &amp; versleuteld · Direct beschikbaar
+          Creditcard of Apple Pay · iDEAL komt binnenkort · Veilig &amp; versleuteld
         </p>
       </div>
 

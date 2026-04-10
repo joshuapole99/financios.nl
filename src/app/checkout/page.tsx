@@ -21,7 +21,7 @@ function CheckoutContent() {
   }
 
   return (
-    <main className="min-h-screen px-4 py-10 max-w-xl mx-auto">
+    <main className="min-h-screen px-4 py-10 max-w-2xl mx-auto">
       {/* Back link */}
       <Link
         href={`/result?${searchParams.toString()}`}
@@ -76,8 +76,11 @@ function CheckoutContent() {
         Betaal €4,99 en bekijk mijn plan →
       </a>
 
-      <p className="text-xs text-muted text-center">
+      <p className="text-xs text-muted text-center mb-1">
         Eenmalig · Geen abonnement · Direct beschikbaar
+      </p>
+      <p className="text-xs text-muted text-center">
+        Betalen via creditcard of Apple Pay · iDEAL komt binnenkort
       </p>
     </main>
   );
