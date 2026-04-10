@@ -21,32 +21,32 @@ function CheckoutContent() {
   }
 
   return (
-    <main className="min-h-screen px-4 py-10 max-w-4xl mx-auto">
+    <main className="min-h-screen px-6 py-12 max-w-5xl mx-auto">
       {/* Back link */}
       <Link
         href={`/result?${searchParams.toString()}`}
-        className="text-sm text-muted hover:text-foreground transition-colors mb-8 inline-block"
+        className="text-sm text-muted hover:text-foreground transition-colors mb-10 inline-block"
       >
         ← Terug naar resultaat
       </Link>
 
       {/* Order summary */}
-      <div className="bg-card border border-border rounded-2xl p-6 mb-4 shadow-[var(--shadow-card)]">
-        <h1 className="text-xl font-semibold text-foreground tracking-tight mb-4">
+      <div className="bg-card border border-border rounded-2xl p-10 mb-6 shadow-[var(--shadow-card)]">
+        <h1 className="text-3xl font-semibold text-foreground tracking-tight mb-6">
           Bevestig je aankoop
         </h1>
 
-        <div className="flex items-start justify-between mb-4">
+        <div className="flex items-start justify-between mb-6">
           <div>
-            <p className="text-sm font-medium text-foreground">
+            <p className="text-lg font-medium text-foreground">
               Persoonlijk spaarfix plan
             </p>
-            <p className="text-xs text-muted mt-0.5">{doelNaam}</p>
+            <p className="text-sm text-muted mt-1">{doelNaam}</p>
           </div>
-          <span className="text-lg font-bold text-foreground">€4,99</span>
+          <span className="text-3xl font-bold text-foreground">€4,99</span>
         </div>
 
-        <div className="border-t border-border pt-4 space-y-1.5 mb-4">
+        <div className="border-t border-border pt-6 space-y-3 mb-6">
           {[
             "Weekplan op maat",
             "Maandelijkse breakdown",
@@ -54,16 +54,16 @@ function CheckoutContent() {
             "3 progressiescenario's",
             "Exacte afrondingsdatum",
           ].map((f) => (
-            <div key={f} className="flex items-center gap-2 text-xs text-muted">
-              <span className="text-success font-bold">✓</span>
+            <div key={f} className="flex items-center gap-3 text-sm text-muted">
+              <span className="text-success font-bold text-base">✓</span>
               {f}
             </div>
           ))}
         </div>
 
-        <div className="border-t border-border pt-4 flex justify-between items-center">
-          <span className="text-sm text-muted">Totaal (eenmalig)</span>
-          <span className="text-foreground font-bold">€4,99</span>
+        <div className="border-t border-border pt-6 flex justify-between items-center">
+          <span className="text-base text-muted">Totaal (eenmalig)</span>
+          <span className="text-foreground font-bold text-2xl">€4,99</span>
         </div>
       </div>
 
@@ -71,15 +71,15 @@ function CheckoutContent() {
       <a
         href={checkoutUrl}
         onClick={trackClick}
-        className="block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-base transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide mb-2 text-center"
+        className="block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-5 rounded-xl text-lg transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide mb-3 text-center"
       >
         Betaal €4,99 en bekijk mijn plan →
       </a>
 
-      <p className="text-xs text-muted text-center mb-1">
+      <p className="text-sm text-muted text-center mb-1">
         Eenmalig · Geen abonnement · Direct beschikbaar
       </p>
-      <p className="text-xs text-muted text-center">
+      <p className="text-sm text-muted text-center">
         Betalen via creditcard of Apple Pay · iDEAL komt binnenkort
       </p>
     </main>
