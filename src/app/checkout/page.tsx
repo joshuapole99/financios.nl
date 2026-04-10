@@ -13,7 +13,10 @@ function CheckoutContent() {
 
   // Pass /plan?{params} as the success_url so LemonSqueezy modal button lands correctly
   const planUrl = `https://financios.nl/plan?${searchParams.toString()}`;
-  const checkoutUrl = `${LEMONSQUEEZY_CHECKOUT_URL}?checkout[success_url]=${encodeURIComponent(planUrl)}`;
+  const checkoutUrl =
+    `${LEMONSQUEEZY_CHECKOUT_URL}` +
+    `?checkout[success_url]=${encodeURIComponent(planUrl)}` +
+    `&checkout[custom][params]=${encodeURIComponent(searchParams.toString())}`;
 
   // Save params to localStorage so /plan can recover them if user arrives without URL params
   function saveParamsToStorage() {

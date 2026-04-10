@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { calculate, parseScanInput, GoalStatus } from "@/lib/calculate";
+import EmailCapture from "./EmailCapture";
 
 export default async function ResultPage({
   searchParams,
@@ -372,6 +373,9 @@ export default async function ResultPage({
           />
         </>
       )}
+
+      {/* Email capture */}
+      <EmailCapture />
 
       {/* Actions */}
       <div className="flex flex-col gap-3">

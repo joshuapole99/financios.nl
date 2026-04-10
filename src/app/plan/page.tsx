@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { calculate, parseScanInput } from "@/lib/calculate";
 import { generatePlan } from "@/lib/generatePlan";
+import { redis } from "@/lib/redis";
 import PlanParamsLoader from "./PlanParamsLoader";
 
 export default async function PlanPage({
@@ -10,9 +11,26 @@ export default async function PlanPage({
 }) {
   const params = await searchParams;
 
+  // Token-based access (magic link)
+  if (params.token) {
+    const stored = await redis.get<string>(`plan:${params.token}`);
+    if (!stored) {
+      return <PlanParamsLoader />;
+    }
+    const { params: storedParams } = JSON.parse(stored) as { params: string };
+    const tokenParams = Object.fromEntries(new URLSearchParams(storedParams));
+    return <PlanContent params={tokenParams} />;
+  }
+
+  // Legacy: direct URL params (localStorage fallback flow)
   if (!params.inkomen) {
     return <PlanParamsLoader />;
   }
+
+  return <PlanContent params={params} />;
+}
+
+async function PlanContent({ params }: { params: Record<string, string> }) {
 
   const input = parseScanInput(params);
   const result = calculate(input);
