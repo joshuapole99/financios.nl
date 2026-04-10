@@ -23,11 +23,16 @@ export default async function PlanPage({
 
   // Handle both object (Upstash auto-deserializes) and legacy JSON string
   const planData = typeof stored === "string" ? JSON.parse(stored) as { params: string } : stored;
-  const tokenParams = Object.fromEntries(new URLSearchParams(planData.params));
-  return <PlanContent params={tokenParams} />;
+
+  // Re-scan flow: if inkomen is in URL, the user submitted new scan params — use those
+  const tokenParams = params.inkomen
+    ? params
+    : Object.fromEntries(new URLSearchParams(planData.params));
+
+  return <PlanContent params={tokenParams} token={params.token} />;
 }
 
-async function PlanContent({ params }: { params: Record<string, string> }) {
+async function PlanContent({ params, token }: { params: Record<string, string>; token: string }) {
 
   const input = parseScanInput(params);
   const result = calculate(input);
@@ -243,10 +248,10 @@ async function PlanContent({ params }: { params: Record<string, string> }) {
       {/* Actions */}
       <div className="flex flex-col gap-3">
         <Link
-          href="/scan"
+          href={`/scan?token=${token}&${new URLSearchParams(params as Record<string, string>).toString()}`}
           className="w-full bg-card border border-border hover:border-accent/50 hover:bg-card-hover text-foreground font-medium py-3.5 rounded-xl text-center text-sm transition-all"
         >
-          Nieuwe scan doen
+          Scan aanpassen
         </Link>
         <Link
           href="/"

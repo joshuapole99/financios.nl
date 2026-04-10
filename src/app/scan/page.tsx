@@ -38,11 +38,22 @@ function ScanForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  const token = searchParams.get("token") ?? "";
+
   const [values, setValues] = useState<FormValues>({
     ...defaultValues,
-    doelNaam: searchParams.get("doelNaam") ?? defaultValues.doelNaam,
+    inkomen: searchParams.get("inkomen") ?? defaultValues.inkomen,
+    huur: searchParams.get("huur") ?? defaultValues.huur,
+    abonnementen: searchParams.get("abonnementen") ?? defaultValues.abonnementen,
+    verzekeringen: searchParams.get("verzekeringen") ?? defaultValues.verzekeringen,
+    boodschappen: searchParams.get("boodschappen") ?? defaultValues.boodschappen,
+    vervoer: searchParams.get("vervoer") ?? defaultValues.vervoer,
+    horeca: searchParams.get("horeca") ?? defaultValues.horeca,
+    overig: searchParams.get("overig") ?? defaultValues.overig,
     doel: searchParams.get("doel") ?? defaultValues.doel,
+    spaargeld: searchParams.get("spaargeld") ?? defaultValues.spaargeld,
     maanden: searchParams.get("maanden") ?? defaultValues.maanden,
+    doelNaam: searchParams.get("doelNaam") ?? defaultValues.doelNaam,
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -67,7 +78,11 @@ function ScanForm() {
     const params = new URLSearchParams(values as unknown as Record<string, string>);
     setLoading(true);
     await new Promise((r) => setTimeout(r, 700));
-    router.push(`/result?${params.toString()}`);
+    if (token) {
+      router.push(`/plan?token=${token}&${params.toString()}`);
+    } else {
+      router.push(`/result?${params.toString()}`);
+    }
   }
 
   // Live totals
@@ -208,7 +223,7 @@ function ScanForm() {
           disabled={loading}
           className="w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-base transition-all mt-2 shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide disabled:opacity-80 disabled:cursor-not-allowed"
         >
-          {loading ? "Berekenen…" : "Bereken mijn spaarplan →"}
+          {loading ? (token ? "Plan herberekenen…" : "Berekenen…") : (token ? "Herbereken mijn plan →" : "Bereken mijn spaarplan →")}
         </button>
 
         <p className="text-xs text-muted text-center mt-4">
