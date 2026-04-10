@@ -51,6 +51,12 @@ const examples = [
     title: "Auto sparen",
     body: "Tweedehands of nieuw — zie hoe lang het duurt en wat je kunt versnellen.",
   },
+  {
+    href: "/10000-euro-sparen",
+    label: "Groot doel",
+    title: "€10.000 sparen",
+    body: "Een groter doel vraagt een concreter plan — bereken jouw persoonlijke tijdlijn.",
+  },
 ];
 
 export default function LandingPage() {
