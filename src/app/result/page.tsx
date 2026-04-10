@@ -375,7 +375,12 @@ export default async function ResultPage({
 
       {/* Actions */}
       <div className="flex flex-col gap-3">
-        <ShareButton />
+        <ShareButton
+          status={result.status}
+          gap={result.savingsGap}
+          requiredMonthly={result.requiredMonthly}
+          maanden={input.maanden}
+        />
         <Link
           href="/scan"
           className="w-full bg-card border border-border hover:border-accent/50 hover:bg-card-hover text-foreground font-medium py-3.5 rounded-xl text-center text-sm transition-all"
@@ -581,8 +586,21 @@ function MetricCard({
   );
 }
 
-function ShareButton() {
-  const shareText = `Ik heb net berekend hoeveel ik kan sparen en waar mijn geld naartoe gaat 👀\n\nCheck jouw situatie hier: financios.nl`;
+function ShareButton({
+  status,
+  gap,
+  requiredMonthly,
+  maanden,
+}: {
+  status: GoalStatus;
+  gap: number;
+  requiredMonthly: number;
+  maanden: number;
+}) {
+  const shareText =
+    status === "achievable"
+      ? `Mijn spaardoel is haalbaar! Met €${Math.round(requiredMonthly).toLocaleString("nl-NL")}/maand ben ik er over ${maanden} maanden 💪\n\nBereken ook jouw situatie: financios.nl`
+      : `Ik kom €${Math.round(gap).toLocaleString("nl-NL")}/maand tekort voor mijn spaardoel 😬\n\nBereken ook jouw situatie: financios.nl`;
   const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
   return (
     <a
