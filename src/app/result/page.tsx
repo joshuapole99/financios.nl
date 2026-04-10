@@ -373,26 +373,9 @@ export default async function ResultPage({
         </>
       )}
 
-      {/* Share */}
-      {needsFix && (() => {
-        const shareText = `Ik heb net berekend hoeveel ik kan sparen en waar mijn geld naartoe gaat 👀\n\nCheck jouw situatie hier: financios.nl`;
-        const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
-        return (
-          <div className="text-center mb-4">
-            <a
-              href={shareUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-muted hover:text-foreground transition-colors"
-            >
-              Deel je resultaat →
-            </a>
-          </div>
-        );
-      })()}
-
       {/* Actions */}
       <div className="flex flex-col gap-3">
+        <ShareButton />
         <Link
           href="/scan"
           className="w-full bg-card border border-border hover:border-accent/50 hover:bg-card-hover text-foreground font-medium py-3.5 rounded-xl text-center text-sm transition-all"
@@ -595,6 +578,24 @@ function MetricCard({
       <p className={`text-2xl font-bold ${valueColor}`}>{value}</p>
       <p className="text-xs text-muted mt-1">{sub}</p>
     </div>
+  );
+}
+
+function ShareButton() {
+  const shareText = `Ik heb net berekend hoeveel ik kan sparen en waar mijn geld naartoe gaat 👀\n\nCheck jouw situatie hier: financios.nl`;
+  const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+  return (
+    <a
+      href={shareUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-full flex items-center justify-center gap-2.5 bg-card border border-border hover:border-accent/50 hover:bg-card-hover text-foreground font-medium py-3.5 rounded-xl text-sm transition-all"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4 fill-current shrink-0">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+      </svg>
+      Deel je resultaat
+    </a>
   );
 }
 
