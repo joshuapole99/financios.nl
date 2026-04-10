@@ -82,6 +82,9 @@ function CheckoutContent() {
       <p className="text-sm text-muted text-center">
         Betalen via creditcard of Apple Pay · iDEAL komt binnenkort
       </p>
+      <p className="text-sm text-muted text-center">
+        Terugbetaling binnen 10 werkdagen indien van toepassing
+      </p>
     </main>
   );
 }

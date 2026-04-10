@@ -66,6 +66,9 @@ export default function TermsPage() {
             daarmee vervallen van het herroepingsrecht (conform artikel 6:230p BW).
           </p>
           <p className="mt-2">
+            Indien een terugbetaling van toepassing is, wordt deze binnen <strong className="text-foreground">10 werkdagen</strong> verwerkt via de oorspronkelijke betaalmethode.
+          </p>
+          <p className="mt-2">
             Heb je technische problemen waardoor je het plan niet kunt openen? Neem contact op via <a href="mailto:hallo@financios.nl" className="text-accent underline">hallo@financios.nl</a> — we lossen het op.
           </p>
         </div>

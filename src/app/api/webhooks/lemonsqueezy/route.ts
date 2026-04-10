@@ -40,23 +40,33 @@ export async function POST(req: NextRequest) {
 
   // 3. Idempotency — skip if order already processed
   const idempotencyKey = `order:${orderId}`;
-  const alreadyProcessed = await redis.get(idempotencyKey);
-  if (alreadyProcessed) {
+  const existingToken = await redis.get<string>(idempotencyKey);
+  if (existingToken) {
+    console.log(`[webhook] duplicate order ${orderId}, already processed`);
     return NextResponse.json({ ok: true, skipped: true, reason: "duplicate" });
   }
-  await redis.set(idempotencyKey, "processed", { ex: 60 * 60 * 24 * 7 });
 
   // 5. Generate token and store in Redis
   const token = crypto.randomUUID();
-  const key = `plan:${token}`;
-  const value = JSON.stringify({ params, email, orderId, createdAt: Date.now() });
+  const planData = { params, email, orderId, createdAt: Date.now() };
   const ttl = 60 * 60 * 24 * 365; // 1 year in seconds
 
-  await redis.set(key, value, { ex: ttl });
+  // Store plan data by token
+  await redis.set(`plan:${token}`, planData, { ex: ttl });
+  // Store token by order ID for recovery
+  await redis.set(idempotencyKey, token, { ex: ttl });
+
+  console.log(`[webhook] stored plan:${token} for order ${orderId} (${email})`);
 
   // 6. Send magic link email
   const planUrl = `https://financios.nl/plan?token=${token}`;
-  await sendMagicLink(email, planUrl);
+  try {
+    await sendMagicLink(email, planUrl);
+    console.log(`[webhook] magic link email sent to ${email}`);
+  } catch (err) {
+    console.error(`[webhook] Brevo email failed for order ${orderId}:`, err);
+    // Token is already in Redis — user can contact support with order ID
+  }
 
   return NextResponse.json({ ok: true });
 }

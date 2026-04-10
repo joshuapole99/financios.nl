@@ -15,13 +15,15 @@ export default async function PlanPage({
     return <PlanParamsLoader />;
   }
 
-  const stored = await redis.get<string>(`plan:${params.token}`);
+  const stored = await redis.get<{ params: string } | string>(`plan:${params.token}`);
   if (!stored) {
+    console.log(`[plan] token not found in Redis: plan:${params.token}`);
     return <PlanParamsLoader />;
   }
 
-  const { params: storedParams } = JSON.parse(stored) as { params: string };
-  const tokenParams = Object.fromEntries(new URLSearchParams(storedParams));
+  // Handle both object (Upstash auto-deserializes) and legacy JSON string
+  const planData = typeof stored === "string" ? JSON.parse(stored) as { params: string } : stored;
+  const tokenParams = Object.fromEntries(new URLSearchParams(planData.params));
   return <PlanContent params={tokenParams} />;
 }
 

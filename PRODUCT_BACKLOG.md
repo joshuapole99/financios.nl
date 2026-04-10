@@ -82,6 +82,7 @@ Geen harde conversiepercentages in deze fase.
 - [x] Fix CTA event tracking: PostHog captures on checkout + upgrade buttons
 - [x] Switch LemonSqueezy from test → live mode
 - [x] Wire email capture to real service (Brevo, gratis)
+- [x] Rate limiting op /api/capture-email (3 req/hr per IP, Upstash)
 - [ ] First real sale — validate willingness to pay
 
 ## 📊 AFTER FIRST DATA (1–2 weeks)
@@ -94,7 +95,7 @@ Geen harde conversiepercentages in deze fase.
 
 - [ ] AI-generated personalization text (Claude API)
 - [ ] Improve premium plan depth (more tailored advice)
-- [ ] More SEO pages (/huis-sparen, /bruiloft-sparen, etc.)
+- [x] More SEO pages (/huis-sparen, /bruiloft-sparen, /studie-sparen live)
 
 ## 🔒 POST-LAUNCH: SERVER-SIDE ENTITLEMENT VALIDATION (P1 — AFTER LAUNCH)
 
