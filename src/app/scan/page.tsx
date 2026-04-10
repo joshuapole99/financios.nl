@@ -54,7 +54,7 @@ function ScanForm() {
     };
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!values.inkomen || parseFloat(values.inkomen) <= 0) {
       setError("Vul je maandelijks inkomen in om door te gaan.");
@@ -66,6 +66,7 @@ function ScanForm() {
     }
     const params = new URLSearchParams(values as unknown as Record<string, string>);
     setLoading(true);
+    await new Promise((r) => setTimeout(r, 700));
     router.push(`/result?${params.toString()}`);
   }
 
@@ -217,10 +218,10 @@ function ScanForm() {
 
       {/* Loading overlay */}
       {loading && (
-        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center z-50">
-          <div className="w-10 h-10 rounded-full border-2 border-border border-t-accent animate-spin mb-4" />
-          <p className="text-sm font-medium text-foreground">Jouw situatie berekenen…</p>
-          <p className="text-xs text-muted mt-1">Dit duurt maar een seconde</p>
+        <div className="fixed inset-0 bg-background/90 backdrop-blur-md flex flex-col items-center justify-center z-50">
+          <div className="w-16 h-16 rounded-full border-4 border-border border-t-accent animate-spin mb-6" />
+          <p className="text-xl font-semibold text-foreground mb-2">Jouw situatie berekenen…</p>
+          <p className="text-sm text-muted">Even geduld, dit duurt maar een seconde</p>
         </div>
       )}
     </main>
