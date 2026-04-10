@@ -68,22 +68,6 @@ function CheckoutContent() {
         </div>
       </div>
 
-      {/* Free test option — prominent, above paid CTA */}
-      <div className="bg-card border border-border rounded-2xl p-5 mb-4 shadow-[var(--shadow-card)]">
-        <p className="text-xs font-medium uppercase tracking-wider text-muted mb-1">
-          Gratis optie
-        </p>
-        <p className="text-sm text-foreground font-medium mb-3">
-          🧪 Test gratis — bekijk een voorbeeldplan zonder te betalen
-        </p>
-        <Link
-          href={`/plan?${searchParams.toString()}`}
-          className="block w-full border border-border hover:border-accent/50 text-foreground hover:text-accent font-semibold py-3 rounded-xl text-sm transition-all text-center active:scale-[0.98]"
-        >
-          Bekijk gratis testplan →
-        </Link>
-      </div>
-
       {/* CTA — redirects to LemonSqueezy */}
       <a
         href={checkoutUrl}
@@ -93,11 +77,8 @@ function CheckoutContent() {
         Betaal €4,99 en bekijk mijn plan →
       </a>
 
-      <p className="text-xs text-muted text-center mb-1">
-        Eenmalig · Geen abonnement · Direct beschikbaar
-      </p>
       <p className="text-xs text-muted text-center">
-        Wil je eerst zien hoe je plan eruitziet? Gebruik de gratis testoptie hierboven.
+        Eenmalig · Geen abonnement · Direct beschikbaar
       </p>
     </main>
   );
