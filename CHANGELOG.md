@@ -1,5 +1,13 @@
 # CHANGELOG.md
 
+## v1.7 - SEO pagina /pensioen-sparen-jongeren (2026-04-11)
+
+### Nieuwe SEO pagina
+- **/pensioen-sparen-jongeren** — keyword "pensioen sparen jongeren", doelgroep 18–30 jaar
+- Berekeningstafel (leeftijd 25–40 × doelkapitaal €50k/€100k/€200k), compound interest uitleg, 3 tips (begin klein, lijfrente/banksparen, AOW-gat ZZP), mid-page CTA, FAQ
+
+---
+
 ## v1.6 - SEO pagina /huurweek-overleven (2026-04-11)
 
 ### Nieuwe SEO pagina

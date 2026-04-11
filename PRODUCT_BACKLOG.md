@@ -203,7 +203,7 @@ Geen harde conversiepercentages in deze fase.
 ### SEO uitbreiding
 - [x] /noodfonds-opbouwen
 - [x] /huurweek-overleven — specifiek Nederlands pijnmoment (Reddit-tip: "rent week panic"), hoge emotionele lading
-- [ ] /pensioen-sparen-jongeren
+- [x] /pensioen-sparen-jongeren
 - [ ] /fire-beweging-nederland
 - [ ] /beleggen-beginnen (calculator)
 - [ ] Blog: "Hoeveel moet je sparen per maand?" (informationele keywords)
