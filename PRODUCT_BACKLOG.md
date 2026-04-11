@@ -204,8 +204,8 @@ Geen harde conversiepercentages in deze fase.
 - [x] /noodfonds-opbouwen
 - [x] /huurweek-overleven — specifiek Nederlands pijnmoment (Reddit-tip: "rent week panic"), hoge emotionele lading
 - [x] /pensioen-sparen-jongeren
-- [ ] /fire-beweging-nederland
-- [ ] /beleggen-beginnen (calculator)
+- [x] /fire-beweging-nederland
+- [x] /beleggen-beginnen (calculator)
 - [ ] Blog: "Hoeveel moet je sparen per maand?" (informationele keywords)
 
 ### Copy & taal

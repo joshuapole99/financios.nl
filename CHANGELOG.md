@@ -1,5 +1,13 @@
 # CHANGELOG.md
 
+## v1.8 - SEO pagina's /fire-beweging-nederland + /beleggen-beginnen (2026-04-11)
+
+### Nieuwe SEO pagina's
+- **/fire-beweging-nederland** — FIRE-getal tabel (4%-regel), uitleg compound interest, 3 stappen, FAQ
+- **/beleggen-beginnen** — eerste interactieve calculator op de site: sliders voor maandelijks bedrag (€25–€1.000), looptijd (5–40 jaar), rendement (4/6/8%). Toont eindkapitaal, gestapelde balk (inleg vs rendement), winst%. `BeleggenCalculator.tsx` als aparte client component.
+
+---
+
 ## v1.7 - SEO pagina /pensioen-sparen-jongeren (2026-04-11)
 
 ### Nieuwe SEO pagina
