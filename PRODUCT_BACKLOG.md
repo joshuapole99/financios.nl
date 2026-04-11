@@ -138,6 +138,53 @@ Geen harde conversiepercentages in deze fase.
 - [ ] Calculators (pensioen, hypotheek, FIRE)
 - [ ] Abonnement model (alleen nadat accounts bestaan)
 
+## 🔥 POSITIONING, CLARITY & FREE VS PAID STRUCTURE (HIGH PRIORITY)
+
+> Feedback: positionering te breed, gratis vs betaald onduidelijk, waarde niet duidelijk voor betaling.
+> Doel: conversie verhogen door helderheid — geen nieuwe gratis features toevoegen.
+
+### 1. Focus op één concreet pijnmoment (core positionering)
+- [ ] Homepage hero herschrijven naar specifieke situatie: bijv. "Het is de 20e en je bent alweer blut"
+- [ ] Copy concreet maken, niet generiek — één gevoel centraal
+- [ ] Zelfde positionering doorvoeren op /result page
+- [ ] SEO pagina's geleidelijk aanpassen
+
+### 2. Copy verbeteren met echte gebruikerstaal
+- [ ] Generieke financiële taal vervangen door wat gebruikers echt zeggen:
+  - "waar blijft mijn geld"
+  - "ik hou niks over"
+  - "ik snap het niet"
+- [ ] Toepassen op homepage, result page en SEO pagina's
+
+### 3. Meer waarde zichtbaar maken vóór betaling
+- [ ] Preview elementen toevoegen op /result zonder premium weg te geven:
+  - Grootste geldlek al zichtbaar (is al deels gedaan)
+  - 1 concrete bespaartip gratis tonen
+- [ ] Premium plan blijft achter betaalscherm
+
+### 4. Visuele scheiding GRATIS vs BETAALD (KRITISCH)
+- [ ] Duidelijk label boven gratis sectie: "Dit is je gratis inzicht"
+- [ ] Gratis gedeelte bevat: status, spaarruimte, grootste kostenpost, basisscenario's
+- [ ] Gratis gedeelte bevat NIET: weekplan, breakdown, volledige begeleiding
+- [ ] Tekst toevoegen onder gratis sectie: "Zonder concreet plan weet je morgen nog steeds niet wat je moet doen"
+
+### 5. Expliciete "Kies hoe je verder wilt" sectie
+- [ ] Na resultaten een duidelijke keuze tonen:
+  - Optie 1: Gratis inzicht (huidige staat)
+  - Optie 2: Persoonlijk plan — €4,99
+- [ ] Beslissing expliciet maken, verwarring wegnemen
+
+### 6. Upgrade sectie verduidelijken
+- [ ] Visueel contrast: "Zonder plan" vs "Met plan"
+- [ ] Nadruk op snelheid, duidelijkheid, exacte acties
+- [ ] Duidelijk wat vergrendeld is vs wat je krijgt
+
+### ⚠️ NIET DOEN IN DEZE FASE
+- [ ] Geen freemium model introduceren — alleen conversie-helderheid verbeteren
+- [ ] Geen extra gratis features — focus op positionering en structuur
+
+---
+
 ## 🎨 BRANDING & SITE VERBETERING
 
 - [ ] Custom OG image (social preview bij delen van link)
