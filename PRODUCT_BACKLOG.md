@@ -88,16 +88,16 @@ Geen harde conversiepercentages in deze fase.
 ## 📊 AFTER FIRST DATA (1–2 weeks)
 
 - [ ] Check PostHog funnel: homepage → scan → result → checkout → plan
-- [ ] Identify biggest drop-off in funnel and fix it
+- [x] Identify biggest drop-off in funnel and fix it — Chrome desktop 7.69% stap 1→2; mid-page CTA toegevoegd aan alle 7 SEO-pagina's
 - [ ] A/B test CTA copy if conversion < 2%
 
 ## 🧠 PRODUCT (AFTER FIRST SALES)
 
 - [ ] AI-generated personalization text (Claude API)
 - [ ] Improve premium plan depth (more tailored advice)
-  - Fix scenario inconsistency (fast < medium when expenses are low)
-  - Smarter bezuinigingstips (skip categories with €0 spend)
-  - Motivational element: week checklist / progress tracking
+  - [x] Fix scenario inconsistency (fast < medium when expenses are low)
+  - [x] Smarter bezuinigingstips (skip categories with €0 spend)
+  - [ ] Motivational element: week checklist / progress tracking
 - [x] More SEO pages (/huis-sparen, /bruiloft-sparen, /studie-sparen live)
 - [ ] Abonnement model — pas bouwen als accounts bestaan (gebruiker wil terugkeren voor voortgang)
 - [x] Re-scan zonder opnieuw betalen — token pass-through via /scan?token=X
@@ -144,40 +144,31 @@ Geen harde conversiepercentages in deze fase.
 > Doel: conversie verhogen door helderheid — geen nieuwe gratis features toevoegen.
 
 ### 1. Focus op één concreet pijnmoment (core positionering)
-- [ ] Homepage hero herschrijven naar specifieke situatie: bijv. "Het is de 20e en je bent alweer blut"
-- [ ] Copy concreet maken, niet generiek — één gevoel centraal
-- [ ] Zelfde positionering doorvoeren op /result page
+- [x] Homepage hero herschrijven: h1 "Waarom ben jij altijd blut?" + subtitle "Het is de 20ste. Je saldo klopt alweer niet."
+- [x] Copy concreet maken, niet generiek — één gevoel centraal
+- [x] Zelfde positionering doorvoeren op /result page
 - [ ] SEO pagina's geleidelijk aanpassen
 
 ### 2. Copy verbeteren met echte gebruikerstaal
-- [ ] Generieke financiële taal vervangen door wat gebruikers echt zeggen:
-  - "waar blijft mijn geld"
-  - "ik hou niks over"
-  - "ik snap het niet"
-- [ ] Toepassen op homepage, result page en SEO pagina's
+- [x] Generieke financiële taal vervangen: steps, benefit cards, result page copy
+- [ ] Toepassen op SEO pagina's
 
 ### 3. Meer waarde zichtbaar maken vóór betaling
-- [ ] Preview elementen toevoegen op /result zonder premium weg te geven:
-  - Grootste geldlek al zichtbaar (is al deels gedaan)
-  - 1 concrete bespaartip gratis tonen
-- [ ] Premium plan blijft achter betaalscherm
+- [x] 1 concrete bespaartip gratis tonen op /result (20% bezuiniging op grootste kostenpost)
+- [x] Premium plan blijft achter betaalscherm
 
 ### 4. Visuele scheiding GRATIS vs BETAALD (KRITISCH)
-- [ ] Duidelijk label boven gratis sectie: "Dit is je gratis inzicht"
-- [ ] Gratis gedeelte bevat: status, spaarruimte, grootste kostenpost, basisscenario's
-- [ ] Gratis gedeelte bevat NIET: weekplan, breakdown, volledige begeleiding
-- [ ] Tekst toevoegen onder gratis sectie: "Zonder concreet plan weet je morgen nog steeds niet wat je moet doen"
+- [x] "Jouw gratis inzicht" divider label op /result
+- [x] Gratis gedeelte: status, spaarruimte, grootste kostenpost, 1 tip, scenario's
+- [x] Gratis gedeelte bevat NIET: weekplan, breakdown, exacte datum
+- [x] Tekst: "Zonder concreet weekplan weet je morgen nog steeds niet hoe"
 
 ### 5. Expliciete "Kies hoe je verder wilt" sectie
-- [ ] Na resultaten een duidelijke keuze tonen:
-  - Optie 1: Gratis inzicht (huidige staat)
-  - Optie 2: Persoonlijk plan — €4,99
-- [ ] Beslissing expliciet maken, verwarring wegnemen
+- [x] Gratis inzicht vs Persoonlijk plan (€4,99) — gestapeld op mobiel, leesbaar
 
 ### 6. Upgrade sectie verduidelijken
-- [ ] Visueel contrast: "Zonder plan" vs "Met plan"
-- [ ] Nadruk op snelheid, duidelijkheid, exacte acties
-- [ ] Duidelijk wat vergrendeld is vs wat je krijgt
+- [x] Visueel contrast: "Zonder plan" vs "Met plan" op /upgrade
+- [ ] SEO pagina's copy aanpassen aan positionering
 
 ### ⚠️ NIET DOEN IN DEZE FASE
 - [ ] Geen freemium model introduceren — alleen conversie-helderheid verbeteren
@@ -187,7 +178,7 @@ Geen harde conversiepercentages in deze fase.
 
 ## 🎨 BRANDING & SITE VERBETERING
 
-- [ ] Custom OG image (social preview bij delen van link)
+- [x] Custom OG image (social preview bij delen van link)
 - [ ] Logo — nu alleen tekst, overweeg een simpel icoon (spaarpot, grafiek)
 - [ ] Testimonials sectie op homepage zodra eerste echte reviews binnenkomen
 - [ ] "Voor & na" vergelijking op homepage — concreet voorbeeld met cijfers
@@ -204,17 +195,21 @@ Geen harde conversiepercentages in deze fase.
 - [ ] "POV: je wilt €5000 sparen maar weet niet hoe" → product demo
 
 ### Groei mechanismen
-- [ ] WhatsApp share knop op /result ("Deel met een vriend die ook wil sparen")
+- [x] WhatsApp share knop op /result ("Deel met een vriend die ook wil sparen")
 - [ ] Referral systeem: "Deel Financios, krijg 1 gratis herberekening" (na accounts)
 - [ ] "Bereken voor je partner/vriend" CTA op plan pagina
 - [ ] Affiliate / creator deal: Nederlandse finance creators (kleine commissie per sale)
 
 ### SEO uitbreiding
-- [ ] /noodfonds-opbouwen
+- [x] /noodfonds-opbouwen
+- [ ] /huurweek-overleven — specifiek Nederlands pijnmoment (Reddit-tip: "rent week panic"), hoge emotionele lading
 - [ ] /pensioen-sparen-jongeren
 - [ ] /fire-beweging-nederland
 - [ ] /beleggen-beginnen (calculator)
 - [ ] Blog: "Hoeveel moet je sparen per maand?" (informationele keywords)
+
+### Copy & taal
+- [ ] Real Dutch language sourcing: zoek r/geldzaken + r/thenetherlands op "ik hou niks over", "huurweek", "salaris op" voor copy-iteraties op homepage en result page
 
 ## ⚠️ DECISIONS
 

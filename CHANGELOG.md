@@ -1,5 +1,64 @@
 # CHANGELOG.md
 
+## v1.5 - OG image (2026-04-11)
+
+### Social preview
+- **Dynamic OG image** via `next/og` ImageResponse — `src/app/opengraph-image.tsx`
+- Design: donkere achtergrond (#0B0F14), "Waarom ben jij **altijd blut?**" in paars (#6366F1), subtitle, financios.nl URL + gratis-badge
+- Geldt automatisch voor alle pagina's zonder eigen OG image override
+
+---
+
+## v1.4 - Mid-page CTA op alle SEO pagina's (2026-04-11)
+
+### Funnel fix
+- **Mid-page CTA backport** naar alle 7 bestaande SEO-pagina's (vakantie, huis, bruiloft, auto, studie, 5000, 10000)
+- Gepersonaliseerde CTA per pagina, geplaatst tussen tips en FAQ — vangt Chrome/zoekverkeer dat halverwege vertrekt
+
+---
+
+## v1.3 - SEO pagina + funnel fix (2026-04-11)
+
+### Nieuwe SEO pagina
+- **/noodfonds-opbouwen** live — keyword "noodfonds opbouwen", berekeningstafel (€1k–€10k × 4 looptijden), formule, 3 tips, FAQ, toegevoegd aan sitemap
+- **Mid-page CTA patroon** geïntroduceerd: compact CTA-card tussen tips en FAQ, zodat Chrome/zoekverkeer een conversiepunt ziet vóórdat ze de pagina verlaten
+
+### Funnel analyse
+- PostHog: Chrome desktop 7.69% stap 1→2, Mobile Safari 35%. Zodra Chrome-gebruikers doorklikken converteren ze 100% — eerste pagina is het knelpunt. Mid-page CTA is gerichte fix.
+
+---
+
+## v1.2 - Plan kwaliteit fixes (2026-04-11)
+
+### generatePlan.ts
+- **Scenario volgorde gefixt**: `mediumMonthly` gebruikte `Math.max(..., requiredMonthly*0.5)` waardoor medium soms sneller was dan fast. Nu bouwen alle drie scenario's op dezelfde basis zodat slow ≤ medium ≤ fast altijd klopt.
+- **€0-categorieën overgeslagen**: bezuinigingstips voor boodschappen, horeca en vervoer worden niet meer getoond als de gebruiker €0 heeft ingevuld.
+
+---
+
+## v1.1 - Positioning Sprint & Growth (2026-04-11)
+
+### Positionering & conversie-helderheid
+- **Homepage hero**: h1 "Waarom ben jij altijd blut?" + concrete subtitel "Het is de 20ste. Je saldo klopt alweer niet."
+- **How it works copy**: concreter, stap 3 benoemt expliciet gratis vs betaald
+- **Benefit cards**: directere taal ("geen vage antwoorden", "precies vertelt wat je moet doen")
+
+### Result page — gratis vs betaald
+- **"Jouw gratis inzicht" divider** toegevoegd boven gratis sectie
+- **Gratis tip** in grootste-uitgavenpost card: "bezuinig 20% → €X extra/maand"
+- **"Kies hoe je verder wilt" sectie**: gestapeld layout (mobile-first), gratis vs €4,99 naast elkaar met volledige feature vergelijking
+- **Email capture verwijderd** — maakte belofte die we niet waarmaken in validatiefase
+
+### Upgrade page
+- **"Zonder plan vs Met plan" contrast** toegevoegd boven feature lijst — rode kolom (negatief) vs groene kolom (positief)
+- **Email capture verwijderd** (zelfde reden als /result)
+
+### WhatsApp share
+- **WhatsApp share knop** toegevoegd op /result boven de Twitter/X knop
+- Gepersonaliseerde tekst met echte cijfers (€X/maand tekort of haalbaar)
+
+---
+
 ## v1.0 - First Sale & Post-Launch Fixes (2026-04-11)
 
 ### Betaalflow end-to-end gevalideerd
