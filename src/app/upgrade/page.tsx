@@ -1,23 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import posthog from "posthog-js";
 
 const LEMONSQUEEZY_CHECKOUT_URL = "https://financios.lemonsqueezy.com/checkout/buy/63b7a3a4-db62-44bd-919a-5d12512dc8c4";
 
 export default function UpgradePage() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleEmailSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email) return;
-    // Placeholder: log to console until backend is wired
-    console.log("[email-capture] upgrade page:", email);
-    setSubmitted(true);
-  }
-
   return (
     <main className="min-h-screen px-4 py-10 max-w-2xl mx-auto">
       <Link href="/" className="text-sm text-muted hover:text-foreground transition-colors mb-8 inline-block">
@@ -31,6 +19,44 @@ export default function UpgradePage() {
         <p className="text-muted">
           Geen vage tips. Een concreet weekplan gebaseerd op jóuw eigen cijfers.
         </p>
+      </div>
+
+      {/* Zonder plan vs Met plan */}
+      <div className="grid grid-cols-2 gap-3 mb-6">
+        <div className="bg-danger/5 border border-danger/20 rounded-2xl p-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-danger mb-3">
+            Zonder plan
+          </p>
+          <ul className="space-y-2">
+            {[
+              "Je weet niet hoeveel je mag uitgeven",
+              "Iedere maand hetzelfde: te weinig over",
+              "Je doel schuift steeds verder weg",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-2 text-xs text-muted">
+                <span className="text-danger shrink-0 mt-0.5 font-bold">✗</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="bg-success/5 border border-success/20 rounded-2xl p-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-success mb-3">
+            Met plan
+          </p>
+          <ul className="space-y-2">
+            {[
+              "Je weet elke week precies hoeveel",
+              "Je spaart consequent, zonder stress",
+              "Je ziet wanneer je je doel haalt",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-2 text-xs text-foreground">
+                <span className="text-success shrink-0 mt-0.5 font-bold">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       {/* Preview locked content */}
@@ -70,39 +96,6 @@ export default function UpgradePage() {
         <p className="text-xs text-muted mt-3">
           Creditcard of Apple Pay · iDEAL komt binnenkort · Veilig &amp; versleuteld
         </p>
-      </div>
-
-      {/* Email capture */}
-      <div className="bg-card border border-border rounded-2xl p-6 mb-6 shadow-[var(--shadow-card)]">
-        {submitted ? (
-          <div className="text-center py-2">
-            <p className="text-success font-semibold mb-1">Gelukt!</p>
-            <p className="text-sm text-muted">We houden je op de hoogte van updates.</p>
-          </div>
-        ) : (
-          <>
-            <h2 className="font-semibold text-foreground mb-1">Nog niet klaar om te betalen?</h2>
-            <p className="text-sm text-muted mb-4">
-              Laat je e-mail achter — dan sturen we je jouw persoonlijke spaarplan zodat je het later terug kunt bekijken.
-            </p>
-            <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="jouw@email.nl"
-                className="flex-1 bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent/40 transition"
-              />
-              <button
-                type="submit"
-                className="bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl text-sm transition-all active:scale-[0.98] shrink-0"
-              >
-                Stuur mij mijn plan →
-              </button>
-            </form>
-          </>
-        )}
       </div>
 
       <p className="text-xs text-muted text-center">
