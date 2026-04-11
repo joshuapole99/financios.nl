@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Financios – Het is de 20ste, waarom ben jij altijd blut?",
+  title: "Financios – Waarom ben jij altijd blut?",
   description:
     "Ontdek in 60 seconden waar je geld naartoe gaat. Gratis spaaranalyse + persoonlijk weekplan voor jouw spaardoel.",
   openGraph: {
-    title: "Financios – Het is de 20ste, waarom ben jij altijd blut?",
+    title: "Financios – Waarom ben jij altijd blut?",
     description:
       "Ontdek in 60 seconden waar je geld naartoe gaat. Gratis spaaranalyse + persoonlijk weekplan.",
     url: "https://financios.nl",
@@ -98,10 +98,14 @@ export default function LandingPage() {
           Gratis · geen account · 60 seconden
         </div>
 
-        <h1 className="text-4xl sm:text-6xl font-bold text-foreground leading-tight tracking-tight mb-6">
-          Het is de 20ste — waarom ben jij{" "}
+        <h1 className="text-4xl sm:text-6xl font-bold text-foreground leading-tight tracking-tight mb-4">
+          Waarom ben jij{" "}
           <span className="text-accent">altijd blut?</span>
         </h1>
+
+        <p className="text-xl sm:text-2xl font-semibold text-foreground/70 tracking-tight mb-6">
+          Het is de 20ste. Je saldo klopt alweer niet.
+        </p>
 
         <p className="text-lg sm:text-xl text-muted max-w-xl mb-10 leading-[1.7]">
           Je werkt, je betaalt je rekeningen — maar aan het einde van de maand is het weg.
