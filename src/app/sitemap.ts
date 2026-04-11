@@ -89,6 +89,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${BASE}/hoeveel-moet-je-sparen-per-maand`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${BASE}/huurweek-overleven`,
       lastModified: new Date(),
       changeFrequency: "monthly",

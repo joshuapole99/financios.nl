@@ -1,5 +1,13 @@
 # CHANGELOG.md
 
+## v2.0 - SEO pagina /hoeveel-moet-je-sparen-per-maand (2026-04-11)
+
+### Nieuwe SEO pagina
+- **/hoeveel-moet-je-sparen-per-maand** — informationeel keyword met hoog zoekvolume
+- 50/30/20-vuistregel uitgelegd, spaartabel per inkomensniveau (€1.800–€3.500), doeltabel per spaardoel (noodfonds/vakantie/auto/huis), 3 tips, mid-page CTA, FAQ, toegevoegd aan sitemap
+
+---
+
 ## v1.9 - Partner CTA op /plan + "Voor & na" op homepage (2026-04-11)
 
 ### Virale groei

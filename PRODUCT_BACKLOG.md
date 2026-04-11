@@ -206,7 +206,7 @@ Geen harde conversiepercentages in deze fase.
 - [x] /pensioen-sparen-jongeren
 - [x] /fire-beweging-nederland
 - [x] /beleggen-beginnen (calculator)
-- [ ] Blog: "Hoeveel moet je sparen per maand?" (informationele keywords)
+- [x] Blog: "Hoeveel moet je sparen per maand?" — /hoeveel-moet-je-sparen-per-maand live
 
 ### Copy & taal
 - [ ] Real Dutch language sourcing: zoek r/geldzaken + r/thenetherlands op "ik hou niks over", "huurweek", "salaris op" voor copy-iteraties op homepage en result page
