@@ -253,13 +253,35 @@ async function PlanContent({ params, token }: { params: Record<string, string>; 
         >
           Scan aanpassen
         </Link>
-        <Link
-          href="/"
-          className="w-full text-center text-sm text-muted hover:text-foreground py-2 transition-colors"
-        >
-          Terug naar home
-        </Link>
       </div>
+
+      {/* Partner share */}
+      <div className="bg-card border border-border rounded-2xl p-5 mt-4 mb-2 shadow-[var(--shadow-card)] text-center">
+        <p className="text-sm font-semibold text-foreground mb-1">
+          Bereken voor een vriend of partner
+        </p>
+        <p className="text-xs text-muted mb-4 leading-relaxed">
+          Stuur de gratis scan door — in 60 seconden weet ook hij/zij waar het geld blijft.
+        </p>
+        <a
+          href={`https://wa.me/?text=${encodeURIComponent(
+            "Ik heb net mijn spaarplan gemaakt met Financios. Bereken ook jouw spaardoel gratis op: https://financios.nl/scan"
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-[#25D366] hover:bg-[#1ebe5a] text-white font-semibold px-6 py-3 rounded-xl text-sm transition-all shadow-lg active:scale-[0.98] tracking-wide"
+        >
+          Stuur via WhatsApp
+        </a>
+        <p className="text-xs text-muted mt-2">Of deel: financios.nl/scan</p>
+      </div>
+
+      <Link
+        href="/"
+        className="w-full text-center text-sm text-muted hover:text-foreground py-2 transition-colors block"
+      >
+        Terug naar home
+      </Link>
     </main>
   );
 }

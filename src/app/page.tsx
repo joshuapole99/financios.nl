@@ -207,6 +207,76 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Voor & na */}
+      <section className="px-6 pb-20 max-w-5xl mx-auto w-full">
+        <div className="text-center mb-10">
+          <p className="text-xs font-medium uppercase tracking-wider text-accent mb-2">
+            Voor &amp; na
+          </p>
+          <h2 className="text-2xl font-semibold text-foreground tracking-tight">
+            Van &ldquo;waar gaat mijn geld naartoe?&rdquo; naar een concreet plan
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Zonder plan */}
+          <div className="bg-danger/5 border border-danger/20 rounded-2xl p-6 shadow-[var(--shadow-card)]">
+            <p className="text-xs font-medium uppercase tracking-wider text-danger mb-4">
+              Zonder plan
+            </p>
+            <div className="flex flex-col gap-3 text-sm">
+              <div className="flex justify-between">
+                <span className="text-muted">Inkomen</span>
+                <span className="text-foreground font-medium">€2.800</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted">Vaste lasten</span>
+                <span className="text-foreground">−€1.200</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted">Variabele kosten</span>
+                <span className="text-muted">−€??? (onbekend)</span>
+              </div>
+              <div className="border-t border-danger/20 pt-3 flex justify-between">
+                <span className="text-danger font-semibold">Einde maand</span>
+                <span className="text-danger font-bold">€0 over</span>
+              </div>
+            </div>
+            <p className="text-xs text-muted mt-4 leading-relaxed">
+              Er zou €1.600 overblijven na vaste lasten. Maar waar het heen gaat? Geen idee.
+            </p>
+          </div>
+
+          {/* Met plan */}
+          <div className="bg-success/5 border border-success/20 rounded-2xl p-6 shadow-[var(--shadow-card)]">
+            <p className="text-xs font-medium uppercase tracking-wider text-success mb-4">
+              Met Financios plan
+            </p>
+            <div className="flex flex-col gap-3 text-sm">
+              <div className="flex justify-between">
+                <span className="text-muted">Inkomen</span>
+                <span className="text-foreground font-medium">€2.800</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted">Vaste lasten</span>
+                <span className="text-foreground">−€1.200</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted">Variabele kosten</span>
+                <span className="text-foreground">−€1.050 (inzichtelijk)</span>
+              </div>
+              <div className="border-t border-success/20 pt-3 flex justify-between">
+                <span className="text-success font-semibold">Spaarruimte</span>
+                <span className="text-success font-bold">€550/maand</span>
+              </div>
+            </div>
+            <p className="text-xs text-muted mt-4 leading-relaxed">
+              Grootste lek: horeca €320/maand. Bezuinig 30% → €96 extra. Spaardoel haalbaar in 9 maanden.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Trust + final CTA */}
       <section className="px-6 pb-28 max-w-2xl mx-auto w-full text-center">
         <div className="bg-accent/10 border border-accent/30 rounded-2xl p-8 shadow-[var(--shadow-card)]">

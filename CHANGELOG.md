@@ -1,5 +1,15 @@
 # CHANGELOG.md
 
+## v1.9 - Partner CTA op /plan + "Voor & na" op homepage (2026-04-11)
+
+### Virale groei
+- **"Bereken voor een vriend of partner"** card op `/plan` (onderaan, boven "Terug naar home") — WhatsApp deelknop met prefilled bericht naar `https://financios.nl/scan`
+
+### Conversie homepage
+- **"Voor & na" sectie** toegevoegd op homepage (na benefit cards, vóór final CTA) — concreet cijfervoorbeeld: inkomen €2.800, "€0 over" zonder plan vs "€550/maand spaarruimte" met plan, grootste lek (horeca) zichtbaar
+
+---
+
 ## v1.8 - SEO pagina's /fire-beweging-nederland + /beleggen-beginnen (2026-04-11)
 
 ### Nieuwe SEO pagina's

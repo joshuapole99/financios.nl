@@ -181,7 +181,7 @@ Geen harde conversiepercentages in deze fase.
 - [x] Custom OG image (social preview bij delen van link)
 - [ ] Logo — nu alleen tekst, overweeg een simpel icoon (spaarpot, grafiek)
 - [ ] Testimonials sectie op homepage zodra eerste echte reviews binnenkomen
-- [ ] "Voor & na" vergelijking op homepage — concreet voorbeeld met cijfers
+- [x] "Voor & na" vergelijking op homepage — concreet voorbeeld met cijfers
 - [ ] Vertrouwensbadges op checkout: "Veilig betalen", "10.000+ gebruikers" (zodra waar)
 - [ ] Animated number counter op homepage (bijv. "€X bespaard door gebruikers")
 
@@ -197,7 +197,7 @@ Geen harde conversiepercentages in deze fase.
 ### Groei mechanismen
 - [x] WhatsApp share knop op /result ("Deel met een vriend die ook wil sparen")
 - [ ] Referral systeem: "Deel Financios, krijg 1 gratis herberekening" (na accounts)
-- [ ] "Bereken voor je partner/vriend" CTA op plan pagina
+- [x] "Bereken voor je partner/vriend" CTA op plan pagina
 - [ ] Affiliate / creator deal: Nederlandse finance creators (kleine commissie per sale)
 
 ### SEO uitbreiding
