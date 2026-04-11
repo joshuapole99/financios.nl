@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -45,8 +46,8 @@ export default function HuisSparen() {
   return (
     <main className="min-h-screen">
       <nav className="sticky top-0 z-50 border-b border-border px-6 py-4 flex items-center justify-between max-w-5xl mx-auto w-full backdrop-blur-md bg-background/80">
-        <Link href="/" className="font-semibold text-foreground tracking-tight">
-          Financios
+        <Link href="/">
+          <Image src="/logo.png" alt="Financios" width={140} height={36} priority />
         </Link>
         <Link
           href="/scan?doelNaam=Eigen+woning&doel=25000&maanden=36"
