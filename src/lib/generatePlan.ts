@@ -38,7 +38,7 @@ export function generatePlan(input: ScanInput, result: ScanResult): PremiumPlan 
   // ── Weekly plan ──────────────────────────────────────────────
   // Base the weekly target on the medium scenario (realistic path)
   const mediumExtra = result.biggestLeak.amount * 0.2;
-  const mediumMonthly = Math.max(result.monthlyCapacity + mediumExtra, result.requiredMonthly * 0.5);
+  const mediumMonthly = Math.max(result.monthlyCapacity, 0) + mediumExtra;
   const weeklyTarget = Math.round(mediumMonthly / 4.33);
 
   const weeklyTasks: WeeklyTask[] = [
@@ -86,6 +86,7 @@ export function generatePlan(input: ScanInput, result: ScanResult): PremiumPlan 
   const reductions = getReductions(input, result);
 
   // ── 3 Progression scenarios ───────────────────────────────────
+  // All three build on the same base so slow ≤ medium ≤ fast is always guaranteed
   const slowMonthly = Math.max(result.monthlyCapacity, 10);
   const fastExtra = result.biggestLeak.amount * 0.4;
   const fastMonthly = slowMonthly + fastExtra;
@@ -174,17 +175,17 @@ function getReductions(input: ScanInput, result: ScanResult): string[] {
   const out: string[] = [];
   const leak = result.biggestLeak.name;
 
-  if (leak === "Boodschappen" || input.boodschappen > 150) {
+  if (input.boodschappen > 0 && (leak === "Boodschappen" || input.boodschappen > 150)) {
     out.push(
       `Boodschappen (€${Math.round(input.boodschappen)}/maand) — Meal prep op zondag, koop huismerken en gebruik een boodschappenlijst. Bespaarpotentieel: €${Math.round(input.boodschappen * 0.2)}/maand.`
     );
   }
-  if (leak === "Uit eten & entertainment" || input.horeca > 60) {
+  if (input.horeca > 0 && (leak === "Uit eten & entertainment" || input.horeca > 60)) {
     out.push(
       `Uit eten & entertainment (€${Math.round(input.horeca)}/maand) — Beperk restaurantbezoek naar 2× per maand en verwissel dure avondjes uit voor thuisactiviteiten. Bespaarpotentieel: €${Math.round(input.horeca * 0.3)}/maand.`
     );
   }
-  if (leak === "Vervoer" || input.vervoer > 80) {
+  if (input.vervoer > 0 && (leak === "Vervoer" || input.vervoer > 80)) {
     out.push(
       `Vervoer (€${Math.round(input.vervoer)}/maand) — Fiets of OV vaker, controleer je autoverzekering en overweeg carpooling. Bespaarpotentieel: €${Math.round(input.vervoer * 0.15)}/maand.`
     );
