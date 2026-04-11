@@ -125,12 +125,20 @@ export default async function ResultPage({
             </p>
           </div>
 
-          {/* ── PREMIUM CTA ── */}
-          <PremiumCard
+          {/* ── KIES HOE JE VERDER WILT ── */}
+          <ChoosePlanSection
             doelNaam={doelNaam}
             gap={result.savingsGap}
             checkoutHref={`/checkout?${new URLSearchParams(params).toString()}`}
           />
+
+          {/* ── GRATIS INZICHT label ── */}
+          <div className="flex items-center gap-3 mb-3 mt-2">
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted bg-border px-2.5 py-1 rounded-full">
+              Jouw gratis inzicht
+            </span>
+            <div className="flex-1 h-px bg-border" />
+          </div>
 
           {/* Gap visualization */}
           <div className="bg-card border border-border rounded-2xl p-5 mb-6 shadow-[var(--shadow-card)]">
@@ -257,6 +265,13 @@ export default async function ResultPage({
               )}
               % van je totale uitgaven
             </p>
+            {result.biggestLeak.amount > 0 && (
+              <div className="mt-3 pt-3 border-t border-border">
+                <p className="text-xs text-success">
+                  Gratis tip: bezuinig 20% op {result.biggestLeak.name.toLowerCase()} → <span className="font-semibold">€{fmt(result.biggestLeak.amount * 0.2)} extra per maand</span>
+                </p>
+              </div>
+            )}
           </div>
         </>
       )}
@@ -287,6 +302,14 @@ export default async function ResultPage({
                   </>
                 )}
             </p>
+          </div>
+
+          {/* Gratis inzicht label */}
+          <div className="flex items-center gap-3 mb-3">
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted bg-border px-2.5 py-1 rounded-full">
+              Jouw gratis inzicht
+            </span>
+            <div className="flex-1 h-px bg-border" />
           </div>
 
           {/* Metrics */}
@@ -451,6 +474,72 @@ function GapBar({
         <span className="text-danger">
           {gapPct}% tekort
         </span>
+      </div>
+    </div>
+  );
+}
+
+function ChoosePlanSection({
+  doelNaam,
+  gap,
+  checkoutHref,
+}: {
+  doelNaam: string;
+  gap: number;
+  checkoutHref: string;
+}) {
+  return (
+    <div className="mb-6">
+      <h2 className="text-lg font-semibold text-foreground tracking-tight mb-3">
+        Kies hoe je verder wilt
+      </h2>
+      <div className="grid grid-cols-2 gap-3">
+        {/* Free column */}
+        <div className="bg-card border border-border rounded-2xl p-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-3">
+            Gratis inzicht
+          </p>
+          <ul className="space-y-2 mb-4">
+            {["Status (haalbaar of niet)", "Spaartekort per maand", "Grootste kostenpost", "1 bespaartip"].map((f) => (
+              <li key={f} className="flex items-start gap-2 text-xs text-muted">
+                <span className="text-success font-bold shrink-0 mt-0.5">✓</span>
+                {f}
+              </li>
+            ))}
+            {["Weekplan", "Maandoverzicht", "Exacte datum"].map((f) => (
+              <li key={f} className="flex items-start gap-2 text-xs text-muted/40 line-through">
+                <span className="shrink-0 mt-0.5">✗</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs text-muted/60 text-center">Heb je al gezien ↑</p>
+        </div>
+
+        {/* Paid column */}
+        <div className="bg-accent/5 border border-accent/40 rounded-2xl p-4 flex flex-col">
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+              Persoonlijk plan
+            </p>
+            <span className="text-xs font-bold text-foreground">€4,99</span>
+          </div>
+          <ul className="space-y-2 mb-4 flex-1">
+            {["Weekplan op maat", "Maandoverzicht", "Bezuinigingstips", "3 scenario's", "Exacte afrondingsdatum"].map((f) => (
+              <li key={f} className="flex items-start gap-2 text-xs text-foreground">
+                <span className="text-success font-bold shrink-0 mt-0.5">✓</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <Link
+            href={checkoutHref}
+            className="block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-2.5 rounded-xl text-center text-xs transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide"
+          >
+            Maak mijn plan →
+          </Link>
+          <p className="text-[10px] text-muted text-center mt-2">Eenmalig · Geen abonnement</p>
+        </div>
       </div>
     </div>
   );

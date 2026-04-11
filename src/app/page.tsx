@@ -3,13 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Financios – Waarom ben jij altijd blut?",
+  title: "Financios – Het is de 20ste en je saldo klopt alweer niet",
   description:
-    "Ontdek in 60 seconden waar je geld verdwijnt. Gratis spaaranalyse + persoonlijk fix plan voor jouw spaardoel.",
+    "Ontdek in 60 seconden waar je geld naartoe gaat. Gratis spaaranalyse + persoonlijk weekplan voor jouw spaardoel.",
   openGraph: {
-    title: "Financios – Waarom ben jij altijd blut?",
+    title: "Financios – Het is de 20ste en je saldo klopt alweer niet",
     description:
-      "Ontdek in 60 seconden waar je geld verdwijnt. Gratis spaaranalyse + persoonlijk fix plan.",
+      "Ontdek in 60 seconden waar je geld naartoe gaat. Gratis spaaranalyse + persoonlijk weekplan.",
     url: "https://financios.nl",
   },
 };
@@ -18,17 +18,17 @@ const steps = [
   {
     n: "1",
     title: "Vul je inkomen in",
-    body: "Voer je netto maandinkomen en vaste lasten in. Duurt minder dan 60 seconden.",
+    body: "Vul je netto maandinkomen en vaste lasten in. Geen accountregistratie, geen gedoe.",
   },
   {
     n: "2",
-    title: "Analyseer je uitgaven",
-    body: "Wij berekenen direct je spaarruimte en laten zien waar je geld naartoe gaat.",
+    title: "Zie waar je geld blijft",
+    body: "Wij berekenen direct hoeveel je overhoudt — en waar je geld naartoe gaat.",
   },
   {
     n: "3",
     title: "Ontvang je spaarplan",
-    body: "Zie of je doel haalbaar is en krijg concrete scenario's om het sneller te bereiken.",
+    body: "Gratis: je status en grootste kostenpost. Betaald: weekplan, breakdown, tips en exacte afrondingsdatum.",
   },
 ];
 
@@ -95,17 +95,17 @@ export default function LandingPage() {
       <section className="flex flex-col items-center justify-center text-center px-6 pt-28 pb-20 max-w-3xl mx-auto w-full">
         <div className="inline-flex items-center gap-2 bg-card-hover border border-border rounded-full px-4 py-1.5 text-sm text-muted mb-8 tracking-wide">
           <span className="w-2 h-2 rounded-full bg-success inline-block" />
-          Gratis spaaranalyse — geen account nodig
+          Gratis · geen account · 60 seconden
         </div>
 
         <h1 className="text-4xl sm:text-6xl font-bold text-foreground leading-tight tracking-tight mb-6">
-          Waarom ben jij{" "}
-          <span className="text-accent">altijd blut?</span>
+          Het is de 20ste.{" "}
+          <span className="text-accent">Je saldo klopt alweer niet.</span>
         </h1>
 
         <p className="text-lg sm:text-xl text-muted max-w-xl mb-10 leading-[1.7]">
-          Ontdek in 60 seconden waar je geld verdwijnt en krijg een concreet
-          plan om je spaardoel wél te halen.
+          Je werkt, je betaalt je rekeningen — maar aan het einde van de maand is het weg.
+          Vul in wat er binnenkomt en gaat. Wij laten je zien waar het misgaat.
         </p>
 
         <Link
@@ -188,17 +188,17 @@ export default function LandingPage() {
           <BenefitCard
             icon="📊"
             title="Inzicht in 60 seconden"
-            description="Vul je inkomsten en uitgaven in. Wij berekenen direct je spaarruimte."
+            description="Vul in wat je verdient en uitgeeft. Wij laten je zien waar het misgaat."
           />
           <BenefitCard
             icon="🎯"
             title="Spaardoel analyse"
-            description="Is jouw doel haalbaar? We laten je precies zien wat er nodig is."
+            description="Is jouw doel haalbaar? Je ziet het direct — geen vage antwoorden."
           />
           <BenefitCard
             icon="🔧"
             title="Concreet fix plan"
-            description="Niet bereikbaar? Wij geven je scenario's om je doel alsnog te halen."
+            description="Niet haalbaar? Je krijgt een weekplan dat je precies vertelt wat je moet doen."
           />
         </div>
       </section>
