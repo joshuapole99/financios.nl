@@ -13,7 +13,7 @@ function CheckoutContent() {
 
   const checkoutUrl =
     `${LEMONSQUEEZY_CHECKOUT_URL}` +
-    `?checkout[success_url]=${encodeURIComponent("https://financios.nl/plan")}` +
+    `?checkout[success_url]=${encodeURIComponent("https://financios.nl/betaling-gelukt")}` +
     `&checkout[custom][params]=${encodeURIComponent(searchParams.toString())}`;
 
   function trackClick() {
@@ -32,6 +32,13 @@ function CheckoutContent() {
 
       {/* Order summary */}
       <div className="bg-card border border-border rounded-2xl p-10 mb-6 shadow-[var(--shadow-card)]">
+
+        {/* Intro price badge */}
+        <div className="inline-flex items-center gap-2 bg-success/10 border border-success/20 rounded-full px-3 py-1 mb-6">
+          <span className="w-1.5 h-1.5 rounded-full bg-success" />
+          <span className="text-xs font-semibold text-success uppercase tracking-wider">Introductieprijs</span>
+        </div>
+
         <h1 className="text-3xl font-semibold text-foreground tracking-tight mb-6">
           Bevestig je aankoop
         </h1>
@@ -43,7 +50,10 @@ function CheckoutContent() {
             </p>
             <p className="text-sm text-muted mt-1">{doelNaam}</p>
           </div>
-          <span className="text-3xl font-bold text-foreground">€4,99</span>
+          <div className="text-right">
+            <p className="text-sm text-muted line-through">€9,99</p>
+            <span className="text-3xl font-bold text-foreground">€4,99</span>
+          </div>
         </div>
 
         <div className="border-t border-border pt-6 space-y-3 mb-6">
@@ -59,6 +69,13 @@ function CheckoutContent() {
               {f}
             </div>
           ))}
+        </div>
+
+        {/* Value anchor */}
+        <div className="bg-background border border-border rounded-xl px-4 py-3 mb-6">
+          <p className="text-xs text-muted leading-relaxed">
+            Een financieel adviseur kost <span className="text-foreground font-medium">€150+/uur</span>. Dit plan kost je <span className="text-foreground font-medium">eenmalig €4,99</span> — en je hebt het voor altijd.
+          </p>
         </div>
 
         <div className="border-t border-border pt-6 flex justify-between items-center">
@@ -77,10 +94,10 @@ function CheckoutContent() {
       </a>
 
       <p className="text-sm text-muted text-center mb-1">
-        Eenmalig · Geen abonnement · Direct beschikbaar
+        Eenmalig · Geen abonnement · Nooit meer betalen
       </p>
-      <p className="text-sm text-muted text-center">
-        Betalen via creditcard of Apple Pay · iDEAL komt binnenkort
+      <p className="text-sm text-muted text-center mb-1">
+        Creditcard of Apple Pay · iDEAL komt binnenkort
       </p>
       <p className="text-sm text-muted text-center">
         Terugbetaling binnen 10 werkdagen indien van toepassing

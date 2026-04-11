@@ -132,9 +132,11 @@ Geen harde conversiepercentages in deze fase.
 ## 📄 FUTURE (ONLY AFTER TRACTION)
 
 - [ ] PDF export van /plan pagina
-- [ ] Save results (database)
-- [ ] User authentication / accounts
-- [ ] Dashboard
+- [ ] User authentication / accounts + database
+- [ ] Dashboard met meerdere spaardoelen
+- [ ] Investments importeren & bijhouden
+- [ ] Calculators (pensioen, hypotheek, FIRE)
+- [ ] Abonnement model (alleen nadat accounts bestaan)
 
 ## ⚠️ DECISIONS
 
