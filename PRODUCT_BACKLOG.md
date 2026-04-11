@@ -138,7 +138,38 @@ Geen harde conversiepercentages in deze fase.
 - [ ] Calculators (pensioen, hypotheek, FIRE)
 - [ ] Abonnement model (alleen nadat accounts bestaan)
 
+## 🎨 BRANDING & SITE VERBETERING
+
+- [ ] Custom OG image (social preview bij delen van link)
+- [ ] Logo — nu alleen tekst, overweeg een simpel icoon (spaarpot, grafiek)
+- [ ] Testimonials sectie op homepage zodra eerste echte reviews binnenkomen
+- [ ] "Voor & na" vergelijking op homepage — concreet voorbeeld met cijfers
+- [ ] Vertrouwensbadges op checkout: "Veilig betalen", "10.000+ gebruikers" (zodra waar)
+- [ ] Animated number counter op homepage (bijv. "€X bespaard door gebruikers")
+
+## 📱 SOCIAL MEDIA & PROMOTIE
+
+### TikTok / Instagram Reels ideeën
+- [ ] "Doe de scan live" format — schermopname van iemand die de scan invult
+- [ ] "Ik heb €X/maand verspild zonder het te weten" hook → scan resultaat reveal
+- [ ] "Reageer met je maandinkomen, ik bereken je spaarruimte" engagement format
+- [ ] Before/after: chaotisch budget vs Financios plan
+- [ ] "POV: je wilt €5000 sparen maar weet niet hoe" → product demo
+
+### Groei mechanismen
+- [ ] WhatsApp share knop op /result ("Deel met een vriend die ook wil sparen")
+- [ ] Referral systeem: "Deel Financios, krijg 1 gratis herberekening" (na accounts)
+- [ ] "Bereken voor je partner/vriend" CTA op plan pagina
+- [ ] Affiliate / creator deal: Nederlandse finance creators (kleine commissie per sale)
+
+### SEO uitbreiding
+- [ ] /noodfonds-opbouwen
+- [ ] /pensioen-sparen-jongeren
+- [ ] /fire-beweging-nederland
+- [ ] /beleggen-beginnen (calculator)
+- [ ] Blog: "Hoeveel moet je sparen per maand?" (informationele keywords)
+
 ## ⚠️ DECISIONS
 
-- [ ] Payment provider: LemonSqueezy (current) vs Stripe (later)
+- [ ] Payment provider: LemonSqueezy (current) vs Stripe + iDEAL (later, vereist KVK)
 - [ ] Introduce accounts ONLY after returning users exist

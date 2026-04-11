@@ -1,5 +1,35 @@
 # CHANGELOG.md
 
+## v1.0 - First Sale & Post-Launch Fixes (2026-04-11)
+
+### Betaalflow end-to-end gevalideerd
+- Eerste test betaling gedaan (€6,04 incl. 21% BTW), volledige flow werkt
+- Webhook ontvangt `order_created`, token in Redis, Brevo magic link verstuurd
+
+### Bugfixes
+- **Plan pagina crash gefixt**: Upstash deserialiseert objecten automatisch; oude `JSON.parse(stored)` gooide SyntaxError. Fix: type check `typeof stored === "string"`
+- **Idempotency key** slaat nu token op i.p.v. `"processed"` — recovery via `order:{orderId}` mogelijk
+- **Webhook** wikkelt Brevo in try/catch — email failure blokkeert order niet meer
+
+### Re-scan zonder opnieuw betalen
+- "Scan aanpassen" op `/plan` → `/scan?token=X&{prefill}` met alle ingevulde waarden
+- Scan page leest token + alle velden uit URL; submit met token → `/plan?token=X&{nieuwe params}`
+
+### Betere UX na betaling
+- `success_url` → `/betaling-gelukt` (was `/plan` → toonde foutscherm zonder token)
+- Nieuwe pagina `/betaling-gelukt`: 3 stappen uitleg, contactlink bij geen mail
+
+### Checkout verbeterd
+- Introductieprijs badge + ~~€9,99~~ doorgestreept + €4,99
+- Value anchor: "Financieel adviseur €150+/uur vs €4,99 eenmalig"
+- Trust: "Eenmalig · Geen abonnement · Nooit meer betalen"
+- Refund notice: 10 werkdagen
+
+### Docs bijgewerkt
+- AI_CONTEXT.md, README.md, PRODUCT_BACKLOG.md volledig actueel
+
+---
+
 ## v0.9 - Security, Magic Links & Email (2026-04-10)
 
 ### Live betalingen
