@@ -202,7 +202,7 @@ Geen harde conversiepercentages in deze fase.
 
 ### SEO uitbreiding
 - [x] /noodfonds-opbouwen
-- [ ] /huurweek-overleven — specifiek Nederlands pijnmoment (Reddit-tip: "rent week panic"), hoge emotionele lading
+- [x] /huurweek-overleven — specifiek Nederlands pijnmoment (Reddit-tip: "rent week panic"), hoge emotionele lading
 - [ ] /pensioen-sparen-jongeren
 - [ ] /fire-beweging-nederland
 - [ ] /beleggen-beginnen (calculator)

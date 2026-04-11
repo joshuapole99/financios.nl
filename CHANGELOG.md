@@ -1,5 +1,13 @@
 # CHANGELOG.md
 
+## v1.6 - SEO pagina /huurweek-overleven (2026-04-11)
+
+### Nieuwe SEO pagina
+- **/huurweek-overleven** — targets "huurweek overleven" / "salaris op begin maand", specifiek Nederlands pijnmoment
+- Voorbeeld-overzicht vaste lasten (wat er rond de 1e afgaat), formule, 3 tips, mid-page CTA, FAQ, toegevoegd aan sitemap
+
+---
+
 ## v1.5 - OG image (2026-04-11)
 
 ### Social preview
