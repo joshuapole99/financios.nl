@@ -187,6 +187,16 @@ export default function StudieSparen() {
           <p className="text-xs text-muted mt-3">Geen registratie · Geen creditcard · 100% gratis</p>
         </div>
 
+        {/* Mid-page CTA */}
+        <div className="bg-accent/10 border border-accent/30 rounded-2xl p-5 mb-8 shadow-[var(--shadow-card)]">
+          <p className="font-semibold text-foreground mb-1">Kun jij een studiebuffer opbouwen?</p>
+          <p className="text-sm text-muted mb-4">Vul je inkomen en uitgaven in — in 60 seconden zie je hoeveel je kunt sparen en of jouw studiebudget haalbaar is.</p>
+          <Link href="/scan?doelNaam=Studie+buffer&doel=5000&maanden=12" className="inline-block bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl text-sm transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide">
+            Bereken mijn studieplan →
+          </Link>
+          <p className="text-xs text-muted mt-3">Geen registratie · Gratis</p>
+        </div>
+
         <div className="mb-10">
           <h2 className="text-2xl font-semibold text-foreground tracking-tight mb-6">Veelgestelde vragen</h2>
           <div className="flex flex-col gap-4">

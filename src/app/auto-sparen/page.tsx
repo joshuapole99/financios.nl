@@ -197,6 +197,16 @@ export default function AutoSparen() {
           </p>
         </div>
 
+        {/* Mid-page CTA */}
+        <div className="bg-accent/10 border border-accent/30 rounded-2xl p-5 mb-8 shadow-[var(--shadow-card)]">
+          <p className="font-semibold text-foreground mb-1">Kun jij sparen voor een auto?</p>
+          <p className="text-sm text-muted mb-4">Vul je inkomen en uitgaven in — in 60 seconden zie je hoeveel je kunt sparen en wanneer jouw auto haalbaar is.</p>
+          <Link href="/scan?doelNaam=Auto&doel=8000&maanden=24" className="inline-block bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl text-sm transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide">
+            Bereken mijn autoplan →
+          </Link>
+          <p className="text-xs text-muted mt-3">Geen registratie · Gratis</p>
+        </div>
+
         {/* Conversion block */}
         <div className="bg-card border border-border rounded-2xl p-6 mb-8 shadow-[var(--shadow-card)]">
           <h2 className="font-semibold text-foreground mb-3 tracking-tight">
