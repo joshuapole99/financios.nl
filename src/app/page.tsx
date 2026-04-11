@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Financios – Het is de 20ste en je saldo klopt alweer niet",
+  title: "Financios – Het is de 20ste, waarom ben jij altijd blut?",
   description:
     "Ontdek in 60 seconden waar je geld naartoe gaat. Gratis spaaranalyse + persoonlijk weekplan voor jouw spaardoel.",
   openGraph: {
-    title: "Financios – Het is de 20ste en je saldo klopt alweer niet",
+    title: "Financios – Het is de 20ste, waarom ben jij altijd blut?",
     description:
       "Ontdek in 60 seconden waar je geld naartoe gaat. Gratis spaaranalyse + persoonlijk weekplan.",
     url: "https://financios.nl",
@@ -99,8 +99,8 @@ export default function LandingPage() {
         </div>
 
         <h1 className="text-4xl sm:text-6xl font-bold text-foreground leading-tight tracking-tight mb-6">
-          Het is de 20ste.{" "}
-          <span className="text-accent">Je saldo klopt alweer niet.</span>
+          Het is de 20ste — waarom ben jij{" "}
+          <span className="text-accent">altijd blut?</span>
         </h1>
 
         <p className="text-lg sm:text-xl text-muted max-w-xl mb-10 leading-[1.7]">
