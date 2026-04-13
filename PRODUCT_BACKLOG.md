@@ -237,10 +237,10 @@ Geen harde conversiepercentages in deze fase.
 - [x] **`/blog` index pagina** — grid van alle content-artikelen + calculators. Twee categorieën: "Spaardoelen" en "Slimmer sparen". Links naar bestaande pagina's, geen 301 redirects.
 - [x] **Blog link in navigatie** — sticky nav uitbreiden met "Blog" naast de huidige items (alle 13 SEO-pagina's + homepage)
 - [x] **Interne links vanuit SEO-pagina's naar blog index** — "← Bekijk alle spaargidsen" bovenaan elke pagina
-- [ ] **Volgende blog artikelen** (keyword-onderzoek gebaseerd):
-  - [ ] /geld-besparen-tips — brede long-tail, hoge NL zoekvolume
-  - [ ] /maandbudget-maken — "hoe maak je een budget" is top 5 finance-zoekterm NL
-  - [ ] /spaardoelen-stellen — rich snippet kans (stappenlijst)
+- [x] **Volgende blog artikelen** live:
+  - [x] /geld-besparen-tips — 15 tips met bespaartabel per categorie
+  - [x] /maandbudget-maken — 5-stappen gids + voorbeeldbudget modaal inkomen
+  - [x] /spaardoelen-stellen — SMART-doelen uitleg + prioriteitenlijst
 
 ---
 
