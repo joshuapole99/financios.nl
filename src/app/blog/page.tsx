@@ -75,6 +75,27 @@ const slimmerSparen = [
       "De 50/30/20-vuistregel uitgelegd met concrete voorbeelden per inkomensniveau. Wat is realistisch voor jou?",
   },
   {
+    href: "/geld-besparen-tips",
+    category: "Gids",
+    title: "Geld besparen: 15 tips die echt werken",
+    description:
+      "Niet de gebruikelijke 'skip je koffie'-tips. De categorieën waar Nederlanders echt geld laten liggen, met concrete bedragen.",
+  },
+  {
+    href: "/maandbudget-maken",
+    category: "Gids",
+    title: "Maandbudget maken in 5 stappen",
+    description:
+      "Hoe maak je een budget dat je ook bijhoudt? Stappenplan met voorbeeldbudget op basis van modaal inkomen.",
+  },
+  {
+    href: "/spaardoelen-stellen",
+    category: "Strategie",
+    title: "Spaardoelen stellen",
+    description:
+      "Van 'meer sparen' naar een concreet doel met bedrag, datum en maandbedrag. Inclusief prioriteitenlijst.",
+  },
+  {
     href: "/noodfonds-opbouwen",
     category: "Strategie",
     title: "Noodfonds opbouwen",
