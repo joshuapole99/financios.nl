@@ -101,10 +101,18 @@ function ScanForm() {
   const inkomen = parseFloat(values.inkomen) || 0;
   const spaarruimte = inkomen - totalExpenses;
 
+  const steps = [
+    { label: "Inkomen", done: !!values.inkomen },
+    { label: "Vaste lasten", done: !!(values.huur || values.abonnementen || values.verzekeringen) },
+    { label: "Variabele kosten", done: !!(values.boodschappen || values.vervoer || values.horeca || values.overig) },
+    { label: "Spaardoel", done: !!values.doel },
+  ];
+  const doneCount = steps.filter((s) => s.done).length;
+
   return (
     <main className="min-h-screen px-4 py-10 max-w-xl mx-auto">
       {/* Header */}
-      <div className="mb-10">
+      <div className="mb-8">
         <Link href="/" className="text-sm text-muted hover:text-foreground transition-colors mb-6 inline-block">
           ← Terug
         </Link>
@@ -112,6 +120,33 @@ function ScanForm() {
         <p className="text-muted mt-2">
           Vul je cijfers in. Wij berekenen direct je spaarruimte en of je doel haalbaar is.
         </p>
+      </div>
+
+      {/* Progress indicator */}
+      <div className="mb-8 bg-card border border-border rounded-2xl p-4 shadow-[var(--shadow-card)]">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-xs font-medium text-muted uppercase tracking-wider">Voortgang</span>
+          <span className="text-xs text-muted">{doneCount} van 4 stappen</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          {steps.map((step, i) => (
+            <div key={step.label} className="flex items-center gap-1.5 flex-1 min-w-0">
+              <div className="flex flex-col items-center gap-1 flex-1 min-w-0">
+                <div
+                  className={`w-full h-1.5 rounded-full transition-all duration-300 ${
+                    step.done ? "bg-accent" : "bg-border"
+                  }`}
+                />
+                <span className={`text-[10px] font-medium truncate w-full text-center transition-colors ${
+                  step.done ? "text-accent" : "text-muted/50"
+                }`}>
+                  {step.done ? "✓ " : ""}{step.label}
+                </span>
+              </div>
+              {i < steps.length - 1 && <div className="w-1.5 shrink-0" />}
+            </div>
+          ))}
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} noValidate>

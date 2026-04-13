@@ -122,14 +122,27 @@ export default function LandingPage() {
 
         <Link
           href="/scan"
-          className="bg-accent hover:bg-accent-hover text-white font-semibold px-8 py-4 rounded-xl text-lg transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide"
+          className="bg-accent hover:bg-accent-hover text-white font-semibold px-8 py-4 sm:px-12 sm:py-5 rounded-xl text-lg sm:text-xl transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide"
         >
           Start spaar scan →
         </Link>
 
-        <p className="text-sm text-muted mt-4">
-          Gratis scan · Plan voor €4,99 eenmalig · Geen account
-        </p>
+        <div className="flex items-center justify-center gap-3 mt-5 flex-wrap">
+          {[
+            { icon: "✓", label: "Gratis scan" },
+            { icon: "💶", label: "Plan €4,99 eenmalig" },
+            { icon: "✓", label: "Geen account" },
+            { icon: "🔒", label: "Privacy-first" },
+          ].map((b) => (
+            <span
+              key={b.label}
+              className="inline-flex items-center gap-1.5 bg-card border border-border rounded-full px-3 py-1 text-xs text-muted"
+            >
+              <span>{b.icon}</span>
+              {b.label}
+            </span>
+          ))}
+        </div>
       </section>
 
       {/* How it works */}

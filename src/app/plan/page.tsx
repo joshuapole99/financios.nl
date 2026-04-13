@@ -2,6 +2,7 @@ import Link from "next/link";
 import { calculate, parseScanInput } from "@/lib/calculate";
 import { generatePlan } from "@/lib/generatePlan";
 import { redis } from "@/lib/redis";
+import WeekChecklist from "./WeekChecklist";
 import PlanParamsLoader from "./PlanParamsLoader";
 
 export default async function PlanPage({
@@ -90,32 +91,8 @@ async function PlanContent({ params, token }: { params: Record<string, string>; 
       </div>
 
       {/* ── 2. Weekly plan ─────────────────────────────────────── */}
-      <PlanCard title="Weekplan" subtitle="Wat je elke week moet doen">
-        <div className="flex flex-col gap-4">
-          {plan.weeklyTasks.map((task) => (
-            <div key={task.week} className="flex gap-4 items-start">
-              <div className="shrink-0 w-10 h-10 rounded-xl bg-accent/20 flex flex-col items-center justify-center">
-                <span className="text-[10px] font-medium uppercase text-accent leading-none">
-                  Week
-                </span>
-                <span className="text-sm font-bold text-accent leading-none">
-                  {task.week}
-                </span>
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm font-semibold text-foreground">
-                    Spaardoel deze week
-                  </span>
-                  <span className="text-sm font-bold text-success">
-                    €{" "}{fmtEuro(task.weeklyTarget)}
-                  </span>
-                </div>
-                <p className="text-xs text-muted leading-relaxed">{task.tip}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+      <PlanCard title="Weekplan" subtitle="Vink af wat je gedaan hebt">
+        <WeekChecklist tasks={plan.weeklyTasks} token={token} fmtEuro={fmtEuro} />
       </PlanCard>
 
       {/* ── 3. Monthly breakdown ───────────────────────────────── */}
