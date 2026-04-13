@@ -35,7 +35,8 @@ Gen Z (18–30), Nederland. Mensen met een spaardoel (vakantie, auto, bruiloft, 
 
 ## Pagina's
 `/` `/scan` `/result` `/checkout` `/betaling-gelukt` `/plan` (token-gated) `/upgrade`
-SEO: `/vakantie-sparen` `/auto-sparen` `/5000-euro-sparen` `/10000-euro-sparen` `/huis-sparen` `/bruiloft-sparen` `/studie-sparen`
+Blog hub: `/blog`
+SEO/blog: `/vakantie-sparen` `/auto-sparen` `/5000-euro-sparen` `/10000-euro-sparen` `/huis-sparen` `/bruiloft-sparen` `/studie-sparen` `/noodfonds-opbouwen` `/huurweek-overleven` `/pensioen-sparen-jongeren` `/fire-beweging-nederland` `/beleggen-beginnen` `/hoeveel-moet-je-sparen-per-maand` `/geld-besparen-tips` `/maandbudget-maken` `/spaardoelen-stellen`
 Legal: `/privacy` `/terms` `/disclaimer`
 
 ## API Routes

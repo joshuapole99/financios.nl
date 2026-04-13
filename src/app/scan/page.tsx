@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 interface FormValues {
@@ -110,12 +111,20 @@ function ScanForm() {
   const doneCount = steps.filter((s) => s.done).length;
 
   return (
-    <main className="min-h-screen px-4 py-10 max-w-xl mx-auto">
-      {/* Header */}
-      <div className="mb-8">
-        <Link href="/" className="text-sm text-muted hover:text-foreground transition-colors mb-6 inline-block">
+    <main className="min-h-screen">
+      {/* Nav */}
+      <nav className="sticky top-0 z-50 border-b border-border px-6 py-4 flex items-center justify-between max-w-xl mx-auto w-full backdrop-blur-md bg-background/80">
+        <Link href="/">
+          <Image src="/logo.png" alt="Financios" width={120} height={30} priority />
+        </Link>
+        <Link href="/" className="text-sm text-muted hover:text-foreground transition-colors">
           ← Terug
         </Link>
+      </nav>
+
+      <div className="px-4 py-10 max-w-xl mx-auto">
+      {/* Header */}
+      <div className="mb-8">
         <h1 className="text-3xl font-semibold text-foreground tracking-tight">Jouw financiële scan</h1>
         <p className="text-muted mt-2">
           Vul je cijfers in. Wij berekenen direct je spaarruimte en of je doel haalbaar is.
@@ -274,6 +283,7 @@ function ScanForm() {
           <p className="text-sm text-muted">Even geduld, dit duurt maar een seconde</p>
         </div>
       )}
+      </div>
     </main>
   );
 }

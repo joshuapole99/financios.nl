@@ -97,7 +97,7 @@ Geen harde conversiepercentages in deze fase.
 - [ ] Improve premium plan depth (more tailored advice)
   - [x] Fix scenario inconsistency (fast < medium when expenses are low)
   - [x] Smarter bezuinigingstips (skip categories with €0 spend)
-  - [ ] Motivational element: week checklist / progress tracking
+  - [x] Motivational element: week checklist — interactieve checkboxes op /plan met localStorage persistentie
 - [x] More SEO pages (/huis-sparen, /bruiloft-sparen, /studie-sparen live)
 - [ ] Abonnement model — pas bouwen als accounts bestaan (gebruiker wil terugkeren voor voortgang)
 - [x] Re-scan zonder opnieuw betalen — token pass-through via /scan?token=X
@@ -219,8 +219,8 @@ Geen harde conversiepercentages in deze fase.
 ### Prioriteit: homepage → scan drop-off fixen
 
 - [x] **Pricing eerder zichtbaar op homepage** — "Gratis scan · Plan voor €4,99 eenmalig · Geen account" onder de CTA knop
-- [ ] **CTA aanpassen op desktop** — Chrome desktop 10.81% vs Mobile Safari 21.74%. Test of knopgrootte/positie op desktop te subtiel is
-- [ ] **"60 seconden" claim versterken** — voeg een voortgangsbalk of stapindicator toe aan /scan zodat users zien dat het snel klaar is
+- [x] **CTA aanpassen op desktop** — knop groter op desktop (sm:px-12 sm:py-5 sm:text-xl) + trust badges
+- [x] **"60 seconden" claim versterken** — 4-stap voortgangsindicator op /scan die meebewegt met ingevulde velden
 
 ### Homepage copy & trust
 
@@ -241,6 +241,27 @@ Geen harde conversiepercentages in deze fase.
   - [x] /geld-besparen-tips — 15 tips met bespaartabel per categorie
   - [x] /maandbudget-maken — 5-stappen gids + voorbeeldbudget modaal inkomen
   - [x] /spaardoelen-stellen — SMART-doelen uitleg + prioriteitenlijst
+
+---
+
+## 🚀 TRAFFIC GENEREREN (HUIDIGE PRIORITEIT)
+
+> Codeerwerk is grotendeels klaar. Bottleneck is nu traffic — meer bezoekers zodat
+> PostHog funnel betekenis krijgt en je weet wat je moet optimaliseren.
+
+### SEO (passief, langzaam)
+- [ ] Google Search Console: controleer welke pagina's al ranken en op welke zoekwoorden
+- [ ] Nieuwe blog artikelen schrijven op basis van keywords die bijna op pagina 1 staan
+- [ ] Interne linking audit: elke pagina linkt naar minimaal 2 andere pagina's
+
+### Organisch / community
+- [ ] Reddit: r/geldzaken, r/thenetherlands — waardevolle reacties posten (geen spam, echte hulp + link als relevant)
+- [ ] TikTok/Instagram: "Doe de scan live" — schermopname scan invullen met eigen cijfers
+- [ ] WhatsApp: scan doorsturen naar vrienden/familie met persoonlijk berichtje
+
+### Betaald (pas na organische validatie)
+- [ ] Meta Ads: klein testbudget (€5–€10/dag) op "geld besparen tips" doelgroep NL
+- [ ] Google Ads: branded + "spaarplan maken" zoekwoorden
 
 ---
 
