@@ -83,12 +83,20 @@ export default function LandingPage() {
           height={36}
           priority
         />
-        <Link
-          href="/scan"
-          className="text-sm text-muted hover:text-foreground transition-colors"
-        >
-          Start scan →
-        </Link>
+        <div className="flex items-center gap-6">
+          <Link
+            href="/blog"
+            className="text-sm text-muted hover:text-foreground transition-colors"
+          >
+            Blog
+          </Link>
+          <Link
+            href="/scan"
+            className="text-sm text-muted hover:text-foreground transition-colors"
+          >
+            Start scan →
+          </Link>
+        </div>
       </nav>
 
       {/* Hero */}
@@ -120,7 +128,7 @@ export default function LandingPage() {
         </Link>
 
         <p className="text-sm text-muted mt-4">
-          Geen registratie. Geen creditcard. 100% gratis.
+          Gratis scan · Plan voor €4,99 eenmalig · Geen account
         </p>
       </section>
 
@@ -227,11 +235,11 @@ export default function LandingPage() {
             <div className="flex flex-col gap-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-muted">Inkomen</span>
-                <span className="text-foreground font-medium">€2.800</span>
+                <span className="text-foreground font-medium">€2.847</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted">Vaste lasten</span>
-                <span className="text-foreground">−€1.200</span>
+                <span className="text-foreground">−€1.163</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted">Variabele kosten</span>
@@ -243,7 +251,7 @@ export default function LandingPage() {
               </div>
             </div>
             <p className="text-xs text-muted mt-4 leading-relaxed">
-              Er zou €1.600 overblijven na vaste lasten. Maar waar het heen gaat? Geen idee.
+              Er zou €1.684 overblijven na vaste lasten. Maar waar het heen gaat? Geen idee.
             </p>
           </div>
 
@@ -255,23 +263,23 @@ export default function LandingPage() {
             <div className="flex flex-col gap-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-muted">Inkomen</span>
-                <span className="text-foreground font-medium">€2.800</span>
+                <span className="text-foreground font-medium">€2.847</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted">Vaste lasten</span>
-                <span className="text-foreground">−€1.200</span>
+                <span className="text-foreground">−€1.163</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted">Variabele kosten</span>
-                <span className="text-foreground">−€1.050 (inzichtelijk)</span>
+                <span className="text-foreground">−€1.034 (inzichtelijk)</span>
               </div>
               <div className="border-t border-success/20 pt-3 flex justify-between">
                 <span className="text-success font-semibold">Spaarruimte</span>
-                <span className="text-success font-bold">€550/maand</span>
+                <span className="text-success font-bold">€650/maand</span>
               </div>
             </div>
             <p className="text-xs text-muted mt-4 leading-relaxed">
-              Grootste lek: horeca €320/maand. Bezuinig 30% → €96 extra. Spaardoel haalbaar in 9 maanden.
+              Grootste lek: horeca €312/maand. Bezuinig 30% → €94 extra. Spaardoel haalbaar in 9 maanden.
             </p>
           </div>
         </div>
@@ -315,8 +323,7 @@ export default function LandingPage() {
           </Link>
         </div>
         <p className="mt-3 text-xs">
-          Financios geeft geen financieel advies. Resultaten zijn schattingen
-          voor informatieve doeleinden.
+          Financios is een rekentool, geen financieel adviseur. Uitkomsten zijn berekeningen op basis van jouw invoer — geen advies.
         </p>
         <div className="mt-4 flex justify-center">
           <a href="https://launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">

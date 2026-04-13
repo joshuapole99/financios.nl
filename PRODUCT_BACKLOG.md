@@ -211,6 +211,39 @@ Geen harde conversiepercentages in deze fase.
 ### Copy & taal
 - [ ] Real Dutch language sourcing: zoek r/geldzaken + r/thenetherlands op "ik hou niks over", "huurweek", "salaris op" voor copy-iteraties op homepage en result page
 
+## 🚨 FUNNEL ANALYSE — 13 april 2026 (7-daags)
+
+> 66 bezoekers, 16.67% totale conversie (3 pagina's diep), 77% single-page bounce.
+> Grootste lek: homepage → scan (77.27% drop). Chrome desktop converteert slechter (10.81%) dan Mobile Safari (21.74%).
+
+### Prioriteit: homepage → scan drop-off fixen
+
+- [x] **Pricing eerder zichtbaar op homepage** — "Gratis scan · Plan voor €4,99 eenmalig · Geen account" onder de CTA knop
+- [ ] **CTA aanpassen op desktop** — Chrome desktop 10.81% vs Mobile Safari 21.74%. Test of knopgrootte/positie op desktop te subtiel is
+- [ ] **"60 seconden" claim versterken** — voeg een voortgangsbalk of stapindicator toe aan /scan zodat users zien dat het snel klaar is
+
+### Homepage copy & trust
+
+- [x] **"Voor & na" cijfers concreter** — ronde getallen vervangen door oneven bedragen (€2.847, €1.163, €1.034, €312) zodat het op echte data lijkt
+- [x] **Disclaimer herformuleerd** — "Financios is een rekentool, geen financieel adviseur. Uitkomsten zijn berekeningen op basis van jouw invoer — geen advies."
+
+---
+
+## 📝 BLOG / CONTENT HUB
+
+> Huidige SEO-pagina's staan geïndexeerd op root URLs — NIET verplaatsen.
+> Wel een /blog index maken die ze allemaal linkt voor interne linking, SEO-autoriteit en geloofwaardigheid.
+
+- [x] **`/blog` index pagina** — grid van alle content-artikelen + calculators. Twee categorieën: "Spaardoelen" en "Slimmer sparen". Links naar bestaande pagina's, geen 301 redirects.
+- [x] **Blog link in navigatie** — sticky nav uitbreiden met "Blog" naast de huidige items (alle 13 SEO-pagina's + homepage)
+- [x] **Interne links vanuit SEO-pagina's naar blog index** — "← Bekijk alle spaargidsen" bovenaan elke pagina
+- [ ] **Volgende blog artikelen** (keyword-onderzoek gebaseerd):
+  - [ ] /geld-besparen-tips — brede long-tail, hoge NL zoekvolume
+  - [ ] /maandbudget-maken — "hoe maak je een budget" is top 5 finance-zoekterm NL
+  - [ ] /spaardoelen-stellen — rich snippet kans (stappenlijst)
+
+---
+
 ## ⚠️ DECISIONS
 
 - [ ] Payment provider: LemonSqueezy (current) vs Stripe + iDEAL (later, vereist KVK)

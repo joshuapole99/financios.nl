@@ -76,15 +76,23 @@ export default function VijfduizendEuroSparen() {
         <Link href="/">
           <Image src="/logo.png" alt="Financios" width={140} height={36} priority />
         </Link>
-        <Link
-          href="/scan?doelNaam=Sparen&doel=5000&maanden=24"
-          className="text-sm text-muted hover:text-foreground transition-colors"
-        >
-          Start scan →
-        </Link>
+        <div className="flex items-center gap-6">
+          <Link href="/blog" className="text-sm text-muted hover:text-foreground transition-colors">
+            Blog
+          </Link>
+          <Link
+            href="/scan?doelNaam=Sparen&doel=5000&maanden=24"
+            className="text-sm text-muted hover:text-foreground transition-colors"
+          >
+            Start scan →
+          </Link>
+        </div>
       </nav>
 
       <div className="max-w-2xl mx-auto px-4 py-12">
+        <Link href="/blog" className="text-xs text-muted hover:text-accent transition-colors inline-flex items-center gap-1 mb-8">
+          ← Bekijk alle spaargidsen
+        </Link>
         {/* Hero */}
         <div className="mb-10">
           <p className="text-xs font-medium uppercase tracking-wider text-accent mb-3">
