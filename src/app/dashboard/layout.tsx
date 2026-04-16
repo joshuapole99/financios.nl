@@ -11,7 +11,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
       {/* Dashboard nav */}
       <nav className="sticky top-0 z-50 border-b border-border backdrop-blur-md bg-background/80">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/dashboard" className="text-base font-bold text-foreground tracking-tight">
+          <Link href="/" className="text-base font-bold text-foreground tracking-tight">
             Financios
           </Link>
           <div className="flex items-center gap-1 sm:gap-2">
@@ -33,7 +33,13 @@ export default async function DashboardLayout({ children }: { children: React.Re
             >
               Vermogen
             </Link>
-            <form action="/api/auth/logout" method="POST" className="ml-2">
+            <Link
+              href="/scan"
+              className="text-sm font-semibold bg-accent hover:bg-accent-hover text-white px-4 py-2 rounded-xl transition-all shadow-lg shadow-accent/20 ml-2"
+            >
+              Scan starten
+            </Link>
+            <form action="/api/auth/logout" method="POST" className="ml-1">
               <button
                 type="submit"
                 className="text-sm text-muted hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-card"
