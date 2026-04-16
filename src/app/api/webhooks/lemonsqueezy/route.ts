@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { sendMagicLink } from "@/lib/email";
+import { sql } from "@/lib/db";
 
 export async function POST(req: NextRequest) {
   // 1. Verify signature
@@ -58,7 +59,26 @@ export async function POST(req: NextRequest) {
 
   console.log(`[webhook] stored plan:${token} for order ${orderId} (${email})`);
 
-  // 6. Send magic link email
+  // 6. Link plan to user account if account exists
+  try {
+    await sql`
+      INSERT INTO users (email) VALUES (${email})
+      ON CONFLICT (email) DO NOTHING
+    `;
+    const userRows = await sql`SELECT id FROM users WHERE email = ${email}`;
+    if (userRows.length) {
+      const userId = (userRows[0] as { id: string }).id;
+      await sql`
+        INSERT INTO plans (user_id, token, plan_data)
+        VALUES (${userId}, ${token}, ${JSON.stringify({ params, orderId })})
+        ON CONFLICT (token) DO NOTHING
+      `;
+    }
+  } catch (err) {
+    console.error("[webhook] DB plan link failed:", err);
+  }
+
+  // 7. Send magic link email
   const planUrl = `https://financios.nl/plan?token=${token}`;
   try {
     await sendMagicLink(email, planUrl);

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { calculate, parseScanInput, GoalStatus } from "@/lib/calculate";
+import { getSession } from "@/lib/session";
+import { sql } from "@/lib/db";
 
 export default async function ResultPage({
   searchParams,
@@ -29,6 +31,15 @@ export default async function ResultPage({
 
   const input = parseScanInput(params);
   const result = calculate(input);
+
+  // Auto-save scan for logged-in users (fire and forget)
+  const session = await getSession();
+  if (session) {
+    sql`
+      INSERT INTO scans (user_id, params, result, doel_naam)
+      VALUES (${session.userId}, ${JSON.stringify(params)}, ${JSON.stringify(result)}, ${input.doelNaam || null})
+    `.catch(() => {});
+  }
 
   const doelNaam = input.doelNaam || "je spaardoel";
   const needsFix =
