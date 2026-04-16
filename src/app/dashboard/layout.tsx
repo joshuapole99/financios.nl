@@ -1,0 +1,53 @@
+import Link from "next/link";
+import { getSession } from "@/lib/session";
+import { redirect } from "next/navigation";
+
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const session = await getSession();
+  if (!session) redirect("/login");
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      {/* Dashboard nav */}
+      <nav className="sticky top-0 z-50 border-b border-border backdrop-blur-md bg-background/80">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+          <Link href="/dashboard" className="text-base font-bold text-foreground tracking-tight">
+            Financios
+          </Link>
+          <div className="flex items-center gap-1 sm:gap-2">
+            <Link
+              href="/dashboard"
+              className="text-sm text-muted hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-card"
+            >
+              Overzicht
+            </Link>
+            <Link
+              href="/dashboard/spaardoelen"
+              className="text-sm text-muted hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-card"
+            >
+              Doelen
+            </Link>
+            <Link
+              href="/dashboard/assets"
+              className="text-sm text-muted hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-card"
+            >
+              Vermogen
+            </Link>
+            <form action="/api/auth/logout" method="POST" className="ml-2">
+              <button
+                type="submit"
+                className="text-sm text-muted hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-card"
+              >
+                Uitloggen
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-8">
+        {children}
+      </main>
+    </div>
+  );
+}

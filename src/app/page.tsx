@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { getSession } from "@/lib/session";
 
 export const metadata: Metadata = {
   title: "Financios – Waarom ben jij altijd blut?",
@@ -71,7 +72,8 @@ const examples = [
   },
 ];
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const session = await getSession();
   return (
     <main className="flex flex-col min-h-screen">
       {/* Nav */}
@@ -83,13 +85,28 @@ export default function LandingPage() {
           height={36}
           priority
         />
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 sm:gap-6">
           <Link
             href="/blog"
             className="text-sm text-muted hover:text-foreground transition-colors"
           >
             Blog
           </Link>
+          {session ? (
+            <Link
+              href="/dashboard"
+              className="text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
+            >
+              Dashboard →
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className="text-sm text-muted hover:text-foreground transition-colors"
+            >
+              Inloggen
+            </Link>
+          )}
           <Link
             href="/scan"
             className="text-sm text-muted hover:text-foreground transition-colors"
