@@ -88,9 +88,15 @@ export default async function LandingPage() {
         <div className="flex items-center gap-4 sm:gap-6">
           <Link
             href="/blog"
-            className="text-sm text-muted hover:text-foreground transition-colors"
+            className="text-sm text-muted hover:text-foreground transition-colors hidden sm:block"
           >
             Blog
+          </Link>
+          <Link
+            href="/upgrade"
+            className="text-sm text-muted hover:text-foreground transition-colors"
+          >
+            Prijzen
           </Link>
           {session ? (
             <Link
