@@ -34,6 +34,12 @@ export default async function DashboardLayout({ children }: { children: React.Re
               Vermogen
             </Link>
             <Link
+              href="/dashboard/account"
+              className="text-sm text-muted hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-card"
+            >
+              Account
+            </Link>
+            <Link
               href="/scan"
               className="text-sm font-semibold bg-accent hover:bg-accent-hover text-white px-4 py-2 rounded-xl transition-all shadow-lg shadow-accent/20 ml-2"
             >
