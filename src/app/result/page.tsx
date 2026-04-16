@@ -53,16 +53,19 @@ export default async function ResultPage({
       : null;
 
   return (
-    <main className="min-h-screen px-4 py-10 max-w-xl mx-auto">
-      {/* Back link */}
-      <div className="mb-4">
-        <Link
-          href="/scan"
-          className="text-sm text-muted hover:text-foreground transition-colors inline-block"
-        >
-          ← Pas aan
-        </Link>
-      </div>
+    <main className="min-h-screen">
+      {/* Nav */}
+      <nav className="sticky top-0 z-50 border-b border-border backdrop-blur-md bg-background/80 mb-6">
+        <div className="max-w-xl mx-auto px-4 py-4 flex items-center justify-between">
+          <Link href="/" className="text-base font-bold text-foreground tracking-tight">
+            Financios
+          </Link>
+          <Link href="/scan" className="text-sm text-muted hover:text-foreground transition-colors">
+            ← Scan aanpassen
+          </Link>
+        </div>
+      </nav>
+      <div className="px-4 pb-10 max-w-xl mx-auto">
 
       {/* ── NOT ACHIEVABLE / WARNING PATH ─────────────────────── */}
       {needsFix && (
@@ -441,6 +444,7 @@ export default async function ResultPage({
           Disclaimer
         </Link>
       </p>
+      </div>
     </main>
   );
 }

@@ -129,6 +129,7 @@ function ScanForm() {
         <p className="text-muted mt-2">
           Vul je cijfers in. Wij berekenen direct je spaarruimte en of je doel haalbaar is.
         </p>
+        <p className="text-xs text-muted mt-2">Scan is gratis · Persoonlijk plan beschikbaar voor €4,99 eenmalig na de scan</p>
       </div>
 
       {/* Progress indicator */}

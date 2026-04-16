@@ -1,7 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { calculate, parseScanInput } from "@/lib/calculate";
 import { generatePlan } from "@/lib/generatePlan";
 import { redis } from "@/lib/redis";
+import { getSession } from "@/lib/session";
 import WeekChecklist from "./WeekChecklist";
 import PlanParamsLoader from "./PlanParamsLoader";
 
@@ -38,6 +40,7 @@ async function PlanContent({ params, token }: { params: Record<string, string>; 
   const input = parseScanInput(params);
   const result = calculate(input);
   const plan = generatePlan(input, result);
+  const session = await getSession();
 
   const doelNaam = input.doelNaam || "Spaardoel";
   const fmtEuro = (n: number) => Math.round(n).toLocaleString("nl-NL");
@@ -45,7 +48,28 @@ async function PlanContent({ params, token }: { params: Record<string, string>; 
     d.toLocaleDateString("nl-NL", { month: "long", year: "numeric" });
 
   return (
-    <main className="min-h-screen px-4 py-10 max-w-xl mx-auto">
+    <main className="min-h-screen">
+      {/* Sticky nav */}
+      <nav className="sticky top-0 z-50 border-b border-border backdrop-blur-md bg-background/80">
+        <div className="max-w-xl mx-auto px-4 py-4 flex items-center justify-between">
+          <Link href="/">
+            <Image src="/logo.png" alt="Financios" width={120} height={30} priority />
+          </Link>
+          <div className="flex items-center gap-3">
+            {session ? (
+              <Link href="/dashboard" className="text-sm font-semibold text-accent hover:text-accent-hover transition-colors">
+                Dashboard →
+              </Link>
+            ) : (
+              <Link href="/scan" className="text-sm text-muted hover:text-foreground transition-colors">
+                Nieuwe scan
+              </Link>
+            )}
+          </div>
+        </div>
+      </nav>
+
+      <div className="px-4 py-10 max-w-xl mx-auto">
       {/* Payment success banner */}
       <div className="bg-success/10 border border-success/20 rounded-xl px-4 py-3 mb-8 flex items-center gap-3 shadow-[var(--shadow-card)]">
         <span className="w-6 h-6 rounded-full bg-success/20 flex items-center justify-center shrink-0">
@@ -253,12 +277,7 @@ async function PlanContent({ params, token }: { params: Record<string, string>; 
         <p className="text-xs text-muted mt-2">Of deel: financios.nl/scan</p>
       </div>
 
-      <Link
-        href="/"
-        className="w-full text-center text-sm text-muted hover:text-foreground py-2 transition-colors block"
-      >
-        Terug naar home
-      </Link>
+      </div>
     </main>
   );
 }
