@@ -7,11 +7,17 @@ export default async function AccountPage() {
   const session = await getSession();
   if (!session) redirect("/login");
 
-  const [userRows, planRows, scanRows] = await Promise.all([
+  const [userRows, scanRows] = await Promise.all([
     sql`SELECT email, naam, created_at FROM users WHERE id = ${session.userId}`,
-    sql`SELECT id, created_at FROM plans WHERE user_id = ${session.userId} ORDER BY created_at DESC LIMIT 1`,
     sql`SELECT COUNT(*) as count FROM scans WHERE user_id = ${session.userId}`,
   ]);
+
+  let planRows: unknown[] = [];
+  try {
+    planRows = await sql`SELECT id, created_at FROM plans WHERE user_id = ${session.userId} ORDER BY created_at DESC LIMIT 1`;
+  } catch {
+    // plans table may not exist yet
+  }
 
   const user = userRows[0] as { email: string; naam: string | null; created_at: string };
   const hasPlan = planRows.length > 0;
