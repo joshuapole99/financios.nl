@@ -102,14 +102,14 @@ export default async function LandingPage() {
           ) : (
             <Link
               href="/login"
-              className="text-sm text-muted hover:text-foreground transition-colors"
+              className="text-sm font-semibold bg-card border border-border hover:border-accent/40 text-foreground px-4 py-2 rounded-xl transition-all"
             >
               Inloggen
             </Link>
           )}
           <Link
             href="/scan"
-            className="text-sm text-muted hover:text-foreground transition-colors"
+            className="text-sm font-semibold bg-accent hover:bg-accent-hover text-white px-4 py-2 rounded-xl transition-all shadow-lg shadow-accent/20"
           >
             Start scan →
           </Link>
@@ -120,7 +120,7 @@ export default async function LandingPage() {
       <section className="flex flex-col items-center justify-center text-center px-6 pt-28 pb-20 max-w-3xl mx-auto w-full">
         <div className="inline-flex items-center gap-2 bg-card-hover border border-border rounded-full px-4 py-1.5 text-sm text-muted mb-8 tracking-wide">
           <span className="w-2 h-2 rounded-full bg-success inline-block" />
-          Gratis · geen account · 60 seconden
+          Gratis scan · Persoonlijk dashboard · 60 seconden
         </div>
 
         <h1 className="text-4xl sm:text-6xl font-bold text-foreground leading-tight tracking-tight mb-4">
@@ -148,7 +148,7 @@ export default async function LandingPage() {
           {[
             { icon: "✓", label: "Gratis scan" },
             { icon: "💶", label: "Plan €4,99 eenmalig" },
-            { icon: "✓", label: "Geen account" },
+            { icon: "✓", label: "Voortgang bijhouden" },
             { icon: "🔒", label: "Privacy-first" },
           ].map((b) => (
             <span
