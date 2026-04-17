@@ -12,6 +12,10 @@ export async function PATCH(
   const { id } = await params;
   const { huidigBedrag } = await req.json();
 
+  if (typeof huidigBedrag !== "number" || !isFinite(huidigBedrag) || huidigBedrag < 0) {
+    return NextResponse.json({ error: "Ongeldig bedrag" }, { status: 400 });
+  }
+
   await sql`
     UPDATE spaardoelen
     SET huidig_bedrag = ${huidigBedrag}

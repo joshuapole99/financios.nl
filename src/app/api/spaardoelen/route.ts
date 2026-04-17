@@ -19,13 +19,23 @@ export async function POST(req: NextRequest) {
   if (!session) return NextResponse.json({ error: "Niet ingelogd" }, { status: 401 });
 
   const { naam, doelBedrag, huidigBedrag, deadline } = await req.json();
-  if (!naam || !doelBedrag) {
-    return NextResponse.json({ error: "Naam en doelbedrag zijn verplicht" }, { status: 400 });
+
+  if (typeof naam !== "string" || !naam.trim() || naam.length > 255) {
+    return NextResponse.json({ error: "Ongeldige naam" }, { status: 400 });
+  }
+  if (typeof doelBedrag !== "number" || !isFinite(doelBedrag) || doelBedrag <= 0) {
+    return NextResponse.json({ error: "Ongeldig doelbedrag" }, { status: 400 });
+  }
+  if (huidigBedrag !== undefined && (typeof huidigBedrag !== "number" || !isFinite(huidigBedrag) || huidigBedrag < 0)) {
+    return NextResponse.json({ error: "Ongeldig huidig bedrag" }, { status: 400 });
+  }
+  if (deadline !== null && deadline !== undefined && isNaN(new Date(deadline).getTime())) {
+    return NextResponse.json({ error: "Ongeldige deadline" }, { status: 400 });
   }
 
   const rows = await sql`
     INSERT INTO spaardoelen (user_id, naam, doel_bedrag, huidig_bedrag, deadline)
-    VALUES (${session.userId}, ${naam}, ${doelBedrag}, ${huidigBedrag ?? 0}, ${deadline ?? null})
+    VALUES (${session.userId}, ${naam.trim()}, ${doelBedrag}, ${huidigBedrag ?? 0}, ${deadline ?? null})
     RETURNING id
   `;
   return NextResponse.json(rows[0]);

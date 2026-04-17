@@ -12,9 +12,16 @@ export async function PATCH(
   const { id } = await params;
   const { naam, waarde } = await req.json();
 
+  if (typeof naam !== "string" || !naam.trim() || naam.length > 255) {
+    return NextResponse.json({ error: "Ongeldige naam" }, { status: 400 });
+  }
+  if (typeof waarde !== "number" || !isFinite(waarde) || waarde < 0) {
+    return NextResponse.json({ error: "Ongeldige waarde" }, { status: 400 });
+  }
+
   await sql`
     UPDATE assets
-    SET naam = ${naam}, waarde = ${waarde}, updated_at = NOW()
+    SET naam = ${naam.trim()}, waarde = ${waarde}, updated_at = NOW()
     WHERE id = ${id} AND user_id = ${session.userId}
   `;
   return NextResponse.json({ ok: true });

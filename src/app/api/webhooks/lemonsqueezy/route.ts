@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
   // Store token by order ID for recovery
   await redis.set(idempotencyKey, token, { ex: ttl });
 
-  console.log(`[webhook] stored plan:${token} for order ${orderId} (${email})`);
+  console.log(`[webhook] stored plan:${token} for order ${orderId}`);
 
   // 6. Link plan to user account if account exists
   try {

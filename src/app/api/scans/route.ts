@@ -19,8 +19,11 @@ export async function POST(req: NextRequest) {
   if (!session) return NextResponse.json({ error: "Niet ingelogd" }, { status: 401 });
 
   const { params, result, doelNaam } = await req.json();
-  if (!params || !result) {
+  if (!params || typeof params !== "object" || !result || typeof result !== "object") {
     return NextResponse.json({ error: "Ongeldige data" }, { status: 400 });
+  }
+  if (JSON.stringify(params).length > 10_000 || JSON.stringify(result).length > 10_000) {
+    return NextResponse.json({ error: "Data te groot" }, { status: 400 });
   }
 
   await sql`
