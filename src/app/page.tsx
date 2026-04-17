@@ -3,15 +3,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { getSession } from "@/lib/session";
 import MobileMenu from "@/components/MobileMenu";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Financios – Waarom ben jij altijd blut?",
+  title: "Financios – Gratis spaaranalyse en persoonlijk spaarplan",
   description:
-    "Ontdek in 60 seconden waar je geld naartoe gaat. Gratis spaaranalyse + persoonlijk weekplan voor jouw spaardoel.",
+    "Ontdek in 60 seconden waar jouw geld naartoe gaat. Doe gratis een spaaranalyse en krijg een persoonlijk weekplan voor jouw spaardoel. Geen account nodig.",
+  alternates: {
+    canonical: "https://financios.nl",
+  },
   openGraph: {
-    title: "Financios – Waarom ben jij altijd blut?",
+    title: "Financios – Gratis spaaranalyse en persoonlijk spaarplan",
     description:
-      "Ontdek in 60 seconden waar je geld naartoe gaat. Gratis spaaranalyse + persoonlijk weekplan.",
+      "Ontdek in 60 seconden waar jouw geld naartoe gaat. Gratis spaaranalyse + persoonlijk weekplan voor jouw spaardoel.",
     url: "https://financios.nl",
   },
 };
@@ -77,6 +81,7 @@ export default async function LandingPage() {
   const session = await getSession();
   return (
     <main className="flex flex-col min-h-screen">
+      <JsonLd />
       {/* Nav */}
       <nav className="sticky top-0 z-50 border-b border-border px-6 py-4 flex items-center justify-between max-w-5xl mx-auto w-full backdrop-blur-md bg-background/80">
         <Image
@@ -366,6 +371,7 @@ export default async function LandingPage() {
               alt="Featured on Launch Llama"
               width="200"
               height="50"
+              loading="lazy"
             />
           </a>
         </div>

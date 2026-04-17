@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   verification: {
     google: "szoX8xp7lF1liB9uBRq4spT-Du1A3vaOzBgkDWnPNKA",
   },
+  alternates: {
+    canonical: "https://financios.nl",
+  },
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
