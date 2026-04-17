@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { calculate, parseScanInput } from "@/lib/calculate";
 import { generatePlan } from "@/lib/generatePlan";
+import { generatePlanAI, type AIPlanContent } from "@/lib/generatePlanAI";
 import { redis } from "@/lib/redis";
 import { getSession } from "@/lib/session";
 import WeekChecklist from "./WeekChecklist";
@@ -41,6 +42,23 @@ async function PlanContent({ params, token }: { params: Record<string, string>; 
   const result = calculate(input);
   const plan = generatePlan(input, result);
   const session = await getSession();
+
+  // AI-generated content: try Redis cache first to avoid paying per refresh
+  const aiCacheKey = `plan_ai:${token}`;
+  let aiContent: AIPlanContent | null = await redis.get<AIPlanContent>(aiCacheKey);
+  if (!aiContent) {
+    try {
+      aiContent = await generatePlanAI(input, result);
+      await redis.set(aiCacheKey, aiContent, { ex: 60 * 60 * 24 * 365 });
+    } catch (err) {
+      console.error("[plan] AI generation failed, falling back:", err);
+    }
+  }
+
+  // Use AI content where available, fall back to deterministic plan
+  const weeklyTasks = aiContent?.weeklyTasks ?? plan.weeklyTasks;
+  const reductions = aiContent?.reductions ?? plan.reductions;
+  const conclusion = aiContent?.conclusion ?? plan.conclusion;
 
   const doelNaam = input.doelNaam || "Spaardoel";
   const fmtEuro = (n: number) => Math.round(n).toLocaleString("nl-NL");
@@ -116,7 +134,7 @@ async function PlanContent({ params, token }: { params: Record<string, string>; 
 
       {/* ── 2. Weekly plan ─────────────────────────────────────── */}
       <PlanCard title="Weekplan" subtitle="Vink af wat je gedaan hebt">
-        <WeekChecklist tasks={plan.weeklyTasks} token={token} fmtEuro={fmtEuro} />
+        <WeekChecklist tasks={weeklyTasks} token={token} fmtEuro={fmtEuro} />
       </PlanCard>
 
       {/* ── 3. Monthly breakdown ───────────────────────────────── */}
@@ -169,7 +187,7 @@ async function PlanContent({ params, token }: { params: Record<string, string>; 
         subtitle="Gebaseerd op jóuw uitgavepatroon"
       >
         <div className="flex flex-col gap-4">
-          {plan.reductions.map((tip, i) => {
+          {reductions.map((tip, i) => {
             const [head, ...rest] = tip.split(" — ");
             return (
               <div key={i} className="flex gap-3 items-start">
@@ -233,7 +251,7 @@ async function PlanContent({ params, token }: { params: Record<string, string>; 
           Conclusie
         </h2>
         <p className="text-sm text-foreground leading-[1.75]">
-          {plan.conclusion}
+          {conclusion}
         </p>
         <div className="mt-4 pt-4 border-t border-border">
           <p className="text-xs text-muted">
