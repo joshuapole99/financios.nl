@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import PostHogProvider from "./PostHogProvider";
+import InstallBanner from "@/components/InstallBanner";
 import "./globals.css";
 
 const inter = Inter({
@@ -52,6 +53,7 @@ export default function RootLayout({
           <div className="gradient-orb gradient-orb-2" />
         </div>
         <PostHogProvider>{children}</PostHogProvider>
+        <InstallBanner />
       </body>
     </html>
   );

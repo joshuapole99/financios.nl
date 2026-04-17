@@ -155,6 +155,7 @@ export default async function LandingPage() {
             { icon: "✓", label: "Gratis scan" },
             { icon: "💶", label: "Plan €4,99 eenmalig" },
             { icon: "✓", label: "Voortgang bijhouden" },
+            { icon: "📱", label: "Installeerbaar als app" },
             { icon: "🔒", label: "Privacy-first" },
           ].map((b) => (
             <span
