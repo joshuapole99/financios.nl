@@ -159,7 +159,7 @@ export default async function ResultPage({
               Jouw spaartekort
             </h2>
 
-            <div className="grid grid-cols-3 gap-3 mb-5 text-center">
+            <div className="grid grid-cols-3 gap-2 mb-5 text-center">
               <div>
                 <p className="text-xs font-medium uppercase tracking-wider text-muted mb-1">
                   Jij spaart
@@ -326,7 +326,7 @@ export default async function ResultPage({
           </div>
 
           {/* Metrics */}
-          <div className="grid grid-cols-2 gap-3 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
             <MetricCard
               label="Spaarruimte per maand"
               value={`€ ${fmt(result.monthlyCapacity)}`}

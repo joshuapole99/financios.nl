@@ -22,7 +22,7 @@ export default function UpgradePage() {
       </div>
 
       {/* Zonder plan vs Met plan */}
-      <div className="grid grid-cols-2 gap-3 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
         <div className="bg-danger/5 border border-danger/20 rounded-2xl p-4">
           <p className="text-xs font-semibold uppercase tracking-wider text-danger mb-3">
             Zonder plan

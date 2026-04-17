@@ -27,6 +27,12 @@ export const metadata: Metadata = {
   verification: {
     google: "szoX8xp7lF1liB9uBRq4spT-Du1A3vaOzBgkDWnPNKA",
   },
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Financios",
+  },
 };
 
 export default function RootLayout({
