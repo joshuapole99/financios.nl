@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getSession } from "@/lib/session";
 import { redirect } from "next/navigation";
+import MobileMenu from "@/components/MobileMenu";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = await getSession();
@@ -14,37 +15,33 @@ export default async function DashboardLayout({ children }: { children: React.Re
           <Link href="/" className="text-base font-bold text-foreground tracking-tight shrink-0">
             Financios
           </Link>
-          <div className="flex items-center gap-0.5 sm:gap-1 overflow-x-auto">
-            <Link
-              href="/dashboard"
-              className="text-sm text-muted hover:text-foreground transition-colors px-2 sm:px-3 py-1.5 rounded-lg hover:bg-card whitespace-nowrap"
-            >
-              Overzicht
-            </Link>
-            <Link
-              href="/dashboard/spaardoelen"
-              className="text-sm text-muted hover:text-foreground transition-colors px-2 sm:px-3 py-1.5 rounded-lg hover:bg-card whitespace-nowrap"
-            >
-              Doelen
-            </Link>
-            <Link
-              href="/dashboard/assets"
-              className="text-sm text-muted hover:text-foreground transition-colors px-2 sm:px-3 py-1.5 rounded-lg hover:bg-card whitespace-nowrap"
-            >
-              Vermogen
-            </Link>
-            <Link
-              href="/dashboard/account"
-              className="text-sm text-muted hover:text-foreground transition-colors px-2 sm:px-3 py-1.5 rounded-lg hover:bg-card whitespace-nowrap"
-            >
-              Account
-            </Link>
-            <Link
-              href="/scan"
-              className="text-sm font-semibold bg-accent hover:bg-accent-hover text-white px-3 sm:px-4 py-2 rounded-xl transition-all shadow-lg shadow-accent/20 ml-1 whitespace-nowrap shrink-0"
-            >
+
+          {/* Desktop */}
+          <div className="hidden sm:flex items-center gap-1">
+            <Link href="/dashboard" className="text-sm text-muted hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-card">Overzicht</Link>
+            <Link href="/dashboard/spaardoelen" className="text-sm text-muted hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-card">Doelen</Link>
+            <Link href="/dashboard/assets" className="text-sm text-muted hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-card">Vermogen</Link>
+            <Link href="/dashboard/account" className="text-sm text-muted hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-card">Account</Link>
+            <Link href="/scan" className="text-sm font-semibold bg-accent hover:bg-accent-hover text-white px-4 py-2 rounded-xl transition-all shadow-lg shadow-accent/20 ml-2">Scan starten</Link>
+            <form action="/api/auth/logout" method="POST" className="ml-1">
+              <button type="submit" className="text-sm text-muted hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-card">Uitloggen</button>
+            </form>
+          </div>
+
+          {/* Mobile */}
+          <div className="flex sm:hidden items-center gap-2 relative">
+            <Link href="/scan" className="text-sm font-semibold bg-accent hover:bg-accent-hover text-white px-3 py-2 rounded-xl transition-all shadow-lg shadow-accent/20">
               Scan
             </Link>
+            <MobileMenu
+              items={[
+                { href: "/dashboard", label: "Overzicht" },
+                { href: "/dashboard/spaardoelen", label: "Doelen" },
+                { href: "/dashboard/assets", label: "Vermogen" },
+                { href: "/dashboard/account", label: "Account" },
+              ]}
+              logoutAction
+            />
           </div>
         </div>
       </nav>

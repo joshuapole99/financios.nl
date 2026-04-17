@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getSession } from "@/lib/session";
+import MobileMenu from "@/components/MobileMenu";
 
 export const metadata: Metadata = {
   title: "Financios – Waarom ben jij altijd blut?",
@@ -85,40 +86,36 @@ export default async function LandingPage() {
           height={36}
           priority
         />
-        <div className="flex items-center gap-4 sm:gap-6">
-          <Link
-            href="/blog"
-            className="text-sm text-muted hover:text-foreground transition-colors hidden sm:block"
-          >
-            Blog
-          </Link>
-          <Link
-            href="/upgrade"
-            className="text-sm text-muted hover:text-foreground transition-colors"
-          >
-            Prijzen
-          </Link>
+        {/* Desktop nav */}
+        <div className="hidden sm:flex items-center gap-4 sm:gap-6">
+          <Link href="/blog" className="text-sm text-muted hover:text-foreground transition-colors">Blog</Link>
+          <Link href="/upgrade" className="text-sm text-muted hover:text-foreground transition-colors">Prijzen</Link>
           {session ? (
-            <Link
-              href="/dashboard"
-              className="text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
-            >
+            <Link href="/dashboard" className="text-sm font-semibold text-accent hover:text-accent-hover transition-colors">
               Dashboard →
             </Link>
           ) : (
-            <Link
-              href="/login"
-              className="text-sm font-semibold bg-card border border-border hover:border-accent/40 text-foreground px-4 py-2 rounded-xl transition-all"
-            >
+            <Link href="/login" className="text-sm font-semibold bg-card border border-border hover:border-accent/40 text-foreground px-4 py-2 rounded-xl transition-all">
               Inloggen
             </Link>
           )}
-          <Link
-            href="/scan"
-            className="text-sm font-semibold bg-accent hover:bg-accent-hover text-white px-4 py-2 rounded-xl transition-all shadow-lg shadow-accent/20"
-          >
+          <Link href="/scan" className="text-sm font-semibold bg-accent hover:bg-accent-hover text-white px-4 py-2 rounded-xl transition-all shadow-lg shadow-accent/20">
             Start scan →
           </Link>
+        </div>
+
+        {/* Mobile: scan knop + hamburger */}
+        <div className="flex sm:hidden items-center gap-2 relative">
+          <Link href="/scan" className="text-sm font-semibold bg-accent hover:bg-accent-hover text-white px-3 py-2 rounded-xl transition-all shadow-lg shadow-accent/20">
+            Scan →
+          </Link>
+          <MobileMenu
+            items={[
+              { href: "/blog", label: "Blog" },
+              { href: "/upgrade", label: "Prijzen" },
+              session ? { href: "/dashboard", label: "Dashboard →", accent: false } : { href: "/login", label: "Inloggen" },
+            ]}
+          />
         </div>
       </nav>
 
