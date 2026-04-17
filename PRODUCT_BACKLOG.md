@@ -132,9 +132,9 @@ Geen harde conversiepercentages in deze fase.
 ## 📄 FUTURE (ONLY AFTER TRACTION)
 
 - [ ] PDF export van /plan pagina
-- [ ] User authentication / accounts + database
-- [ ] Dashboard met meerdere spaardoelen
-- [ ] Investments importeren & bijhouden
+- [x] User authentication / accounts + database — magic link auth via Brevo, Neon PostgreSQL
+- [x] Dashboard met meerdere spaardoelen — /dashboard/spaardoelen met voortgangsbalk
+- [x] Investments importeren & bijhouden — /dashboard/assets (spaar/belegging/crypto/overig)
 - [ ] Calculators (pensioen, hypotheek, FIRE)
 - [ ] Abonnement model (alleen nadat accounts bestaan)
 
@@ -268,4 +268,4 @@ Geen harde conversiepercentages in deze fase.
 ## ⚠️ DECISIONS
 
 - [ ] Payment provider: LemonSqueezy (current) vs Stripe + iDEAL (later, vereist KVK)
-- [ ] Introduce accounts ONLY after returning users exist
+- [x] Introduce accounts ONLY after returning users exist — accounts gebouwd april 2026
