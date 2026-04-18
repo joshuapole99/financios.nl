@@ -242,6 +242,7 @@ function ScanForm() {
                     type="number"
                     value={sub.bedrag}
                     onChange={setSub(i, "bedrag")}
+                    onWheel={(e) => (e.target as HTMLInputElement).blur()}
                     placeholder="13"
                     min="0"
                     step="any"
@@ -359,6 +360,7 @@ function ScanForm() {
                 type="number"
                 value={values.maanden}
                 onChange={set("maanden")}
+                onWheel={(e) => (e.target as HTMLInputElement).blur()}
                 min="1"
                 max="120"
                 className="bg-card border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition-all w-28"
@@ -450,6 +452,7 @@ function EuroInput({
           type="number"
           value={value}
           onChange={onChange}
+          onWheel={(e) => (e.target as HTMLInputElement).blur()}
           placeholder={placeholder}
           required={required}
           min="0"
