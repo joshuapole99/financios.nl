@@ -16,6 +16,17 @@ Gen Z (18–30), Nederland. Mensen met een spaardoel (vakantie, auto, bruiloft, 
 - **Vercel** — deployment
 - **ImprovMX** — email forwarding `@financios.nl` → `joshuapole@live.nl`
 
+## Scan Form Velden
+- `inkomen` — maandelijks netto inkomen
+- `huur` — huur of hypotheek
+- `abonnementen` — **totaal** abonnementen (geserialiseerd als getal in URL); in de UI een dynamische lijst van rijen (naam + bedrag per abonnement), totaal wordt berekend bij submit. Schrikmoment card toont maand/jaar totaal vs NL-gemiddelde (€150/maand).
+- `verzekeringen` — zorg, auto, inboedel
+- `boodschappen`, `vervoer`, `horeca`, `overig` — variabele kosten
+- `doel` — doelbedrag spaardoel
+- `spaargeld` — huidig spaargeld
+- `maanden` — tijdsdoel in maanden (default 12)
+- `doelNaam` — naam spaardoel (optioneel)
+
 ## Betaalflow
 1. `/checkout` → LS URL met `checkout[custom][params]` + `success_url=/betaling-gelukt`
 2. LS webhook `POST /api/webhooks/lemonsqueezy` → HMAC-SHA256 → UUID token → Redis `plan:{token}` (TTL 1 jaar) → Brevo magic link

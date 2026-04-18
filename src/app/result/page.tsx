@@ -540,6 +540,11 @@ function ChoosePlanSection({
             </p>
             <span className="text-sm font-bold text-foreground">€4,99 eenmalig</span>
           </div>
+          {gap > 0 && (
+            <p className="text-sm font-semibold text-danger mb-3">
+              Jij laat € {fmt(gap)} per maand liggen
+            </p>
+          )}
           <ul className="space-y-2.5 mb-5">
             {["Weekplan op maat", "Maandoverzicht", "Persoonlijke bezuinigingstips", "3 scenario's", "Exacte afrondingsdatum"].map((f) => (
               <li key={f} className="flex items-start gap-2.5 text-sm text-foreground">
@@ -550,11 +555,12 @@ function ChoosePlanSection({
           </ul>
           <Link
             href={checkoutHref}
-            className="block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-3.5 rounded-xl text-center text-base transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide"
+            className="block w-full bg-accent hover:bg-accent-hover text-white font-semibold py-4 rounded-xl text-center text-base transition-all shadow-lg shadow-accent/20 active:scale-[0.98] tracking-wide"
           >
             Maak mijn plan →
           </Link>
           <p className="text-xs text-muted text-center mt-2">Geen abonnement · Direct beschikbaar</p>
+          <p className="text-xs text-muted/70 text-center mt-1">Dit plan betaalt zichzelf terug in maand één</p>
         </div>
       </div>
     </div>

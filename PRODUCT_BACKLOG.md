@@ -51,6 +51,10 @@ Geen harde conversiepercentages in deze fase.
 - [x] PremiumCard with checklist + trust line + value anchor
 - [x] Warning status gets premium CTA (was missing)
 - [x] Homepage redesign: How it works + Voorbeelden + Trust CTA
+- [x] Scan: dynamic subscription list (per abonnement naam + bedrag)
+- [x] Scan: schrikmoment card — jaarlijkse kosten + vergelijking met NL-gemiddelde
+- [x] Result: "Jij laat €X per maand liggen" copy boven betaald plan features
+- [x] Result: grotere CTA knop + "betaalt zichzelf terug in maand één"
 
 ## ✅ MONETIZATION (DONE)
 

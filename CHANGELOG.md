@@ -1,5 +1,14 @@
 # CHANGELOG.md
 
+## v2.1 — Scan upgrade: abonnementen + schrikmoment + conversie (2026-04-17)
+
+- **Scan:** Abonnementenveld omgebouwd naar dynamische lijst (naam + bedrag per rij, onbeperkt toevoegen)
+- **Scan:** Schrikmoment card na abonnementenlijst — maand/jaartotaal + vergelijking met Nederlands gemiddelde (€150/maand)
+- **Result:** "Jij laat €X per maand liggen" boven betaald-plan features (alleen bij gap > 0)
+- **Result:** CTA knop in `ChoosePlanSection` groter (py-4) + extra trust copy "Dit plan betaalt zichzelf terug in maand één"
+
+---
+
 ## v2.0 - SEO pagina /hoeveel-moet-je-sparen-per-maand (2026-04-11)
 
 ### Nieuwe SEO pagina
